@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "2nEKHP2LF15uigl7Uiw8XCh5iKv8iet0h8yxVNSdV04yOhDlYtdYHjhQQoUl67C6/DCRi4ChpGSlmUVyhVb03A==",
+  "dgSpecHash": "lfNN+Q9kY+Vf1xBCCnEDSCs2r6waluSR7zdixOS3Flav5Da/7XdOxhRuiEuH7TVXa0EqsYcHNCot8J/qFp6GXg==",
   "success": true,
-  "projectFilePath": "C:\\Users\\1234f\\Desktop\\RentCars\\src\\RentCars.WebAPI\\RentCars.WebAPI.csproj",
+  "projectFilePath": "C:\\Users\\1234f\\Desktop\\Курсовой проект\\RentCars\\src\\RentCars.WebAPI\\RentCars.WebAPI.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\1234f\\.nuget\\packages\\microsoft.extensions.apidescription.server\\6.0.5\\microsoft.extensions.apidescription.server.6.0.5.nupkg.sha512",
     "C:\\Users\\1234f\\.nuget\\packages\\microsoft.openapi\\1.2.3\\microsoft.openapi.1.2.3.nupkg.sha512",

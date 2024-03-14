@@ -2,7 +2,7 @@ namespace RentCars.WebAPI;
 
 public class Program
 {
-    public static void Main(string[] args)
+    public static void Main(String[] args)
     {
         WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
 
@@ -21,6 +21,8 @@ public class Program
             app.UseSwagger();
             app.UseSwaggerUI();
         }
+
+        //app.UseStaticFiles();
 
         app.UseHttpsRedirection();
 

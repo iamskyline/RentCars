@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\1234f\\Desktop\\RentCars\\src\\RentCars.Services.Configurator\\RentCars.Services.Configurator.csproj": {}
+    "C:\\Users\\1234f\\Desktop\\Курсовой проект\\RentCars\\src\\RentCars.Services.Configurator\\RentCars.Services.Configurator.csproj": {}
   },
   "projects": {
-    "C:\\Users\\1234f\\Desktop\\RentCars\\src\\RentCars.Services.Configurator\\RentCars.Services.Configurator.csproj": {
+    "C:\\Users\\1234f\\Desktop\\Курсовой проект\\RentCars\\src\\RentCars.Services.Configurator\\RentCars.Services.Configurator.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\1234f\\Desktop\\RentCars\\src\\RentCars.Services.Configurator\\RentCars.Services.Configurator.csproj",
+        "projectUniqueName": "C:\\Users\\1234f\\Desktop\\Курсовой проект\\RentCars\\src\\RentCars.Services.Configurator\\RentCars.Services.Configurator.csproj",
         "projectName": "RentCars.Services.Configurator",
-        "projectPath": "C:\\Users\\1234f\\Desktop\\RentCars\\src\\RentCars.Services.Configurator\\RentCars.Services.Configurator.csproj",
+        "projectPath": "C:\\Users\\1234f\\Desktop\\Курсовой проект\\RentCars\\src\\RentCars.Services.Configurator\\RentCars.Services.Configurator.csproj",
         "packagesPath": "C:\\Users\\1234f\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\1234f\\Desktop\\RentCars\\src\\RentCars.Services.Configurator\\obj\\",
+        "outputPath": "C:\\Users\\1234f\\Desktop\\Курсовой проект\\RentCars\\src\\RentCars.Services.Configurator\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\1234f\\AppData\\Roaming\\NuGet\\NuGet.Config",
