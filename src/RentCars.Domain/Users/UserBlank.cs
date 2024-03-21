@@ -9,7 +9,6 @@ public partial class UserBlank
     public String? Password { get; set; }
     public String? Photo { get; set; }
     public DateTime? RegistrationDate { get; set; }
-    public Boolean? IsAdmin { get; set; }
 }
 
 public partial class UserBlank
@@ -21,13 +20,12 @@ public partial class UserBlank
         public String Tel { get; set; }
         public String Login { get; set; }
         public String Password { get; set; }
-        public String Photo { get; set; }
+        public String? Photo { get; set; }
         public DateTime RegistrationDate { get; set; }
-        public Boolean IsAdmin { get; set; }
 
         public Valid(Guid id, String name, String tel,
-            String login, String password, String photo,
-            DateTime registrationDate, Boolean isAdmin
+            String login, String password, String? photo,
+            DateTime registrationDate
         )
         {
             Id = id;
@@ -37,7 +35,6 @@ public partial class UserBlank
             Password = password;
             Photo = photo;
             RegistrationDate = registrationDate;
-            IsAdmin = isAdmin;
         }
     }
 }

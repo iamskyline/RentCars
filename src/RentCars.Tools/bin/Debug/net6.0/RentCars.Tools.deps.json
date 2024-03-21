@@ -1,0 +1,36 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v6.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v6.0": {
+      "RentCars.Tools/1.0.0": {
+        "dependencies": {
+          "RentCars.Services.Configurator": "1.0.0"
+        },
+        "runtime": {
+          "RentCars.Tools.dll": {}
+        }
+      },
+      "RentCars.Services.Configurator/1.0.0": {
+        "runtime": {
+          "RentCars.Services.Configurator.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "RentCars.Tools/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "RentCars.Services.Configurator/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}

@@ -16,21 +16,21 @@ public class Vehicle
     public Double EngineCapacity { get; }
     public FuelType FuelType { get; }
     public WheelDrive WheelDrive { get; }
-    public Money DayCost { get; }
-    public Money TwoFourDaysCost { get; }
-    public Money FourSevenDaysCost { get; }
-    public Money SevenFourteenDaysCost { get; }
-    public Money FourteenAndMoreDaysCost { get; }
-    public String MainPhotoPath { get; }
+    public Double DayCost { get; }
+    public Double TwoFourDaysCost { get; }
+    public Double FourSevenDaysCost { get; }
+    public Double SevenFourteenDaysCost { get; }
+    public Double FourteenAndMoreDaysCost { get; }
+    public String? MainPhotoPath { get; }
     public String[] PhotoPaths { get; }
 
     public Vehicle(Guid id, String brand, String model,
         Int32 yearOfManufacture, VehicleClass vehicleClass,
         String bodyColor, BodyType bodyType, Int32 enginePower,
         Double engineCapacity, FuelType fuelType, WheelDrive wheelDrive,
-        Money dayCost, Money twoFourDaysCost, Money fourSevenDaysCost,
-        Money sevenFourteenDaysCost, Money fourteenAndMoreDaysCost,
-        String mainPhotoPath, String[] photos
+        Double dayCost, Double twoFourDaysCost, Double fourSevenDaysCost,
+        Double sevenFourteenDaysCost, Double fourteenAndMoreDaysCost,
+        String? mainPhotoPath, String[] photos
     )
     {
         Id = id;

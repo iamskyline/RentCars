@@ -1,11 +1,66 @@
 {
   "version": 3,
   "targets": {
-    "net6.0": {}
+    "net6.0": {
+      "RentCars.Domain/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v6.0",
+        "dependencies": {
+          "RentCars.Tools": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/RentCars.Domain.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/RentCars.Domain.dll": {}
+        }
+      },
+      "RentCars.Services.Configurator/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v6.0",
+        "compile": {
+          "bin/placeholder/RentCars.Services.Configurator.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/RentCars.Services.Configurator.dll": {}
+        }
+      },
+      "RentCars.Tools/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v6.0",
+        "dependencies": {
+          "RentCars.Services.Configurator": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/RentCars.Tools.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/RentCars.Tools.dll": {}
+        }
+      }
+    }
   },
-  "libraries": {},
+  "libraries": {
+    "RentCars.Domain/1.0.0": {
+      "type": "project",
+      "path": "../RentCars.Domain/RentCars.Domain.csproj",
+      "msbuildProject": "../RentCars.Domain/RentCars.Domain.csproj"
+    },
+    "RentCars.Services.Configurator/1.0.0": {
+      "type": "project",
+      "path": "../RentCars.Services.Configurator/RentCars.Services.Configurator.csproj",
+      "msbuildProject": "../RentCars.Services.Configurator/RentCars.Services.Configurator.csproj"
+    },
+    "RentCars.Tools/1.0.0": {
+      "type": "project",
+      "path": "../RentCars.Tools/RentCars.Tools.csproj",
+      "msbuildProject": "../RentCars.Tools/RentCars.Tools.csproj"
+    }
+  },
   "projectFileDependencyGroups": {
-    "net6.0": []
+    "net6.0": [
+      "RentCars.Domain >= 1.0.0"
+    ]
   },
   "packageFolders": {
     "C:\\Users\\1234f\\.nuget\\packages\\": {}
@@ -33,7 +88,11 @@
       "frameworks": {
         "net6.0": {
           "targetAlias": "net6.0",
-          "projectReferences": {}
+          "projectReferences": {
+            "C:\\Users\\1234f\\Desktop\\Курсовой проект\\RentCars\\src\\RentCars.Domain\\RentCars.Domain.csproj": {
+              "projectPath": "C:\\Users\\1234f\\Desktop\\Курсовой проект\\RentCars\\src\\RentCars.Domain\\RentCars.Domain.csproj"
+            }
+          }
         }
       },
       "warningProperties": {

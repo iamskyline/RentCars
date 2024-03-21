@@ -10,5 +10,5 @@ public interface IVehicleService
     Vehicle? GetVehicle(Guid vehicleId);
     Vehicle[] GetAllVehicles();
 
-    Result RemoveVehicle(Guid vehicleId);
+    void RemoveVehicle(Guid vehicleId);
 }

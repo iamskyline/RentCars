@@ -1,0 +1,67 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="RentCars.Domain.RentalRequests.RentalRequest">
+    <Position X="6.25" Y="1.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AABCAAAEAAAAAAAAgAAAAAAAAAAAgAAABAAAAAAAAAA=</HashCode>
+      <FileName>RentalRequests\RentalRequest.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RentCars.Domain.RentalRequests.RentalRequestBlank">
+    <Position X="6.25" Y="4.25" Width="2" />
+    <NestedTypes>
+      <Class Name="RentCars.Domain.RentalRequests.RentalRequestBlank.Valid" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>RentalRequests\RentalRequestBlank.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Class>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>AABCAAAEAAAAAAAAgAAAAAAAAAAAgAAABAAAAAAAAAA=</HashCode>
+      <FileName>RentalRequests\RentalRequestBlank.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RentCars.Domain.Users.User">
+    <Position X="8.75" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAgCAAEAAAAAQAAQAAAAACAAAQAAAAAAA=</HashCode>
+      <FileName>Users\User.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RentCars.Domain.Users.UserBlank">
+    <Position X="8.75" Y="4.75" Width="1.5" />
+    <NestedTypes>
+      <Class Name="RentCars.Domain.Users.UserBlank.Valid" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Users\UserBlank.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Class>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAgCAAAAAAAAQACQAAAAACAAAQAAAAAAA=</HashCode>
+      <FileName>Users\UserBlank.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RentCars.Domain.Vehicles.Vehicle">
+    <Position X="3.5" Y="1.5" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAWAQAAAAAIAAAAAgAAAAAAIQAACAAAEAwAEAAhIQA=</HashCode>
+      <FileName>Vehicles\Vehicle.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RentCars.Domain.Vehicles.VehicleBlank">
+    <Position X="10.75" Y="1.5" Width="2.25" />
+    <NestedTypes>
+      <Class Name="RentCars.Domain.Vehicles.VehicleBlank.Valid" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Vehicles\VehicleBlank.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Class>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>AAAWAQAAAAAAAAAAAgIAAAAAIQAACAAAEAwAEAAhIQA=</HashCode>
+      <FileName>Vehicles\VehicleBlank.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

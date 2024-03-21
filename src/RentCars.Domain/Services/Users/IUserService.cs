@@ -5,10 +5,12 @@ namespace RentCars.Domain.Services.Users;
 
 public interface IUserService
 {
+    Result Registration(UserBlank blank);
+
     User? GetUser(Guid userId);
     User[] GetAllUsers();
+    Result Authorization(String login, String password);
 
-    Result SaveUser(UserBlank blank);
-
-    Result RemoveUser(Guid userId);
+    Result Logout(Guid userId);
+    void RemoveUser(Guid userId);
 }
