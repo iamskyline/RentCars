@@ -11,12 +11,12 @@ public class User
     public String Password { get; }
     public String? Photo { get; }
     public DateTime RegistrationDate { get; }
-    public UserRole Role { get; set; }
+    public Role UserRole { get; set; }
 
     public User(
         Guid id, String name, String tel, String login,
         String password, String? photo, DateTime registrationDate,
-        UserRole role
+        Role userRole
     )
     {
         Id = id;
@@ -26,7 +26,7 @@ public class User
         Password = password;
         Photo = photo;
         RegistrationDate = registrationDate;
-        Role = role;
+        UserRole = userRole;
     }
 
     public static User CreateSimpleUser(
@@ -34,6 +34,6 @@ public class User
         String password, String? photo, DateTime registrationDate
     )
     {
-        return new User(id, name, tel, login, password, photo, registrationDate, UserRole.Client);
+        return new User(id, name, tel, login, password, photo, registrationDate, Role.Client);
     }
 }

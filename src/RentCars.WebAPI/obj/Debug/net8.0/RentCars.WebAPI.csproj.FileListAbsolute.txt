@@ -1,7 +1,0 @@
-C:\Users\1234f\Desktop\Курсовой проект\RentCars\src\RentCars.WebAPI\obj\Debug\net8.0\RentCars.WebAPI.csproj.AssemblyReference.cache
-C:\Users\1234f\Desktop\Курсовой проект\RentCars\src\RentCars.WebAPI\obj\Debug\net8.0\RentCars.WebAPI.GeneratedMSBuildEditorConfig.editorconfig
-C:\Users\1234f\Desktop\Курсовой проект\RentCars\src\RentCars.WebAPI\obj\Debug\net8.0\RentCars.WebAPI.AssemblyInfoInputs.cache
-C:\Users\1234f\Desktop\Курсовой проект\RentCars\src\RentCars.WebAPI\obj\Debug\net8.0\RentCars.WebAPI.AssemblyInfo.cs
-C:\Users\1234f\Desktop\Курсовой проект\RentCars\src\RentCars.WebAPI\obj\Debug\net8.0\RentCars.WebAPI.csproj.CoreCompileInputs.cache
-C:\Users\1234f\Desktop\Курсовой проект\RentCars\src\RentCars.WebAPI\obj\Debug\net8.0\RentCars.WebAPI.MvcApplicationPartsAssemblyInfo.cache
-C:\Users\1234f\Desktop\Курсовой проект\RentCars\src\RentCars.WebAPI\obj\Debug\net8.0\RentCars.WebAPI.sourcelink.json

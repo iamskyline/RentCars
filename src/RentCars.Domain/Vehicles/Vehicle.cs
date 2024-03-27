@@ -1,5 +1,4 @@
 ﻿using RentCars.Domain.Vehicles.Enums;
-using RentCars.Tools;
 
 namespace RentCars.Domain.Vehicles;
 
@@ -16,6 +15,7 @@ public class Vehicle
     public Double EngineCapacity { get; }
     public FuelType FuelType { get; }
     public WheelDrive WheelDrive { get; }
+    public TransmissionType TransmissionType { get; }
     public Double DayCost { get; }
     public Double TwoFourDaysCost { get; }
     public Double FourSevenDaysCost { get; }
@@ -28,8 +28,9 @@ public class Vehicle
         Int32 yearOfManufacture, VehicleClass vehicleClass,
         String bodyColor, BodyType bodyType, Int32 enginePower,
         Double engineCapacity, FuelType fuelType, WheelDrive wheelDrive,
-        Double dayCost, Double twoFourDaysCost, Double fourSevenDaysCost,
-        Double sevenFourteenDaysCost, Double fourteenAndMoreDaysCost,
+        TransmissionType transmissionType, Double dayCost, Double twoFourDaysCost,
+        Double fourSevenDaysCost, Double sevenFourteenDaysCost,
+        Double fourteenAndMoreDaysCost,
         String? mainPhotoPath, String[] photos
     )
     {
@@ -44,6 +45,7 @@ public class Vehicle
         EngineCapacity = engineCapacity;
         FuelType = fuelType;
         WheelDrive = wheelDrive;
+        TransmissionType = transmissionType;
         DayCost = dayCost;
         TwoFourDaysCost = twoFourDaysCost;
         FourSevenDaysCost = fourSevenDaysCost;

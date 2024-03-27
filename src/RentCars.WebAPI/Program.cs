@@ -1,3 +1,6 @@
+using RentCars.Services.Configurator;
+using System;
+
 namespace RentCars.WebAPI;
 
 public class Program
@@ -6,16 +9,22 @@ public class Program
     {
         WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
 
-        // Add services to the container.
-
         builder.Services.AddControllers();
-        // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
+        builder.Services.Initialize(builder.Environment.EnvironmentName);
+
         builder.Services.AddEndpointsApiExplorer();
         builder.Services.AddSwaggerGen();
+        builder.Services.AddCors(options =>
+        {
+            options.AddPolicy("CorsPolicy",
+                builder => builder
+                    .AllowAnyMethod()
+                    .AllowCredentials()
+                    .SetIsOriginAllowed((host) => true)
+                    .AllowAnyHeader());
+        });
 
         WebApplication app = builder.Build();
-
-        // Configure the HTTP request pipeline.
         if (app.Environment.IsDevelopment())
         {
             app.UseSwagger();
@@ -28,9 +37,8 @@ public class Program
 
         app.UseAuthorization();
 
-
         app.MapControllers();
-
+        app.UseCors("CorsPolicy");
         app.Run();
     }
 }

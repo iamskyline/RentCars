@@ -28,6 +28,7 @@ public class VehicleService : IVehicleService
             validVehicleBlank.BodyColor, validVehicleBlank.BodyType,
             validVehicleBlank.EnginePower, validVehicleBlank.EngineCapacity,
             validVehicleBlank.FuelType, validVehicleBlank.WheelDrive,
+            validVehicleBlank.TransmissionType,
             validVehicleBlank.DayCost, validVehicleBlank.TwoFourDaysCost,
             validVehicleBlank.FourSevenDaysCost, validVehicleBlank.SevenFourteenDaysCost,
             validVehicleBlank.FourteenAndMoreDaysCost, validVehicleBlank.MainPhotoPath,
@@ -100,6 +101,8 @@ public class VehicleService : IVehicleService
             return Result.Fail("Тип топлива для автомобиля не выбран!");
         if (blank.WheelDrive is not { } wheelDrive)
             return Result.Fail("Тип привода автомобиля не выбран!");
+        if (blank.TransmissionType is not { } transmissionType)
+            return Result.Fail("Тип трансмиссии автомобиля не выбран!");
 
         if (blank.DayCost is not { } dayCost)
             return Result.Fail("Поле \"Стоимость суток аренды\" не заполнено!");
@@ -142,7 +145,7 @@ public class VehicleService : IVehicleService
         validVehicleBlank = new VehicleBlank.Valid(
             id, blank.Brand!, blank.Model!, yearOfManufacture,
             vehicleClass, blank.BodyColor!, bodyType,
-            enginePower, engineCapacity, fuelType,
+            enginePower, engineCapacity, fuelType, transmissionType,
             wheelDrive, dayCost, twoFourDaysCost,
             fourSevenDaysCost, sevenFourteenDaysCost,
             fourteenAndMoreDaysCost, blank.MainPhotoPath,
