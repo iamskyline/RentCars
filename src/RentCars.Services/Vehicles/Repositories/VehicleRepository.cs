@@ -22,27 +22,28 @@ public class VehicleRepository : IVehicleRepository
 
         NpgsqlParameter[] parameters =
         {
-            new("v_id", vehicle.Id),
-            new("v_brand", vehicle.Brand),
-            new("v_model", vehicle.Model),
-            new("v_vehicleclass", (Int32)vehicle.VehicleClass),
-            new("v_bodycolor", vehicle.BodyColor),
-            new("v_bodytype", (Int32)vehicle.BodyType),
-            new("v_enginepower", vehicle.EnginePower),
-            new("v_enginecapacity", vehicle.EngineCapacity),
-            new("v_fueltype", (Int32)vehicle.FuelType),
-            new("v_wheeldrive", (Int32)vehicle.WheelDrive),
-            new("v_transmissiontype", (Int32)vehicle.TransmissionType),
-            new("v_daycost", vehicle.DayCost),
-            new("v_twofourdayscost", vehicle.TwoFourDaysCost),
-            new("v_foursevendayscost", vehicle.FourSevenDaysCost),
-            new("v_sevenfourteendayscost", vehicle.SevenFourteenDaysCost),
-            new("v_fourteenandmoredayscost", vehicle.FourteenAndMoreDaysCost),
-            new("v_mainphoto", vehicle.MainPhotoPath),
-            new("v_photos", vehicle.PhotoPaths),
-            new("v_isremoved", defaultIsRemovedValue),
-            new("v_createddatetimeutc", dateTimeNowUtc),
-            new("v_yearofmanufacture", vehicle.YearOfManufacture),
+            new("p_id", vehicle.Id),
+            new("p_brand", vehicle.Brand),
+            new("p_model", vehicle.Model),
+            new("p_vehicleclass", (Int32)vehicle.VehicleClass),
+            new("p_bodycolor", vehicle.BodyColor),
+            new("p_bodytype", (Int32)vehicle.BodyType),
+            new("p_enginepower", vehicle.EnginePower),
+            new("p_enginecapacity", vehicle.EngineCapacity),
+            new("p_fueltype", (Int32)vehicle.FuelType),
+            new("p_wheeldrive", (Int32)vehicle.WheelDrive),
+            new("p_transmissiontype", (Int32)vehicle.TransmissionType),
+            new("p_daycost", vehicle.DayCost),
+            new("p_twofourdayscost", vehicle.TwoFourDaysCost),
+            new("p_foursevendayscost", vehicle.FourSevenDaysCost),
+            new("p_sevenfourteendayscost", vehicle.SevenFourteenDaysCost),
+            new("p_fourteenandmoredayscost", vehicle.FourteenAndMoreDaysCost),
+            new("p_mainphoto", vehicle.MainPhotoPath),
+            new("p_photos", vehicle.PhotoPaths),
+            new("p_isremoved", defaultIsRemovedValue),
+            new("p_createddatetimeutc", dateTimeNowUtc),
+            new("p_yearofmanufacture", vehicle.YearOfManufacture),
+            new("p_modifieddatetimeutc", dateTimeNowUtc)
         };
 
         String query = "INSERT INTO vehicles (id, brand, model, vehicleclass, bodycolor, " +
@@ -50,11 +51,21 @@ public class VehicleRepository : IVehicleRepository
                        "daycost, twofourdayscost, foursevendayscost, sevenfourteendayscost, " +
                        "fourteenandmoredayscost, mainphoto, photos, isremoved, " +
                        "createddatetimeutc, yearofmanufacture, transmissiontype) " +
-                       "VALUES (@v_id, @v_brand, @v_model, @v_vehicleclass, @v_bodycolor, @v_bodytype, " +
-                       "@v_enginepower, @v_enginecapacity, @v_fueltype, @v_wheeldrive, @v_daycost, " +
-                       "@v_twofourdayscost, @v_foursevendayscost, @v_sevenfourteendayscost, " +
-                       "@v_fourteenandmoredayscost, @v_mainphoto, @v_photos, @v_isremoved, " +
-                       "@v_createddatetimeutc, @v_yearofmanufacture, @v_transmissiontype)";
+                       "VALUES (@p_id, @p_brand, @p_model, @p_vehicleclass, @p_bodycolor, @p_bodytype, " +
+                       "@p_enginepower, @p_enginecapacity, @p_fueltype, @p_wheeldrive, @p_daycost, " +
+                       "@p_twofourdayscost, @p_foursevendayscost, @p_sevenfourteendayscost, " +
+                       "@p_fourteenandmoredayscost, @p_mainphoto, @p_photos, @p_isremoved, " +
+                       "@p_createddatetimeutc, @p_yearofmanufacture, @p_transmissiontype)" +
+                       "ON CONFLICT (id) DO UPDATE SET " +
+                       "id = @p_id, brand = @p_brand, model = @p_model, vehicleclass = @p_vehicleclass," +
+                       "bodycolor = @p_bodycolor, bodytype = @p_bodytype, enginepower = @p_enginepower, " +
+                       "enginecapacity = @p_enginecapacity, fueltype = @p_fueltype, wheeldrive = @p_wheeldrive, " +
+                       "daycost = @p_daycost, twofourdayscost = @p_twofourdayscost, " +
+                       "foursevendayscost = @p_foursevendayscost, sevenfourteendayscost = @p_sevenfourteendayscost, " +
+                       "fourteenandmoredayscost = @p_fourteenandmoredayscost, mainphoto = @p_mainphoto, " +
+                       "photos = @p_photos, isremoved = @p_isremoved, " +
+                       "yearofmanufacture = @p_yearofmanufacture, transmissiontype = @p_transmissiontype," +
+                       "modifieddatetimeutc = @p_modifieddatetimeutc";
 
         _mainConnector.ExecuteNonQuery(query, parameters);
     }
@@ -63,11 +74,11 @@ public class VehicleRepository : IVehicleRepository
     {
         NpgsqlParameter[] parameters =
         {
-            new("v_id", vehicleId)
+            new("p_id", vehicleId)
         };
 
         return _mainConnector.Get<VehicleDb?>(
-            expression:"SELECT * FROM vehicles WHERE id = @v_id AND isRemoved = false",
+            expression:"SELECT * FROM vehicles WHERE id = @p_id AND isRemoved = false",
             parameters
         )?.ToVehicle();
     }
@@ -81,11 +92,11 @@ public class VehicleRepository : IVehicleRepository
     {
         NpgsqlParameter[] parameters =
         {
-            new("v_id", vehicleId)
+            new("p_id", vehicleId)
         };
 
         _mainConnector.ExecuteNonQuery(
-            expression: "UPDATE vehicles SET isRemoved = true WHERE id = @v_id",
+            expression: "UPDATE vehicles SET isRemoved = true WHERE id = @p_id",
             parameters
         );
     }

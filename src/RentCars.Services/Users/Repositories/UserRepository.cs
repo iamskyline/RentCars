@@ -23,22 +23,28 @@ public class UserRepository : IUserRepository
 
         NpgsqlParameter[] parameters =
         {
-            new("u_id", user.Id),
-            new("u_name", user.Name),
-            new("u_tel", user.Tel),
-            new("u_login", user.Login),
-            new("u_password", user.Password),
-            new("u_avatarpath", user.Photo),
-            new("u_registrationdate", user.RegistrationDate),
-            new("u_userrole", (Int32)user.UserRole),
-            new("u_isremoved", defaultIsRemovedValue),
-            new("u_createddatetimeutc", dateTimeNowUtc),
+            new("p_id", user.Id),
+            new("p_name", user.Name),
+            new("p_tel", user.Tel),
+            new("p_login", user.Login),
+            new("p_password", user.Password),
+            new("p_avatarpath", user.Photo),
+            new("p_registrationdate", user.RegistrationDate),
+            new("p_userrole", (Int32)user.UserRole),
+            new("p_isremoved", defaultIsRemovedValue),
+            new("p_createddatetimeutc", dateTimeNowUtc),
+            new("p_modifieddatetimeutc", dateTimeNowUtc)
         };
 
         String query = "INSERT INTO users (id, name, tel, login, password, avatarpath, registrationdate, " +
                        "userrole, isremoved, createddatetimeutc) " +
-                       "VALUES (@u_id, @u_name, @u_tel, @u_login, @u_password, @u_avatarpath, " +
-                       "@u_registrationdate, @u_userrole, @u_isremoved, @u_createddatetimeutc)";
+                       "VALUES (@p_id, @p_name, @p_tel, @p_login, @p_password, @p_avatarpath, " +
+                       "@p_registrationdate, @p_userrole, @p_isremoved, @p_createddatetimeutc)" +
+                       "ON CONFLICT (id) DO UPDATE SET " +
+                       "id = @p_id, name = @p_name, tel = @p_tel, login = @p_login, password = @p_password," +
+                       "avatarpath = @p_avatarpath, registrationdate = @p_registrationdate, " +
+                       "userrole = @p_userrole, isremoved = @p_isremoved, " +
+                       "modifieddatetimeutc = @p_modifieddatetimeutc";
 
         _mainConnector.ExecuteNonQuery(query, parameters);
     }
@@ -47,10 +53,10 @@ public class UserRepository : IUserRepository
     {
         NpgsqlParameter[] parameters =
         {
-            new("u_id", userId)
+            new("p_id", userId)
         };
 
-        return _mainConnector.Get<UserDb?>("SELECT * FROM users WHERE id = @u_id", parameters)?.ToUser();
+        return _mainConnector.Get<UserDb?>("SELECT * FROM users WHERE id = @p_id", parameters)?.ToUser();
     }
 
     public User[] GetAllUsers()
@@ -72,11 +78,11 @@ public class UserRepository : IUserRepository
     {
         NpgsqlParameter[] parameters =
         {
-            new("u_id", userId)
+            new("p_id", userId)
         };
 
         _mainConnector.ExecuteNonQuery(
-            "UPDATE users SET isRemoved = true WHERE id = @u_id",
+            "UPDATE users SET isRemoved = true WHERE id = @p_id",
             parameters
         );
     }

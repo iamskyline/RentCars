@@ -32,6 +32,12 @@ public class VehicleController : ControllerBase
         return _vehicleService.GetAllVehicles();
     }
 
+    [HttpPost("api/vehicles/edit")]
+    public Result EditVehicle([FromBody] VehicleBlank blank)
+    {
+        return _vehicleService.SaveVehicle(blank);
+    }
+
     [HttpPost("api/vehicles/remove")]
     public void RemoveVehicle([FromBody] Guid id)
     {

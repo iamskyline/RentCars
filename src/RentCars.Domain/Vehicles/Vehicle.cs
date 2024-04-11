@@ -21,6 +21,7 @@ public class Vehicle
     public Double FourSevenDaysCost { get; }
     public Double SevenFourteenDaysCost { get; }
     public Double FourteenAndMoreDaysCost { get; }
+    //TODO Сделать полное соответствие с названиями из таблиц БД
     public String? MainPhotoPath { get; }
     public String[] PhotoPaths { get; }
 

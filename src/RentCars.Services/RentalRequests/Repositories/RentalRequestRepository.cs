@@ -22,20 +22,26 @@ public class RentalRequestRepository : IRentalRequestRepository
 
         NpgsqlParameter[] parameters =
         {
-            new("r_id", rentalRequest.Id),
-            new("r_userid", rentalRequest.UserId),
-            new("r_vehicleid", rentalRequest.VehicleId),
-            new("r_rentalstartdatetimeutc", rentalRequest.RentalStartDateTimeUtc),
-            new("r_rentalenddatetimeutc", rentalRequest.RentalEndDateTimeUtc),
-            new("r_status", (Int32)rentalRequest.Status),
-            new("r_isremoved", defaultIsRemovedValue),
-            new("r_createddatetimeutc", dateTimeNowUtc)
+            new("p_id", rentalRequest.Id),
+            new("p_userid", rentalRequest.UserId),
+            new("p_vehicleid", rentalRequest.VehicleId),
+            new("p_rentalstartdatetimeutc", rentalRequest.RentalStartDateTimeUtc),
+            new("p_rentalenddatetimeutc", rentalRequest.RentalEndDateTimeUtc),
+            new("p_status", (Int32)rentalRequest.Status),
+            new("p_isremoved", defaultIsRemovedValue),
+            new("p_createddatetimeutc", dateTimeNowUtc),
+            new("p_modifieddatetimeutc", dateTimeNowUtc)
         };
 
         String query = "INSERT INTO rentalrequests (id, userid, vehicleid, rentalstartdatetimeutc, " +
                        "rentalenddatetimeutc, status, isremoved, createddatetimeutc) " +
-                       "VALUES (@r_id, @r_userid, @r_vehicleid, @r_rentalstartdatetimeutc, " +
-                       "@r_rentalenddatetimeutc, @r_status, @r_isremoved, @r_createddatetimeutc)";
+                       "VALUES (@p_id, @p_userid, @p_vehicleid, @p_rentalstartdatetimeutc, " +
+                       "@p_rentalenddatetimeutc, @p_status, @p_isremoved, @p_createddatetimeutc)" +
+                       "ON CONFLICT (id) DO UPDATE SET " +
+                       "id = @p_id, userid = @p_userid, vehicleid = @p_vehicleid," +
+                       "rentalstartdatetimeutc = @p_rentalstartdatetimeutc," +
+                       "rentalenddatetimeutc = @p_rentalenddatetimeutc, status = @p_status," +
+                       "isremoved = @p_isremoved, modifieddatetimeutc = @p_modifieddatetimeutc";
 
         _mainConnector.ExecuteNonQuery(query, parameters);
     }
@@ -44,11 +50,11 @@ public class RentalRequestRepository : IRentalRequestRepository
     {
         NpgsqlParameter[] parameters =
         {
-            new("r_id", rentalRequestId)
+            new("p_id", rentalRequestId)
         };
 
         return _mainConnector.Get<RentalRequestDb?>(
-            expression: "SELECT * FROM rentalrequests WHERE id = @r_id",
+            expression: "SELECT * FROM rentalrequests WHERE id = @p_id",
             parameters
         )?.ToRentalRequest();
     }
@@ -62,11 +68,11 @@ public class RentalRequestRepository : IRentalRequestRepository
     {
         NpgsqlParameter[] parameters =
         {
-            new("r_id", rentalRequestId)
+            new("p_id", rentalRequestId)
         };
 
         _mainConnector.ExecuteNonQuery(
-            expression: "UPDATE rentalrequests SET isRemoved = true WHERE id = @r_id",
+            expression: "UPDATE rentalrequests SET isRemoved = true WHERE id = @p_id",
             parameters
         );
     }

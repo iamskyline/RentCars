@@ -5,7 +5,7 @@ namespace RentCars.Domain.Services.Users;
 
 public interface IUserService
 {
-    Result Registration(UserBlank blank);
+    Result SaveUser(UserBlank blank);
 
     User? GetUser(Guid userId);
     User[] GetAllUsers();

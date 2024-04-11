@@ -15,7 +15,7 @@ public class UserService : IUserService
         _userRepository = userRepository;
     }
 
-    public Result Registration(UserBlank blank)
+    public Result SaveUser(UserBlank blank)
     {
         PreprocessUserBlank(blank);
 

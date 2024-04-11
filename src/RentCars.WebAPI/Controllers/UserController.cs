@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using RentCars.Domain.Services.Users;
 using RentCars.Domain.Users;
+using RentCars.Domain.Vehicles;
 using RentCars.Tools.Results;
 
 namespace RentCars.WebAPI.Controllers;
@@ -17,7 +18,7 @@ public class UserController : ControllerBase
     [HttpPost("api/users/registration")]
     public Result Registration([FromBody] UserBlank blank)
     {
-        return _userService.Registration(blank);
+        return _userService.SaveUser(blank);
     }
 
     [HttpGet("api/users/get-user-by-id")]
@@ -34,7 +35,7 @@ public class UserController : ControllerBase
 
     public record UserAuthorizationRequest(String Login, String Password);
 
-    [HttpGet("api/users/authorization")]
+    [HttpPost("api/users/authorization")]
     public Result Authorization([FromBody] UserAuthorizationRequest request)
     {
         return _userService.Authorization(request.Login, request.Password);
@@ -44,6 +45,12 @@ public class UserController : ControllerBase
     public Result Logout(Guid id)
     {
         return _userService.Logout(id);
+    }
+
+    [HttpPost("api/users/edit")]
+    public Result EditUser([FromBody] UserBlank blank)
+    {
+        return _userService.SaveUser(blank);
     }
 
     [HttpPost("api/users/remove-account")]

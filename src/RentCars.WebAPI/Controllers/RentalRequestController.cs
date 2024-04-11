@@ -32,8 +32,14 @@ public class RentalRequestController
         return _rentalRequestService.GetAllRentalRequests();
     }
 
+    [HttpPost("api/rental-request/edit")]
+    public Result EditRentalRequest([FromBody] RentalRequestBlank blank)
+    {
+        return _rentalRequestService.SaveRentalRequest(blank);
+    }
+
     [HttpPost("api/rental-request/remove")]
-    public void RemoveRentalRequest(Guid id)
+    public void RemoveRentalRequest([FromBody] Guid id)
     {
         _rentalRequestService.RemoveRentalRequest(id);
     }
