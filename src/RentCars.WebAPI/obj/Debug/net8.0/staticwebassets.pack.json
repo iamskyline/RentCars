@@ -1,8 +1,12 @@
 {
   "Files": [
     {
-      "Id": "C:\\Users\\1234f\\Desktop\\Курсовой проект\\RentCars\\src\\RentCars.WebAPI\\wwwroot\\api.png",
+      "Id": "C:\\Users\\1234f\\Desktop\\Диплом\\RentCars\\src\\RentCars.WebAPI\\wwwroot\\api.png",
       "PackagePath": "staticwebassets\\api.png"
+    },
+    {
+      "Id": "C:\\Users\\1234f\\Desktop\\Диплом\\RentCars\\src\\RentCars.WebAPI\\wwwroot\\dist\\main.js",
+      "PackagePath": "staticwebassets\\dist\\main.js"
     },
     {
       "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.RentCars.WebAPI.Microsoft.AspNetCore.StaticWebAssets.props",

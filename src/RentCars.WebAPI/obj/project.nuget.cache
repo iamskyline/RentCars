@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "ImHnjg2J4Hb40rBMacTFQpQBOyBFd5Q6WPaXlBqzLxD8UM9y7jMWBsOgWdsPFcLDYxGYBETq9vT5PAeYIO//mA==",
+  "dgSpecHash": "ioJLv5btp9e001z7eY7KQZLmCFThxdZvnuOYuP+ISKOs+hHmdZijFpcYJJK6/2LL2JobatBb3SbiuarhxE3ufw==",
   "success": true,
-  "projectFilePath": "C:\\Users\\1234f\\Desktop\\Курсовой проект\\RentCars\\src\\RentCars.WebAPI\\RentCars.WebAPI.csproj",
+  "projectFilePath": "C:\\Users\\1234f\\Desktop\\Диплом\\RentCars\\src\\RentCars.WebAPI\\RentCars.WebAPI.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\1234f\\.nuget\\packages\\dapper\\2.1.35\\dapper.2.1.35.nupkg.sha512",
     "C:\\Users\\1234f\\.nuget\\packages\\microsoft.extensions.apidescription.server\\6.0.5\\microsoft.extensions.apidescription.server.6.0.5.nupkg.sha512",

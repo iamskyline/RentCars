@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "vgQROPG1JOyCbPieXbNWwHRXMsxL/efG1ipDWP2F2vtxLQI0K8jcC54YmPuWpxl4dxpG5d/61lfmrZAOY749CQ==",
+  "dgSpecHash": "TGRuNUGGn/H70I3bw/IBQXMlh6lS7LjeqmlMdNfQFL8AtK/zT4NoIXlK/K+NRd8mR+LwyB2XJ0anEkke/S7IXQ==",
   "success": true,
-  "projectFilePath": "C:\\Users\\1234f\\Desktop\\Курсовой проект\\RentCars\\src\\RentCars.Tools\\RentCars.Tools.csproj",
+  "projectFilePath": "C:\\Users\\1234f\\Desktop\\Диплом\\RentCars\\src\\RentCars.Tools\\RentCars.Tools.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\1234f\\.nuget\\packages\\dapper\\2.1.35\\dapper.2.1.35.nupkg.sha512",
     "C:\\Users\\1234f\\.nuget\\packages\\microsoft.extensions.configuration\\8.0.0\\microsoft.extensions.configuration.8.0.0.nupkg.sha512",

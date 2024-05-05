@@ -1327,11 +1327,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\1234f\\Desktop\\Курсовой проект\\RentCars\\src\\RentCars.WebAPI\\RentCars.WebAPI.csproj",
+      "projectUniqueName": "C:\\Users\\1234f\\Desktop\\Диплом\\RentCars\\src\\RentCars.WebAPI\\RentCars.WebAPI.csproj",
       "projectName": "RentCars.WebAPI",
-      "projectPath": "C:\\Users\\1234f\\Desktop\\Курсовой проект\\RentCars\\src\\RentCars.WebAPI\\RentCars.WebAPI.csproj",
+      "projectPath": "C:\\Users\\1234f\\Desktop\\Диплом\\RentCars\\src\\RentCars.WebAPI\\RentCars.WebAPI.csproj",
       "packagesPath": "C:\\Users\\1234f\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\1234f\\Desktop\\Курсовой проект\\RentCars\\src\\RentCars.WebAPI\\obj\\",
+      "outputPath": "C:\\Users\\1234f\\Desktop\\Диплом\\RentCars\\src\\RentCars.WebAPI\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\1234f\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -1348,14 +1348,14 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "projectReferences": {
-            "C:\\Users\\1234f\\Desktop\\Курсовой проект\\RentCars\\src\\RentCars.Domain\\RentCars.Domain.csproj": {
-              "projectPath": "C:\\Users\\1234f\\Desktop\\Курсовой проект\\RentCars\\src\\RentCars.Domain\\RentCars.Domain.csproj"
+            "C:\\Users\\1234f\\Desktop\\Диплом\\RentCars\\src\\RentCars.Domain\\RentCars.Domain.csproj": {
+              "projectPath": "C:\\Users\\1234f\\Desktop\\Диплом\\RentCars\\src\\RentCars.Domain\\RentCars.Domain.csproj"
             },
-            "C:\\Users\\1234f\\Desktop\\Курсовой проект\\RentCars\\src\\RentCars.Services.Configurator\\RentCars.Services.Configurator.csproj": {
-              "projectPath": "C:\\Users\\1234f\\Desktop\\Курсовой проект\\RentCars\\src\\RentCars.Services.Configurator\\RentCars.Services.Configurator.csproj"
+            "C:\\Users\\1234f\\Desktop\\Диплом\\RentCars\\src\\RentCars.Services.Configurator\\RentCars.Services.Configurator.csproj": {
+              "projectPath": "C:\\Users\\1234f\\Desktop\\Диплом\\RentCars\\src\\RentCars.Services.Configurator\\RentCars.Services.Configurator.csproj"
             },
-            "C:\\Users\\1234f\\Desktop\\Курсовой проект\\RentCars\\src\\RentCars.Services\\RentCars.Services.csproj": {
-              "projectPath": "C:\\Users\\1234f\\Desktop\\Курсовой проект\\RentCars\\src\\RentCars.Services\\RentCars.Services.csproj"
+            "C:\\Users\\1234f\\Desktop\\Диплом\\RentCars\\src\\RentCars.Services\\RentCars.Services.csproj": {
+              "projectPath": "C:\\Users\\1234f\\Desktop\\Диплом\\RentCars\\src\\RentCars.Services\\RentCars.Services.csproj"
             }
           }
         }

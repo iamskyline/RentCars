@@ -878,11 +878,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\1234f\\Desktop\\Курсовой проект\\RentCars\\src\\RentCars.Tools\\RentCars.Tools.csproj",
+      "projectUniqueName": "C:\\Users\\1234f\\Desktop\\Диплом\\RentCars\\src\\RentCars.Tools\\RentCars.Tools.csproj",
       "projectName": "RentCars.Tools",
-      "projectPath": "C:\\Users\\1234f\\Desktop\\Курсовой проект\\RentCars\\src\\RentCars.Tools\\RentCars.Tools.csproj",
+      "projectPath": "C:\\Users\\1234f\\Desktop\\Диплом\\RentCars\\src\\RentCars.Tools\\RentCars.Tools.csproj",
       "packagesPath": "C:\\Users\\1234f\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\1234f\\Desktop\\Курсовой проект\\RentCars\\src\\RentCars.Tools\\obj\\",
+      "outputPath": "C:\\Users\\1234f\\Desktop\\Диплом\\RentCars\\src\\RentCars.Tools\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\1234f\\AppData\\Roaming\\NuGet\\NuGet.Config",

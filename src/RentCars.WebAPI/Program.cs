@@ -1,5 +1,4 @@
 using RentCars.Services.Configurator;
-using System;
 
 namespace RentCars.WebAPI;
 
@@ -9,7 +8,7 @@ public class Program
     {
         WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
 
-        builder.Services.AddControllers();
+        builder.Services.AddControllersWithViews();
         builder.Services.Initialize(builder.Environment.EnvironmentName);
 
         builder.Services.AddEndpointsApiExplorer();
@@ -31,14 +30,14 @@ public class Program
             app.UseSwaggerUI();
         }
 
-        //app.UseStaticFiles();
+        app.UseStaticFiles();
 
         app.UseHttpsRedirection();
 
-        app.UseAuthorization();
-
+        app.UseRouting();
         app.MapControllers();
         app.UseCors("CorsPolicy");
+        app.UseEndpoints(endpoints => endpoints.MapDefaultControllerRoute());
         app.Run();
     }
 }
