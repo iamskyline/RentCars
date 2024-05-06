@@ -12,13 +12,13 @@ public class HomeController : BaseController
     }
 
     [HttpGet("/authorization")]
-    public IActionResult Auth()
+    public IActionResult ViewAuthorizationPage()
     {
         return ReactApplication();
     }
 
     [HttpGet("/registration")]
-    public IActionResult Registration()
+    public IActionResult ViewRegistrationPage()
     {
         return ReactApplication();
     }
@@ -30,7 +30,31 @@ public class HomeController : BaseController
     }
 
     [HttpGet("/profile")]
-    public IActionResult ViewProfile()
+    public IActionResult ViewProfileCard()
+    {
+        return ReactApplication();
+    }
+
+    [HttpGet("/confirmation")]
+    public IActionResult ViewNotificationCard()
+    {
+        return ReactApplication();
+    }
+
+    [HttpGet("/edit-profile")]
+    public IActionResult ViewEditProfileForm()
+    {
+        return ReactApplication();
+    }
+
+    [HttpGet("/request-form")]
+    public IActionResult ViewRequestForm()
+    {
+        return ReactApplication();
+    }
+
+    [HttpGet("/vehicle-form")]
+    public IActionResult ViewVehicleForm()
     {
         return ReactApplication();
     }

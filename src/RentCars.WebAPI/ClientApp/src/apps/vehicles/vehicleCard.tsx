@@ -7,7 +7,7 @@ export function VehicleCard() {
             bgcolor="#eaeaea"
             borderRadius={2}
             padding={2}>
-            <Grid container spacing={1}>
+            <Grid container>
                 <Grid item xs={12}>
                     {/* ФОТА ТУТ */}
                 </Grid>
