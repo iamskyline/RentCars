@@ -5,7 +5,7 @@ export function RegistrationCard() {
         <Box bgcolor="#eaeaea"
             borderRadius={5}
             padding={5}>
-            <Grid container rowGap={3}>
+            <Grid container spacing={3}>
                 <Grid item xs={12}>
                     <Typography variant="h4"
                         align="center">
@@ -36,13 +36,13 @@ export function RegistrationCard() {
                         fullWidth
                     />
                 </Grid>
-                <Grid item xs={6}>
+                <Grid item xs={12} md={6} lg={6}>
                     <Button variant="contained"
                         fullWidth>
                         Зарегистрироваться
                     </Button>
                 </Grid>
-                <Grid item xs={6}>
+                <Grid item xs={12} md={6} lg={6}>
                     <Typography variant="body1"
                         align="center">
                         Уже есть аккаунт?

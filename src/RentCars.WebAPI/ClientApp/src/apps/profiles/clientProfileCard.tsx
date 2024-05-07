@@ -6,14 +6,14 @@ export function ClientProfileCard() {
         <Box maxWidth="1200px" mx="auto"
             display="flex" justifyContent="center"
             alignItems="center" height="100vh">
-            <Box bgcolor="#eaeaea"
+            <Box bgcolor="#eaeaea" width="100%"
                 borderRadius={5}
                 padding={5}>
-                <Grid container>
-                    <Grid item xs={3}>
+                <Grid container spacing={3}>
+                    <Grid item xs={12} md={3} lg={2}>
                         <Avatar sx={{ width: 150, height: 150 }} />
                     </Grid>
-                    <Grid item xs={6} padding={2}>
+                    <Grid item xs={11} md={8} lg={9}>
                         <Typography variant="h5"
                             mb={1}>
                             Имя пользователя
@@ -27,7 +27,7 @@ export function ClientProfileCard() {
                             Количество арендованных автомобилей: x
                         </Typography>
                     </Grid>
-                    <Grid item xs={3}
+                    <Grid item xs={1} md={1} lg={1}
                         display="flex"
                         justifyContent="flex-end"
                         alignItems="flex-start">

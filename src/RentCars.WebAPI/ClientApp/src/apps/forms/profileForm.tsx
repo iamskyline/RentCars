@@ -18,8 +18,8 @@ export function ProfileForm() {
                         variant="filled"
                         fullWidth />
                 </Grid>
-                <Grid item xs={12}>
-                    <Button variant="contained" fullWidth>
+                <Grid item xs={12} display="flex" justifyContent="flex-end">
+                    <Button variant="contained">
                         Сохранить
                     </Button>
                 </Grid>
