@@ -7,39 +7,43 @@ export function AuthorizationCard() {
             borderRadius={5}
             padding={5}
         >
-            <Stack direction='column' gap={1}>
-                <Typography variant="h4"
-                    align="center">
-                    Добро пожаловать!
-                </Typography>
-                <TextField label="Введите логин"
-                    variant="standard"
-                    fullWidth
-                />
-                <TextField label="Введите пароль"
-                    type="password"
-                    autoComplete="current-password"
-                    variant="standard"
-                    fullWidth
-                />
-                <Stack gap={1} direction='row' mt={3}>
+            <Typography variant="h4"
+                align="center" mb={2}>
+                Добро пожаловать!
+            </Typography>
+            <Grid container spacing={3}>
+                <Grid item xs={12}>
+                    <TextField label="Введите логин"
+                        variant="standard"
+                        fullWidth
+                    />
+                </Grid>
+                <Grid item xs={12}>
+                    <TextField label="Введите пароль"
+                        type="password"
+                        autoComplete="current-password"
+                        variant="standard"
+                        fullWidth
+                    />
+                </Grid>
+                <Grid item xs={6}>
                     <Button sx={{ width: "50%" }} variant="contained">
                         Войти
                     </Button>
-                    <Box width="50%">
-                        <Typography variant="body1"
-                            align="center">
-                            Нет аккаунта?
-                        </Typography>
-                        <Typography variant="body1"
-                            align="center">
-                            <Link href="/registration">
-                                Создать сейчас!
-                            </Link>
-                        </Typography>
-                    </Box>
-                </Stack>
-            </Stack>
+                </Grid>
+                <Grid item xs={6}>
+                    <Typography variant="body1"
+                        align="center">
+                        Нет аккаунта?
+                    </Typography>
+                    <Typography variant="body1"
+                        align="center">
+                        <Link href="/registration">
+                            Создать сейчас!
+                        </Link>
+                    </Typography>
+                </Grid>
+            </Grid>
         </Box>
     );
 }

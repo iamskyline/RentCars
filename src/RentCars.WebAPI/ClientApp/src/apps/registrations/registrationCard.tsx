@@ -2,16 +2,14 @@ import { Box, Button, Grid, Link, TextField, Typography } from "@mui/material";
 
 export function RegistrationCard() {
     return (
-        <Box bgcolor="#eaeaea"
+        <Box maxWidth="485px" bgcolor="#eaeaea"
             borderRadius={5}
             padding={5}>
+            <Typography variant="h4"
+                align="center" mb={2}>
+                Будем рады знакомству!
+            </Typography>
             <Grid container spacing={3}>
-                <Grid item xs={12}>
-                    <Typography variant="h4"
-                        align="center">
-                        Будем рады знакомству!
-                    </Typography>
-                </Grid>
                 <Grid item xs={12}>
                     <TextField label="Укажите свое имя"
                         variant="standard"

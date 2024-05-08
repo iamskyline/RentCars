@@ -1,12 +1,14 @@
-import { Box } from "@mui/material";
+import { Avatar, Box, Stack } from "@mui/material";
 import { RegistrationCard } from "./registrationCard";
 
 export function RegistrationPage() {
     return (
-        <Box maxWidth="485px" mx="auto"
-            display="flex" justifyContent="center"
+        <Box display="flex" justifyContent="center"
             alignItems="center" height="100vh">
-            <RegistrationCard />
+            <Stack direction="column">
+                <img src="./assets/logos/Logotype.png" alt="logo" />
+                <RegistrationCard />
+            </Stack>
         </Box>
     );
 }

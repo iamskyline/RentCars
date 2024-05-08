@@ -41,7 +41,7 @@ public class HomeController : BaseController
         return ReactApplication();
     }
 
-    [HttpGet("/edit-profile")]
+    [HttpGet("/profile-form")]
     public IActionResult ViewEditProfileForm()
     {
         return ReactApplication();
@@ -53,7 +53,7 @@ public class HomeController : BaseController
         return ReactApplication();
     }
 
-    [HttpGet("/vehicle-form")]
+    [HttpGet("/vehicle-form-card")]
     public IActionResult ViewVehicleForm()
     {
         return ReactApplication();
@@ -61,6 +61,36 @@ public class HomeController : BaseController
 
     [HttpGet("/vehicle-card")]
     public IActionResult ViewVehicleCard()
+    {
+        return ReactApplication();
+    }
+
+    [HttpGet("/user-card")]
+    public IActionResult ViewUserCard()
+    {
+        return ReactApplication();
+    }
+
+    [HttpGet("/request-card")]
+    public IActionResult ViewRequestCard()
+    {
+        return ReactApplication();
+    }
+
+    [HttpGet("/vehicles")]
+    public IActionResult ViewVehicles()
+    {
+        return ReactApplication();
+    }
+
+    [HttpGet("/vehicle")]
+    public IActionResult ViewVehicle()
+    {
+        return ReactApplication();
+    }
+
+    [HttpGet("/vehicle-form")]
+    public IActionResult ViewVehicleFormPage()
     {
         return ReactApplication();
     }
