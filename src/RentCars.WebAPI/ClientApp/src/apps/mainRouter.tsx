@@ -1,20 +1,20 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { AuthorizationPage } from "./authorizations/authorizationPage";
 import { RegistrationPage } from "./registrations/registrationPage";
-import { AdminProfileCard } from "./profiles/Cards/adminProfileCard";
-import { ClientProfileCard } from "./profiles/Cards/clientProfileCard";
+import { AdminProfileCard } from "./profiles/cards/adminProfileCard";
+import { ClientProfileCard } from "./profiles/cards/clientProfileCard";
 import { ConfirmationCard } from "./confirmations/confirmationCard";
 import { ProfileForm } from "./profiles/profileForm";
 import { RequestForm } from "./rentalRequests/requestForm";
-import { VehicleFormCard } from "./vehicles/Cards/vehicleFormCard";
-import { VehicleSpecCard } from "./vehicles/Cards/vehicleSpecCard";
-import { VehicleCard } from "./vehicles/Cards/vehicleCard";
-import { UserCard } from "./profiles/Cards/userCard";
+import { VehicleFormCard } from "./vehicles/cards/vehicleFormCard";
+import { VehicleSpecCard } from "./vehicles/cards/vehicleSpecCard";
+import { VehicleCard } from "./vehicles/cards/vehicleCard";
+import { UserCard } from "./profiles/cards/userCard";
 import { RequestCard } from "./rentalRequests/requestCard";
-import { ProfilePage } from "./profiles/Pages/profilePage";
-import { VehiclesPage } from "./vehicles/Pages/vehiclesPage";
-import { VehiclePage } from "./vehicles/Pages/vehiclePage";
-import { VehicleFormPage } from "./vehicles/Pages/vehicleFormPage";
+import { ProfilePage } from "./profiles/pages/profilePage";
+import { VehiclesPage } from "./vehicles/pages/vehiclesPage";
+import { VehiclePage } from "./vehicles/pages/vehiclePage";
+import { VehicleFormPage } from "./vehicles/pages/vehicleFormPage";
 
 export function MainRouter() {
     return (

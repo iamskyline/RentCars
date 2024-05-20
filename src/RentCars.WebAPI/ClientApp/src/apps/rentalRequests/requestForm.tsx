@@ -1,4 +1,5 @@
 import { Box, Button, FormControl, Grid, InputLabel, Select, Typography } from "@mui/material";
+import { DatePicker } from "react-widgets/cjs";
 
 export function RequestForm() {
     return (
@@ -8,58 +9,42 @@ export function RequestForm() {
                 Создание / Редактирование заявки на аренду
             </Typography>
             <Grid container spacing={3}>
+                <Grid item xs={12} md={6} lg={4}
+                    display="flex" alignItems="center"
+                    justifyContent="center">
+                    <DatePicker placeholder="Дата начала аренды" />
+                </Grid>
                 <Grid item xs={12} md={6} lg={4}>
                     <FormControl variant="standard" fullWidth>
-                        <InputLabel id="demo-simple-select-standard-label">
+                        <InputLabel>
                             Выберите клиента
                         </InputLabel>
-                        <Select labelId="demo-simple-select-standard-label"
-                            id="demo-simple-select-standard"
-                            label="Age">
+                        <Select>
+
                         </Select>
                     </FormControl>
                 </Grid>
                 <Grid item xs={12} md={6} lg={4}>
                     <FormControl variant="standard" fullWidth>
-                        <InputLabel id="demo-simple-select-standard-label">
+                        <InputLabel>
                             Выберите автомобиль
                         </InputLabel>
-                        <Select labelId="demo-simple-select-standard-label"
-                            id="demo-simple-select-standard"
-                            label="Age">
+                        <Select>
+
                         </Select>
                     </FormControl>
                 </Grid>
-                <Grid item xs={12} md={6} lg={4}>
-                    <FormControl variant="standard" fullWidth>
-                        <InputLabel id="demo-simple-select-standard-label">
-                            Дата начала аренды
-                        </InputLabel>
-                        <Select labelId="demo-simple-select-standard-label"
-                            id="demo-simple-select-standard"
-                            label="Age">
-                        </Select>
-                    </FormControl>
+                <Grid item xs={12} md={6} lg={4} display="flex" alignItems="center"
+                    justifyContent="center">
+                    <DatePicker placeholder="Дата окончания аренды" />
                 </Grid>
                 <Grid item xs={12} md={6} lg={4}>
                     <FormControl variant="standard" fullWidth>
-                        <InputLabel id="demo-simple-select-standard-label">
-                            Дата окончания аренды
-                        </InputLabel>
-                        <Select labelId="demo-simple-select-standard-label"
-                            id="demo-simple-select-standard"
-                            label="Age">
-                        </Select>
-                    </FormControl>
-                </Grid>
-                <Grid item xs={12} md={6} lg={4}>
-                    <FormControl variant="standard" fullWidth>
-                        <InputLabel id="demo-simple-select-standard-label">
+                        <InputLabel>
                             Выберите статус заявки
                         </InputLabel>
-                        <Select labelId="demo-simple-select-standard-label"
-                            id="demo-simple-select-standard"
-                            label="Age">
+                        <Select>
+
                         </Select>
                     </FormControl>
                 </Grid>

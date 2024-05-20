@@ -5,6 +5,10 @@
       "PackagePath": "staticwebassets\\api.png"
     },
     {
+      "Id": "C:\\Users\\1234f\\Desktop\\Диплом\\RentCars\\src\\RentCars.WebAPI\\wwwroot\\dist\\images\\6452f022cea9f1ac7b2f2f40a6f640a4.png",
+      "PackagePath": "staticwebassets\\dist\\images\\6452f022cea9f1ac7b2f2f40a6f640a4.png"
+    },
+    {
       "Id": "C:\\Users\\1234f\\Desktop\\Диплом\\RentCars\\src\\RentCars.WebAPI\\wwwroot\\dist\\main.js",
       "PackagePath": "staticwebassets\\dist\\main.js"
     },

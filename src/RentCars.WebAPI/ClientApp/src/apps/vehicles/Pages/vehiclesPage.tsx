@@ -1,5 +1,5 @@
 import { Box, Grid } from "@mui/material";
-import { VehicleCard } from "../Cards/vehicleCard";
+import { VehicleCard } from "../cards/vehicleCard";
 
 export function VehiclesPage() {
     return (

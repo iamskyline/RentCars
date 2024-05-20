@@ -1,5 +1,5 @@
 import { Box } from "@mui/material";
-import { AdminProfileCard } from "../Cards/adminProfileCard";
+import { AdminProfileCard } from "../cards/adminProfileCard";
 
 export function ProfilePage() {
     return (
