@@ -1,9 +1,16 @@
 import { Box, Grid, Typography } from "@mui/material";
+import { useEffect, useState } from "react";
+import { Vehicle } from "../../../domain/vehicles/vehicle";
+import axios from "axios";
 
-export function VehicleCard() {
+interface IProps {
+    vehicle: Vehicle
+}
+
+export function VehicleCard(props: IProps) {
     return (
         <Box maxWidth="220px"
-            bgcolor="#eaeaea"
+            bgcolor="#d2d2d2"
             borderRadius={2}
             padding={2}>
             <Grid container spacing={2}>

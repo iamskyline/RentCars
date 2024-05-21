@@ -12,12 +12,14 @@ export function ProfileForm() {
                 <Grid item xs={12}>
                     <TextField label="Имя пользователя"
                         variant="filled"
-                        fullWidth />
+                        fullWidth
+                    />
                 </Grid>
                 <Grid item xs={12}>
                     <TextField label="Кол-во арендованных ТС"
                         variant="filled"
-                        fullWidth />
+                        fullWidth
+                    />
                 </Grid>
                 <Grid item xs={12} display="flex" justifyContent="flex-end">
                     <Button variant="contained">

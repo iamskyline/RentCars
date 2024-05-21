@@ -21,7 +21,6 @@ export function AuthorizationCard() {
                 <Grid item xs={12}>
                     <TextField label="Введите пароль"
                         type="password"
-                        autoComplete="current-password"
                         variant="standard"
                         fullWidth
                     />

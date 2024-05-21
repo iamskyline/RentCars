@@ -2,10 +2,11 @@
 using RentCars.Domain.Services.Vehicles;
 using RentCars.Domain.Vehicles;
 using RentCars.Tools.Results;
+using RentCars.WebAPI.Infrastructure;
 
 namespace RentCars.WebAPI.Controllers;
 
-public class VehicleController : ControllerBase
+public class VehicleController : BaseController
 {
     private readonly IVehicleService _vehicleService;
 
@@ -14,6 +15,14 @@ public class VehicleController : ControllerBase
         _vehicleService = vehicleService;
     }
 
+    [HttpGet("/vehicles")]
+    [HttpGet("/vehicle-card/{vehicleId}")]
+    public IActionResult ViewVehicles()
+    {
+        return ReactApplication();
+    }
+
+
     [HttpPost("api/vehicles/create")]
     public Result SaveVehicle([FromBody] VehicleBlank blank)
     {
@@ -21,12 +30,12 @@ public class VehicleController : ControllerBase
     }
 
     [HttpGet("api/vehicles/get-by-id")]
-    public Vehicle? GetVehicleById(Guid id)
+    public Vehicle? GetVehicleById([FromQuery]Guid vehicleId)
     {
-        return _vehicleService.GetVehicle(id);
+        return _vehicleService.GetVehicle(vehicleId);
     }
 
-    [HttpGet("api/vehicles/get-all-vehicle")]
+    [HttpGet("api/vehicles/get-all-vehicles")]
     public Vehicle[] GetAllVehicles()
     {
         return _vehicleService.GetAllVehicles();

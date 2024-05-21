@@ -1,9 +1,9 @@
 import { Avatar, Box, Grid, Typography } from "@mui/material";
 
-export function RequestCard() {
+export function RentalRequestCard() {
     return (
-        <Box maxWidth="400px" maxHeight="400px"
-            bgcolor="#eaeaea"
+        <Box maxWidth="400px"
+            bgcolor="#d2d2d2"
             borderRadius={2}
             padding={2}>
             <Grid container spacing={3}>

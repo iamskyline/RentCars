@@ -77,12 +77,6 @@ public class HomeController : BaseController
         return ReactApplication();
     }
 
-    [HttpGet("/vehicles")]
-    public IActionResult ViewVehicles()
-    {
-        return ReactApplication();
-    }
-
     [HttpGet("/vehicle")]
     public IActionResult ViewVehicle()
     {
@@ -91,6 +85,12 @@ public class HomeController : BaseController
 
     [HttpGet("/vehicle-form")]
     public IActionResult ViewVehicleFormPage()
+    {
+        return ReactApplication();
+    }
+
+    [HttpGet("/requests")]
+    public IActionResult ViewRequestsPage()
     {
         return ReactApplication();
     }

@@ -1,4 +1,5 @@
 import { Box, Button, Grid, Link, TextField, Typography } from "@mui/material";
+import { MuiTelInput } from "mui-tel-input";
 
 export function RegistrationCard() {
     return (
@@ -11,13 +12,10 @@ export function RegistrationCard() {
             </Typography>
             <Grid container spacing={3}>
                 <Grid item xs={12}>
-                    <TextField label="Укажите свое имя"
-                        variant="standard"
-                        fullWidth
-                    />
+                    <MuiTelInput fullWidth defaultCountry="RU" disableDropdown />
                 </Grid>
                 <Grid item xs={12}>
-                    <TextField label="Укажите свой телефон"
+                    <TextField label="Укажите свое имя"
                         variant="standard"
                         fullWidth
                     />
@@ -31,6 +29,7 @@ export function RegistrationCard() {
                 <Grid item xs={12}>
                     <TextField label="Придумайте пароль"
                         variant="standard"
+                        type="password"
                         fullWidth
                     />
                 </Grid>
@@ -47,7 +46,7 @@ export function RegistrationCard() {
                     </Typography>
                     <Typography variant="body1"
                         align="center">
-                        <Link href="/authorization">
+                        <Link href="/">
                             Войти
                         </Link>
                     </Typography>

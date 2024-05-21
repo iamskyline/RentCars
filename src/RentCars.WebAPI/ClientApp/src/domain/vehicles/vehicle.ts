@@ -27,3 +27,27 @@ export class Vehicle {
         public photos: string[]
     ) { }
 }
+
+export function mapToVehicle(data: any) {
+    return new Vehicle(
+        data.id,
+        data.brand,
+        data.model,
+        data.yearOfManufacture,
+        data.vehicleClass,
+        data.bodyColor,
+        data.bodyType,
+        data.enginePower,
+        data.engineCapacity,
+        data.fuelType,
+        data.wheelDrive,
+        data.transmissionType,
+        data.dayCost,
+        data.twoFourDaysCost,
+        data.fourSevenDaysCost,
+        data.sevenFourteenDaysCost,
+        data.fourteenAndMoreDaysCost,
+        data.mainPhoto,
+        data.photos,
+    );
+}
