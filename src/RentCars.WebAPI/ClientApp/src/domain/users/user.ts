@@ -1,4 +1,4 @@
-import { Role } from "./enums/roleType";
+import { RoleType } from "./enums/roleType";
 
 export class User {
     constructor(
@@ -9,6 +9,6 @@ export class User {
         public password: string,
         public photo: string | null,
         //public registrationDate: null,
-        public role: Role
+        public role: string
     ) { }
 }

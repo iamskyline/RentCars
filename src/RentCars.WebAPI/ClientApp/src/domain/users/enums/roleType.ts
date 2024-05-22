@@ -1,15 +1,15 @@
 import { NeverUnreachable } from "../../../tools/errors/neverUnreachable";
 
-export enum Role {
+export enum RoleType {
     Client = 1,
     Admin = 2
 }
 
-export namespace Role {
-    export function getDisplayName(category: Role) {
+export namespace RoleType {
+    export function getDisplayName(category: RoleType) {
         switch (category) {
-            case Role.Admin: return "Админ";
-            case Role.Client: return "Клиент";
+            case RoleType.Admin: return "Админ";
+            case RoleType.Client: return "Клиент";
 
             default: throw new NeverUnreachable(category)
         }

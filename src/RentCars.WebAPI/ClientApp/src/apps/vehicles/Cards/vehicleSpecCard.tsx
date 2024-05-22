@@ -63,12 +63,12 @@ export function VehicleSpecCard() {
                             </Grid>
                             <Grid item xs={12} md={12} lg={12}>
                                 <Typography variant="h6">
-                                    Объем двигателя: {vehicle.engineCapacity}
+                                    Объем двигателя: {vehicle.engineCapacity} л.
                                 </Typography>
                             </Grid>
                             <Grid item xs={12} md={12} lg={12}>
                                 <Typography variant="h6">
-                                    Мощность двигателя: {vehicle.enginePower}
+                                    Мощность двигателя: {vehicle.enginePower} л.с.
                                 </Typography>
                             </Grid>
                             <Grid item xs={12} md={12} lg={12}>
