@@ -3,6 +3,11 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { VehicleProvider } from "../../../domain/vehicles/vehicleProvider";
 import { Vehicle } from "../../../domain/vehicles/vehicle";
+import { FuelType } from "../../../domain/vehicles/enums/fuelType";
+import { enumToArrayNumber } from "../../../tools/utils/enumUtils";
+import { BodyType } from "../../../domain/vehicles/enums/bodyType";
+import { WheelDrive } from "../../../domain/vehicles/enums/wheelDrive";
+import { TransmissionType } from "../../../domain/vehicles/enums/transmissionType";
 
 export function VehicleSpecCard() {
     const { vehicleId } = useParams();
@@ -58,7 +63,7 @@ export function VehicleSpecCard() {
                             </Grid>
                             <Grid item xs={12} md={12} lg={12}>
                                 <Typography variant="h6">
-                                    Топливо: {vehicle.fuelType}
+                                    Топливо: {FuelType.getDisplayName(vehicle.fuelType)}
                                 </Typography>
                             </Grid>
                             <Grid item xs={12} md={12} lg={12}>
@@ -73,17 +78,17 @@ export function VehicleSpecCard() {
                             </Grid>
                             <Grid item xs={12} md={12} lg={12}>
                                 <Typography variant="h6">
-                                    Тип кузова: {vehicle.bodyType}
+                                    Тип кузова: {BodyType.getDisplayName(vehicle.bodyType)}
                                 </Typography>
                             </Grid>
                             <Grid item xs={12} md={12} lg={12}>
                                 <Typography variant="h6">
-                                    Привод: {vehicle.wheelDrive}
+                                    Привод: {WheelDrive.getDisplayName(vehicle.wheelDrive)}
                                 </Typography>
                             </Grid>
                             <Grid item xs={12} md={12} lg={12}>
                                 <Typography variant="h6">
-                                    Тип КПП: {vehicle.transmissionType}
+                                    Тип КПП: {TransmissionType.getDisplayName(vehicle.transmissionType)}
                                 </Typography>
                             </Grid>
                         </Grid>

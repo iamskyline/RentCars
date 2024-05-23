@@ -53,12 +53,12 @@ public class VehicleService : IVehicleService
     {
         validVehicleBlank = null!;
 
-        Int32 minProductionYear = 1950;
+        Int32 minProductionYear = 1930;
 
         Int32 minHorsePowerQuantity = 30;
         Int32 maxHorsePowerQuantity = 1500;
-
-        Double minEngineCapacity = 0.5;
+            
+        Double minEngineCapacity = 0.1;
         Double maxEngineCapacity = 8.5;
 
         Double minRentalCost = 0;

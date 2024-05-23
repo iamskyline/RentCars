@@ -1,5 +1,7 @@
 import { HttpClient } from "../../tools/httpClients/httpClient";
+import { Result, mapToResult } from "../../tools/results/result";
 import { Vehicle, mapToVehicle } from "./vehicle";
+import { VehicleBlank } from "./vehicleBlank";
 
 export class VehicleProvider {
     public static async get(vehicleId: string): Promise<Vehicle | null> {
@@ -13,5 +15,10 @@ export class VehicleProvider {
         const any = await HttpClient.get("/api/vehicles/get-all-vehicles")
 
         return (any as any[]).map(mapToVehicle);
+    }
+
+    public static async save(vehicleBlank: VehicleBlank): Promise<Result> {
+        const any = await HttpClient.post("/api/vehicles/save", vehicleBlank)
+        return mapToResult(any);
     }
 }

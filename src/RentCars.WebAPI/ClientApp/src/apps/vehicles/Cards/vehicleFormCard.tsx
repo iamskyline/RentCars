@@ -7,83 +7,31 @@ import { BodyType } from "../../../domain/vehicles/enums/bodyType";
 import { TransmissionType } from "../../../domain/vehicles/enums/transmissionType";
 import { VehicleClass } from "../../../domain/vehicles/enums/vehicleClass";
 import { WheelDrive } from "../../../domain/vehicles/enums/wheelDrive";
+import { VehicleProvider } from "../../../domain/vehicles/vehicleProvider";
+import { useNotifications } from "../../../hooks/useNotifications";
 
 export function VehicleFormCard() {
+    const { addErrorNotification, addSuccessNotification } = useNotifications();
+
     const [vehicleBlank, setVehicleBlank] = useState<VehicleBlank>(VehicleBlank.empty());
+
     const fuelTypes = enumToArrayNumber<FuelType>(FuelType);
     const bodyTypes = enumToArrayNumber<BodyType>(BodyType);
     const transmissionTypes = enumToArrayNumber<TransmissionType>(TransmissionType);
     const vehicleClasses = enumToArrayNumber<VehicleClass>(VehicleClass);
     const wheelDriveTypes = enumToArrayNumber<WheelDrive>(WheelDrive);
+
     const engineCapacityValues = Array.from(Array(85).keys(), (n) => {
         const value = (n + 1) * 0.1
         if (value % 1 === 0) return Math.round(value)
         return value.toFixed(1)
     });
-    console.log(engineCapacityValues);
 
-    function handleChangeBrandName(brandName: string) {
-        setVehicleBlank((vehicleBlank) => ({ ...vehicleBlank, brand: brandName }))
-    }
+    async function save() {
+        const result = await VehicleProvider.save(vehicleBlank);
+        if (!result.isSuccess) return addErrorNotification(result.errorsString);
 
-    function handleChangeModelName(modelName: string) {
-        setVehicleBlank((vehicleBlank) => ({ ...vehicleBlank, model: modelName }))
-    }
-
-    function handleChangeYearOfManufacture(year: number) {
-        setVehicleBlank((vehicleBlank) => ({ ...vehicleBlank, yearOfManufacture: year }))
-    }
-
-    function handleChangeBodyColor(color: string) {
-        setVehicleBlank((vehicleBlank) => ({ ...vehicleBlank, bodyColor: color }))
-    }
-
-    function handleChangeEnginePower(power: number) {
-        setVehicleBlank((vehicleBlank) => ({ ...vehicleBlank, enginePower: power }))
-    }
-
-    function handleChangeDayCostAmount(dayCostAmount: number) {
-        setVehicleBlank((vehicleBlank) => ({ ...vehicleBlank, dayCost: dayCostAmount }))
-    }
-
-    function handleChangeTwoFourDaysCostAmount(twoFourDaysCostAmount: number) {
-        setVehicleBlank((vehicleBlank) => ({ ...vehicleBlank, twoFourDaysCost: twoFourDaysCostAmount }))
-    }
-
-    function handleChangeFourSevenDaysCostAmount(fourSevenDaysCostAmount: number) {
-        setVehicleBlank((vehicleBlank) => ({ ...vehicleBlank, fourSevenDaysCost: fourSevenDaysCostAmount }))
-    }
-
-    function handleChangeSevenFourteenDaysCostAmount(sevenFourteenDaysCostAmount: number) {
-        setVehicleBlank((vehicleBlank) => ({ ...vehicleBlank, sevenFourteenDaysCost: sevenFourteenDaysCostAmount }))
-    }
-
-    function handleChangeFourteenAndMoreDaysCostAmount(fourteenAndMoreDaysCostAmount: number) {
-        setVehicleBlank((vehicleBlank) => ({ ...vehicleBlank, fourteenAndMoreDaysCost: fourteenAndMoreDaysCostAmount }))
-    }
-
-    function handleChangeFuelType(fuelTypeValue: FuelType) {
-        setVehicleBlank((vehicleBlank) => ({ ...vehicleBlank, fuelType: fuelTypeValue }))
-    }
-
-    function handleChangeBodyType(bodyTypeValue: BodyType) {
-        setVehicleBlank((vehicleBlank) => ({ ...vehicleBlank, bodyType: bodyTypeValue }))
-    }
-
-    function handleChangeTransmissionType(transmissionTypeValue: TransmissionType) {
-        setVehicleBlank((vehicleBlank) => ({ ...vehicleBlank, transmissionType: transmissionTypeValue }))
-    }
-
-    function handleChangeVehicleClass(vehicleClassValue: VehicleClass) {
-        setVehicleBlank((vehicleBlank) => ({ ...vehicleBlank, vehicleClass: vehicleClassValue }))
-    }
-
-    function handleChangeWheelDriveType(wheelDriveValue: WheelDrive) {
-        setVehicleBlank((vehicleBlank) => ({ ...vehicleBlank, wheelDrive: wheelDriveValue }))
-    }
-
-    function handleChangeEngineCapacityValue(engineCapacityValue: number) {
-        setVehicleBlank((vehicleBlank) => ({ ...vehicleBlank, engineCapacity: engineCapacityValue }))
+        return addSuccessNotification("Успешно создано")
     }
 
     return (
@@ -100,16 +48,17 @@ export function VehicleFormCard() {
                             <TextField label="Название марки автомобиля"
                                 variant="standard"
                                 fullWidth
-                                value={vehicleBlank.brand}
-                                onChange={(event) => handleChangeBrandName(event.target.value)}
+                                error={String.isNullOrWhitespace(vehicleBlank.brand)}
+                                value={vehicleBlank.brand ?? undefined}
+                                onChange={(event) => setVehicleBlank((vehicleBlank) => ({ ...vehicleBlank, brand: event.target.value }))}
                             />
                         </Grid>
                         <Grid item xs={12} md={6} lg={4}>
                             <TextField label="Цвет кузова автомобиля"
                                 variant="standard"
                                 fullWidth
-                                value={vehicleBlank.bodyColor}
-                                onChange={(event) => handleChangeBodyColor(event.target.value)}
+                                value={vehicleBlank.bodyColor ?? undefined}
+                                onChange={(event) => setVehicleBlank((vehicleBlank) => ({ ...vehicleBlank, bodyColor: (event.target.value) }))}
                             />
                         </Grid>
                         <Grid item xs={12} md={6} lg={4}>
@@ -117,40 +66,40 @@ export function VehicleFormCard() {
                                 variant="standard"
                                 type="number"
                                 fullWidth
-                                value={vehicleBlank.dayCost}
-                                onChange={(event) => handleChangeDayCostAmount(+(event.target.value))}
+                                value={vehicleBlank.dayCost ?? undefined}
+                                onChange={(event) => setVehicleBlank((vehicleBlank) => ({ ...vehicleBlank, dayCost: (+(event.target.value)) }))}
                             />
                         </Grid>
                         <Grid item xs={12} md={6} lg={4}>
                             <TextField label="Название модели автомобиля"
                                 variant="standard"
                                 fullWidth
-                                value={vehicleBlank.model}
-                                onChange={(event) => handleChangeModelName(event.target.value)}
+                                value={vehicleBlank.model ?? undefined}
+                                onChange={(event) => setVehicleBlank((vehicleBlank) => ({ ...vehicleBlank, model: (event.target.value) }))}
                             />
                         </Grid>
                         <Grid item xs={12} md={6} lg={4}>
                             <TextField label="Мощность автомобиля"
                                 variant="standard"
                                 fullWidth
-                                value={vehicleBlank.enginePower}
-                                onChange={(event) => handleChangeEnginePower(+(event.target.value))}
+                                value={vehicleBlank.enginePower ?? undefined}
+                                onChange={(event) => setVehicleBlank((vehicleBlank) => ({ ...vehicleBlank, enginePower: (+(event.target.value)) }))}
                             />
                         </Grid>
                         <Grid item xs={12} md={6} lg={4}>
                             <TextField label="Стоимость 2-4 суток аренды"
                                 variant="standard"
                                 fullWidth
-                                value={vehicleBlank.twoFourDaysCost}
-                                onChange={(event) => handleChangeTwoFourDaysCostAmount(+(event.target.value))}
+                                value={vehicleBlank.twoFourDaysCost ?? undefined}
+                                onChange={(event) => setVehicleBlank((vehicleBlank) => ({ ...vehicleBlank, twoFourDaysCost: (+(event.target.value)) }))}
                             />
                         </Grid>
                         <Grid item xs={12} md={6} lg={4}>
                             <TextField label="Год выпуска автомобиля"
                                 variant="standard"
                                 fullWidth
-                                value={vehicleBlank.yearOfManufacture}
-                                onChange={(event) => handleChangeYearOfManufacture(+(event.target.value))}
+                                value={vehicleBlank.yearOfManufacture ?? undefined}
+                                onChange={(event) => setVehicleBlank((vehicleBlank) => ({ ...vehicleBlank, yearOfManufacture: (+(event.target.value)) }))}
                             />
                         </Grid>
                         <Grid item xs={12} md={6} lg={4}>
@@ -161,7 +110,7 @@ export function VehicleFormCard() {
                                 </InputLabel>
                                 <Select
                                     value={vehicleBlank.fuelType}
-                                    onChange={(event) => handleChangeFuelType(+(event.target.value))}>
+                                    onChange={(event) => setVehicleBlank((vehicleBlank) => ({ ...vehicleBlank, fuelType: (+(event.target.value)) }))}>
                                     {
                                         fuelTypes.map(type => (
                                             <MenuItem key={type} value={type}>
@@ -176,8 +125,8 @@ export function VehicleFormCard() {
                             <TextField label="Стоимость 4-7 суток аренды"
                                 variant="standard"
                                 fullWidth
-                                value={vehicleBlank.fourSevenDaysCost}
-                                onChange={(event) => handleChangeFourSevenDaysCostAmount(+(event.target.value))}
+                                value={vehicleBlank.fourSevenDaysCost ?? undefined}
+                                onChange={(event) => setVehicleBlank((vehicleBlank) => ({ ...vehicleBlank, fourSevenDaysCost: (+(event.target.value)) }))}
                             />
                         </Grid>
                         <Grid item xs={12} md={6} lg={4}>
@@ -188,7 +137,7 @@ export function VehicleFormCard() {
                                 </InputLabel>
                                 <Select
                                     value={vehicleBlank.vehicleClass}
-                                    onChange={(event) => handleChangeVehicleClass(+(event.target.value))}>
+                                    onChange={(event) => setVehicleBlank((vehicleBlank) => ({ ...vehicleBlank, vehicleClass: (+(event.target.value)) }))}>
                                     {
                                         vehicleClasses.map(type => (
                                             <MenuItem key={type} value={type}>
@@ -207,7 +156,7 @@ export function VehicleFormCard() {
                                 </InputLabel>
                                 <Select
                                     value={vehicleBlank.wheelDrive}
-                                    onChange={(event) => handleChangeWheelDriveType(+(event.target.value))}>
+                                    onChange={(event) => setVehicleBlank((vehicleBlank) => ({ ...vehicleBlank, wheelDrive: (+(event.target.value)) }))}>
                                     {
                                         wheelDriveTypes.map(type => (
                                             <MenuItem key={type} value={type}>
@@ -222,8 +171,8 @@ export function VehicleFormCard() {
                             <TextField label="Стоимость 7-14 суток аренды"
                                 variant="standard"
                                 fullWidth
-                                value={vehicleBlank.sevenFourteenDaysCost}
-                                onChange={(event) => handleChangeSevenFourteenDaysCostAmount(+(event.target.value))}
+                                value={vehicleBlank.sevenFourteenDaysCost ?? undefined}
+                                onChange={(event) => setVehicleBlank((vehicleBlank) => ({ ...vehicleBlank, sevenFourteenDaysCost: (+(event.target.value)) }))}
                             />
                         </Grid>
                         <Grid item xs={12} md={6} lg={4}>
@@ -234,7 +183,7 @@ export function VehicleFormCard() {
                                 </InputLabel>
                                 <Select
                                     value={vehicleBlank.transmissionType}
-                                    onChange={(event) => handleChangeTransmissionType(+(event.target.value))}>
+                                    onChange={(event) => setVehicleBlank((vehicleBlank) => ({ ...vehicleBlank, transmissionType: (+(event.target.value)) }))}>
                                     {
                                         transmissionTypes.map(type => (
                                             <MenuItem key={type} value={type}>
@@ -253,7 +202,7 @@ export function VehicleFormCard() {
                                 </InputLabel>
                                 <Select
                                     value={vehicleBlank.engineCapacity}
-                                    onChange={(event) => handleChangeEngineCapacityValue(+(event.target.value))}
+                                    onChange={(event) => setVehicleBlank((vehicleBlank) => ({ ...vehicleBlank, engineCapacity: (+(event.target.value)) }))}
                                 >
                                     {
                                         engineCapacityValues.map(capacity => (
@@ -269,8 +218,8 @@ export function VehicleFormCard() {
                             <TextField label="Стоимость 14+ суток аренды"
                                 variant="standard"
                                 fullWidth
-                                value={vehicleBlank.fourteenAndMoreDaysCost}
-                                onChange={(event) => handleChangeFourteenAndMoreDaysCostAmount(+(event.target.value))}
+                                value={vehicleBlank.fourteenAndMoreDaysCost ?? undefined}
+                                onChange={(event) => setVehicleBlank((vehicleBlank) => ({ ...vehicleBlank, fourteenAndMoreDaysCost: (+(event.target.value)) }))}
                             />
                         </Grid>
                         <Grid item xs={12} md={6} lg={4}>
@@ -281,7 +230,7 @@ export function VehicleFormCard() {
                                 </InputLabel>
                                 <Select
                                     value={vehicleBlank.bodyType}
-                                    onChange={(event) => handleChangeBodyType(+(event.target.value))}>
+                                    onChange={(event) => setVehicleBlank((vehicleBlank) => ({ ...vehicleBlank, bodyType: (+(event.target.value)) }))}>
                                     {
                                         bodyTypes.map(type => (
                                             <MenuItem key={type} value={type}>
@@ -334,7 +283,7 @@ export function VehicleFormCard() {
 
                     <Grid item xs={12} md={12} lg={12} display="flex"
                         justifyContent="flex-end">
-                        <Button variant="contained">
+                        <Button variant="contained" onClick={save}>
                             Сохранить
                         </Button>
                     </Grid>

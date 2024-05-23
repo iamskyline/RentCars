@@ -2,6 +2,7 @@ import { Box, Grid, Typography } from "@mui/material";
 import { useEffect, useState } from "react";
 import { Vehicle } from "../../../domain/vehicles/vehicle";
 import axios from "axios";
+import { FuelType } from "../../../domain/vehicles/enums/fuelType";
 
 interface IProps {
     vehicle: Vehicle
@@ -45,7 +46,7 @@ export function VehicleCard(props: IProps) {
                 <Grid item xs={12}>
                     <Typography variant="h6"
                         align="center">
-                        {props.vehicle.fuelType}
+                        {FuelType.getDisplayName(props.vehicle.fuelType)}
                     </Typography>
                 </Grid>
                 <Grid item xs={12}>

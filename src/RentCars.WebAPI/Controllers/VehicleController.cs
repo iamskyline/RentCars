@@ -23,7 +23,7 @@ public class VehicleController : BaseController
     }
 
 
-    [HttpPost("api/vehicles/create")]
+    [HttpPost("api/vehicles/save")]
     public Result SaveVehicle([FromBody] VehicleBlank blank)
     {
         return _vehicleService.SaveVehicle(blank);
@@ -41,11 +41,6 @@ public class VehicleController : BaseController
         return _vehicleService.GetAllVehicles();
     }
 
-    [HttpPost("api/vehicles/edit")]
-    public Result EditVehicle([FromBody] VehicleBlank blank)
-    {
-        return _vehicleService.SaveVehicle(blank);
-    }
 
     [HttpPost("api/vehicles/remove")]
     public void RemoveVehicle([FromBody] Guid id)
