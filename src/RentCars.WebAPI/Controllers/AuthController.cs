@@ -17,7 +17,7 @@ namespace RentCars.WebAPI.Controllers
         public record UserAuthorizationRequest(String Login, String Password);
 
         [HttpPost("api/users/authorization")]
-        public Result Authorization([FromBody] UserAuthorizationRequest request)
+        public DataResult<String> Authorization([FromBody] UserAuthorizationRequest request)
         {
             return _userService.Authorization(request.Login, request.Password);
         }

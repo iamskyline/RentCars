@@ -8,6 +8,7 @@ public interface IUserRepository
     void SaveUser(User user);
 
     User? GetUser(Guid userId);
+    User? GetUserByLogin(String login);
     User[] GetAllUsers();
     Result Authorization(String login, String password);
 

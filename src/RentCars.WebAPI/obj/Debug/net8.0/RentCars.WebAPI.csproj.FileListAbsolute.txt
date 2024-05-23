@@ -93,3 +93,11 @@ C:\Users\1234f\Desktop\Диплом\RentCars\src\RentCars.WebAPI\obj\Debug\net8.
 C:\Users\1234f\Desktop\Диплом\RentCars\src\RentCars.WebAPI\obj\Debug\net8.0\RentCars.WebAPI.pdb
 C:\Users\1234f\Desktop\Диплом\RentCars\src\RentCars.WebAPI\obj\Debug\net8.0\RentCars.WebAPI.genruntimeconfig.cache
 C:\Users\1234f\Desktop\Диплом\RentCars\src\RentCars.WebAPI\obj\Debug\net8.0\ref\RentCars.WebAPI.dll
+C:\Users\1234f\Desktop\Диплом\RentCars\src\RentCars.WebAPI\bin\Debug\net8.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+C:\Users\1234f\Desktop\Диплом\RentCars\src\RentCars.WebAPI\bin\Debug\net8.0\Microsoft.IdentityModel.Abstractions.dll
+C:\Users\1234f\Desktop\Диплом\RentCars\src\RentCars.WebAPI\bin\Debug\net8.0\Microsoft.IdentityModel.JsonWebTokens.dll
+C:\Users\1234f\Desktop\Диплом\RentCars\src\RentCars.WebAPI\bin\Debug\net8.0\Microsoft.IdentityModel.Logging.dll
+C:\Users\1234f\Desktop\Диплом\RentCars\src\RentCars.WebAPI\bin\Debug\net8.0\Microsoft.IdentityModel.Protocols.dll
+C:\Users\1234f\Desktop\Диплом\RentCars\src\RentCars.WebAPI\bin\Debug\net8.0\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
+C:\Users\1234f\Desktop\Диплом\RentCars\src\RentCars.WebAPI\bin\Debug\net8.0\Microsoft.IdentityModel.Tokens.dll
+C:\Users\1234f\Desktop\Диплом\RentCars\src\RentCars.WebAPI\bin\Debug\net8.0\System.IdentityModel.Tokens.Jwt.dll

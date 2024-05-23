@@ -21,37 +21,37 @@ export function VehicleCard(props: IProps) {
                 <Grid item xs={12}>
                     <Typography variant="h4"
                         align="center">
-                        BMW
+                        {props.vehicle.brand}
                     </Typography>
                 </Grid>
                 <Grid item xs={12}>
                     <Typography variant="h5"
                         align="center">
-                        5 серии 530d
+                        {props.vehicle.model}
                     </Typography>
                 </Grid>
                 <Grid item xs={6}>
                     <Typography variant="h6"
                         align="center">
-                        3.0 л.
+                        {props.vehicle.engineCapacity} л.
                     </Typography>
                 </Grid>
                 <Grid item xs={6}>
                     <Typography variant="h6"
                         align="center">
-                        249 л.с.
+                        {props.vehicle.enginePower} л.с.
                     </Typography>
                 </Grid>
                 <Grid item xs={12}>
                     <Typography variant="h6"
                         align="center">
-                        Бензин
+                        {props.vehicle.fuelType}
                     </Typography>
                 </Grid>
                 <Grid item xs={12}>
                     <Typography variant="h6"
                         align="center">
-                        2018
+                        {props.vehicle.yearOfManufacture}
                     </Typography>
                 </Grid>
             </Grid>

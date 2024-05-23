@@ -26,7 +26,7 @@ export function MainRouter() {
                 <Route path="/registration" element={<RegistrationPage />} />
                 <Route path="/profile" element={<ProfilePage />} />
                 <Route path={VehicleLinks.all} element={<VehiclesPage />} />
-                <Route path="/vehicle" element={<VehiclePage />} />
+                {/* <Route path="/vehicle" element={<VehiclePage />} /> */}
                 <Route path="/vehicle-form" element={<VehicleFormPage />} />
                 <Route path="/requests" element={<RentalRequestsPage />} />
 

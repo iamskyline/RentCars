@@ -1,18 +1,25 @@
-﻿using RentCars.Domain.Services.Users;
+﻿using System.IdentityModel.Tokens.Jwt;
+using Microsoft.Extensions.Configuration;
+using Microsoft.IdentityModel.Tokens;
+using RentCars.Domain.Services.Users;
 using RentCars.Domain.Users;
 using RentCars.Services.Users.Repositories;
 using RentCars.Tools.Extensions;
+using RentCars.Tools.JWT;
 using RentCars.Tools.Results;
+using System.Security.Claims;
 
 namespace RentCars.Services.Users;
 
 public class UserService : IUserService
 {
     private readonly IUserRepository _userRepository;
-    
-    public UserService(IUserRepository userRepository)
+    private readonly IConfiguration _configuration;
+
+    public UserService(IUserRepository userRepository, IConfiguration configuration)
     {
         _userRepository = userRepository;
+        _configuration = configuration;
     }
 
     public Result SaveUser(UserBlank blank)
@@ -73,9 +80,47 @@ public class UserService : IUserService
         return Result.Success();
     }
 
-    public Result Authorization(String login, String password)
+    public DataResult<String> Authorization(String login, String password)
     {
-        throw new NotImplementedException();
+        //проверка логина
+        User? existUser = _userRepository.GetUserByLogin(login);
+        if (existUser == null) return DataResult<String>.Fail("Пользователя с таким логином не существует!");
+
+        //проверка пароля
+        if(existUser.Password != password) return DataResult<String>.Fail("Пароль неверен!");
+
+        //формирование токена
+        String token = FormToken(existUser);
+
+        return DataResult<String>.Success(token);
+    }
+
+    private String FormToken(User user)
+    {
+        /*String role = user.UserRole switch
+        {
+            Role.Client => "Client",
+            Role.Admin => "Admin"
+        };*/
+
+        List<Claim> claims = new List<Claim>
+        {
+            new Claim(ClaimTypes.NameIdentifier, user.Id.ToString()),
+            new Claim(ClaimTypes.Role, user.UserRole.ToString())
+        };
+
+        DateTime startDateTime = DateTime.Now;
+        DateTime endDateTime = startDateTime.AddDays(7);
+
+        String issuer = _configuration.GetSection("JWTSettings:Issuer").Value!;
+        String audience = _configuration.GetSection("JWTSettings:Audience").Value!;
+        String secretKey = _configuration.GetSection("JWTSettings:SecretKey").Value!;
+        SymmetricSecurityKey signingKey = JwtTools.FormSigningKey(secretKey!);
+        SigningCredentials credentials = new(signingKey, SecurityAlgorithms.HmacSha256);
+
+        JwtSecurityToken token = new JwtSecurityToken(issuer, audience, claims, startDateTime, endDateTime, credentials);
+
+        return new JwtSecurityTokenHandler().WriteToken(token);
     }
 
     public User? GetUser(Guid userId)

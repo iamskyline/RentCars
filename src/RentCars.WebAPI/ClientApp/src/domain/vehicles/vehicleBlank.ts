@@ -10,14 +10,14 @@ export class VehicleBlank {
         public brand: string | null,
         public model: string | null,
         public yearOfManufacture: number | null,
-        public vehicleClass: VehicleClass | null,
+        public vehicleClass: VehicleClass,
         public bodyColor: string | null,
-        public bodyType: BodyType | null,
+        public bodyType: BodyType,
         public enginePower: number | null,
-        public engineCapacity: number | null,
-        public fuelType: FuelType | null,
-        public wheelDrive: WheelDrive | null,
-        public transmissionType: TransmissionType | null,
+        public engineCapacity: number,
+        public fuelType: FuelType,
+        public wheelDrive: WheelDrive,
+        public transmissionType: TransmissionType,
         public dayCost: number | null,
         public twoFourDaysCost: number | null,
         public fourSevenDaysCost: number | null,
@@ -28,7 +28,9 @@ export class VehicleBlank {
     ) { }
 
     public static empty() {
-        return new VehicleBlank(null, null, null, null, null, null, null, null, null,
-            null, null, null, null, null, null, null, null, null, null,);
+        return new VehicleBlank(null, null, null, null, VehicleClass.Comfort, null,
+            BodyType.Sedan, null, 2.5, FuelType.Gasoline,
+            WheelDrive.AllWheelDrive, TransmissionType.Automatic,
+            null, null, null, null, null, null, null);
     }
 }

@@ -59,6 +59,16 @@ public class UserRepository : IUserRepository
         return _mainConnector.Get<UserDb?>("SELECT * FROM users WHERE id = @p_id", parameters)?.ToUser();
     }
 
+    public User? GetUserByLogin(String login)
+    {
+        NpgsqlParameter[] parameters =
+        {
+            new("p_login", login)
+        };
+
+        return _mainConnector.Get<UserDb?>("SELECT * FROM users WHERE login = @p_login", parameters)?.ToUser();
+    }
+
     public User[] GetAllUsers()
     {
         return _mainConnector.GetList<UserDb>("SELECT * FROM users").ToUsers();

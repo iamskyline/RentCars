@@ -128,7 +128,6 @@ export function VehicleSpecCard() {
                         </Grid>
                     </Grid>
                 }
-
             </Box>
         </Box>
     );

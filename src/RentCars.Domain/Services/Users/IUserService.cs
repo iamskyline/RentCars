@@ -9,7 +9,7 @@ public interface IUserService
 
     User? GetUser(Guid userId);
     User[] GetAllUsers();
-    Result Authorization(String login, String password);
+    DataResult<String> Authorization(String login, String password);
 
     Result Logout(Guid userId);
     void RemoveUser(Guid userId);

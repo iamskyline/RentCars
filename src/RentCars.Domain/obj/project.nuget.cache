@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "r3p2tUFaK/QsEe+Aq77r2/4exk1sZM+Pf8f3R7pUj//cI0wNVi/FW9r+sad60XT9hYqm+GCqqoV8FXSkz7loxw==",
+  "dgSpecHash": "x8xg79vTsIRFjHGzJEFtXbq4OXBwN04rvbu16h1kZ8nPT0qliWRW3xbLXpwGS+PuyUbO006kaLze3k3t9vKkGA==",
   "success": true,
   "projectFilePath": "C:\\Users\\1234f\\Desktop\\Диплом\\RentCars\\src\\RentCars.Domain\\RentCars.Domain.csproj",
   "expectedPackageFiles": [
@@ -15,6 +15,9 @@
     "C:\\Users\\1234f\\.nuget\\packages\\microsoft.extensions.filesystemglobbing\\8.0.0\\microsoft.extensions.filesystemglobbing.8.0.0.nupkg.sha512",
     "C:\\Users\\1234f\\.nuget\\packages\\microsoft.extensions.logging.abstractions\\8.0.0\\microsoft.extensions.logging.abstractions.8.0.0.nupkg.sha512",
     "C:\\Users\\1234f\\.nuget\\packages\\microsoft.extensions.primitives\\8.0.0\\microsoft.extensions.primitives.8.0.0.nupkg.sha512",
+    "C:\\Users\\1234f\\.nuget\\packages\\microsoft.identitymodel.abstractions\\7.1.2\\microsoft.identitymodel.abstractions.7.1.2.nupkg.sha512",
+    "C:\\Users\\1234f\\.nuget\\packages\\microsoft.identitymodel.logging\\7.1.2\\microsoft.identitymodel.logging.7.1.2.nupkg.sha512",
+    "C:\\Users\\1234f\\.nuget\\packages\\microsoft.identitymodel.tokens\\7.1.2\\microsoft.identitymodel.tokens.7.1.2.nupkg.sha512",
     "C:\\Users\\1234f\\.nuget\\packages\\npgsql\\8.0.2\\npgsql.8.0.2.nupkg.sha512",
     "C:\\Users\\1234f\\.nuget\\packages\\system.diagnostics.diagnosticsource\\8.0.0\\system.diagnostics.diagnosticsource.8.0.0.nupkg.sha512",
     "C:\\Users\\1234f\\.nuget\\packages\\system.runtime.compilerservices.unsafe\\6.0.0\\system.runtime.compilerservices.unsafe.6.0.0.nupkg.sha512",

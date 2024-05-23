@@ -1,4 +1,7 @@
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.IdentityModel.Tokens;
 using RentCars.Services.Configurator;
+using RentCars.Tools.JWT;
 
 namespace RentCars.WebAPI;
 
@@ -23,13 +26,38 @@ public class Program
                     .AllowAnyHeader());
         });
 
+        //Подключение аутентификации
+        String? secretKey = builder.Configuration.GetSection("JWTSettings:SecretKey").Value;
+        String? issuer = builder.Configuration.GetSection("JWTSettings:Issuer").Value;
+        String? audience = builder.Configuration.GetSection("JWTSettings:Audience").Value;
+        SymmetricSecurityKey signingKey = JwtTools.FormSigningKey(secretKey!);
+        
+        builder.Services.AddAuthentication(options =>
+        {
+            options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+            options.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
+            options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+        }).AddJwtBearer(options =>
+        {
+            options.TokenValidationParameters = new TokenValidationParameters
+            {
+                ValidateIssuer = true,
+                ValidIssuer = issuer,
+                ValidateAudience = true,
+                ValidAudience = audience,
+                ValidateIssuerSigningKey = true,
+                IssuerSigningKey = signingKey,
+                ValidateLifetime = true
+            };
+        });
+
         WebApplication app = builder.Build();
         if (app.Environment.IsDevelopment())
         {
             app.UseSwagger();
             app.UseSwaggerUI();
         }
-
+        
         app.UseStaticFiles();
 
         app.UseHttpsRedirection();
