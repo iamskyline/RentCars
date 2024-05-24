@@ -5,7 +5,7 @@ import { AdminProfileCard } from "./profiles/cards/adminProfileCard";
 import { ClientProfileCard } from "./profiles/cards/clientProfileCard";
 import { ConfirmationCard } from "./confirmations/confirmationCard";
 import { ProfileForm } from "./profiles/profileForm";
-import { RequestForm } from "./rentalRequests/cards/rentalRequestForm";
+import { RentalRequestForm } from "./rentalRequests/cards/rentalRequestForm";
 import { VehicleFormCard } from "./vehicles/cards/vehicleFormCard";
 import { VehicleSpecCard } from "./vehicles/cards/vehicleSpecCard";
 import { VehicleCard } from "./vehicles/cards/vehicleCard";
@@ -16,7 +16,8 @@ import { VehiclesPage } from "./vehicles/pages/vehiclesPage";
 import { VehiclePage } from "./vehicles/pages/vehiclePage";
 import { VehicleFormPage } from "./vehicles/pages/vehicleFormPage";
 import { RentalRequestsPage } from "./rentalRequests/pages/rentalRequestsPage";
-import { VehicleLinks } from "../domain/constants/links";
+import { RentalRequestLinks, VehicleLinks } from "../domain/constants/links";
+import { RentalRequestFormPage } from "./rentalRequests/pages/rentalRequestFormPage";
 
 export function MainRouter() {
     return (
@@ -26,17 +27,16 @@ export function MainRouter() {
                 <Route path="/registration" element={<RegistrationPage />} />
                 <Route path="/profile" element={<ProfilePage />} />
                 <Route path={VehicleLinks.all} element={<VehiclesPage />} />
-                {/* <Route path="/vehicle" element={<VehiclePage />} /> */}
+                <Route path={RentalRequestLinks.all} element={<RentalRequestsPage />} />
                 <Route path="/vehicle-form" element={<VehicleFormPage />} />
-                <Route path="/requests" element={<RentalRequestsPage />} />
 
                 <Route path={VehicleLinks.card} element={<VehicleSpecCard />} />
+                <Route path={RentalRequestLinks.card} element={<RentalRequestCard />} />
                 <Route path="/confirmation" element={<ConfirmationCard />} />
                 <Route path="/profile-form" element={<ProfileForm />} />
-                <Route path="/request-form" element={<RequestForm />} />
+                <Route path="/request-form" element={<RentalRequestFormPage />} />
                 <Route path="/vehicle-form-card" element={<VehicleFormCard />} />
                 <Route path="/user-card" element={<UserCard />} />
-                <Route path="/request-card" element={<RentalRequestCard />} />
             </Routes>
         </BrowserRouter>
     );

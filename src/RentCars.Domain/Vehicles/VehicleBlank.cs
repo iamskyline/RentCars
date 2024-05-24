@@ -46,7 +46,7 @@ public partial class VehicleBlank
         public Double SevenFourteenDaysCost { get; set; }
         public Double FourteenAndMoreDaysCost { get; set; }
         public String? MainPhotoPath { get; set; }
-        public String[] PhotoPaths { get; set; }
+        public String?[] PhotoPaths { get; set; }
 
         public Valid(Guid id, String brand, String model,
             Int32 yearOfManufacture, VehicleClass vehicleClass,

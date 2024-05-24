@@ -2,16 +2,24 @@
 using RentCars.Domain.RentalRequests;
 using RentCars.Domain.Services.RentalRequests;
 using RentCars.Tools.Results;
+using RentCars.WebAPI.Infrastructure;
 
 namespace RentCars.WebAPI.Controllers;
 
-public class RentalRequestController
+public class RentalRequestController : BaseController
 {
     private readonly IRentalRequestService _rentalRequestService;
 
     public RentalRequestController(IRentalRequestService rentalRequestService)
     {
         _rentalRequestService = rentalRequestService;
+    }
+
+    [HttpGet("/requests")]
+    [HttpGet("/request-card/{rentalId}")]
+    public IActionResult ViewRequestsPage()
+    {
+        return ReactApplication();
     }
 
     [HttpPost("api/rental-request/create")]

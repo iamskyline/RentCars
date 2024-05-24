@@ -22,7 +22,6 @@ public class VehicleController : BaseController
         return ReactApplication();
     }
 
-
     [HttpPost("api/vehicles/save")]
     public Result SaveVehicle([FromBody] VehicleBlank blank)
     {
@@ -40,8 +39,7 @@ public class VehicleController : BaseController
     {
         return _vehicleService.GetAllVehicles();
     }
-
-
+    
     [HttpPost("api/vehicles/remove")]
     public void RemoveVehicle([FromBody] Guid id)
     {

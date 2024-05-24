@@ -22,7 +22,7 @@ public class Vehicle
     public Double SevenFourteenDaysCost { get; }
     public Double FourteenAndMoreDaysCost { get; }
     public String? MainPhoto { get; }
-    public String[] Photos { get; }
+    public String?[] Photos { get; }
 
     public Vehicle(Guid id, String brand, String model,
         Int32 yearOfManufacture, VehicleClass vehicleClass,

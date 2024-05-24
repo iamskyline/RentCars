@@ -23,11 +23,11 @@ public class HomeController : BaseController
         return ReactApplication();
     }
 
-    [HttpGet("/item")]
+    /*[HttpGet("/item")]
     public IActionResult ViewVehicleItem()
     {
         return ReactApplication();
-    }
+    }*/
 
     [HttpGet("/profile")]
     public IActionResult ViewProfileCard()
@@ -85,12 +85,6 @@ public class HomeController : BaseController
 
     [HttpGet("/vehicle-form")]
     public IActionResult ViewVehicleFormPage()
-    {
-        return ReactApplication();
-    }
-
-    [HttpGet("/requests")]
-    public IActionResult ViewRequestsPage()
     {
         return ReactApplication();
     }

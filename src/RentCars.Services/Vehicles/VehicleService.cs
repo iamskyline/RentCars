@@ -139,8 +139,8 @@ public class VehicleService : IVehicleService
         if (blank.FourteenAndMoreDaysCost > maxRentalCost)
             return Result.Fail($"Стоимость суток аренды не должно быть больше {maxRentalCost} руб.!");
 
-        if (blank.PhotoPaths is not { } photoPaths)
-            throw new Exception("Массив путей к фотографиям автомобиля пуст (null)!");
+        /*if (blank.PhotoPaths is not { } photoPaths)
+            throw new Exception("Массив путей к фотографиям автомобиля пуст (null)!");*/
 
         validVehicleBlank = new VehicleBlank.Valid(
             id, blank.Brand!, blank.Model!, yearOfManufacture,

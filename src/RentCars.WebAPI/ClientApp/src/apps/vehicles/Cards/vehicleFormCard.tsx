@@ -14,6 +14,7 @@ export function VehicleFormCard() {
     const { addErrorNotification, addSuccessNotification } = useNotifications();
 
     const [vehicleBlank, setVehicleBlank] = useState<VehicleBlank>(VehicleBlank.empty());
+    const [hasError, setHasError] = useState(false);
 
     const fuelTypes = enumToArrayNumber<FuelType>(FuelType);
     const bodyTypes = enumToArrayNumber<BodyType>(BodyType);
@@ -34,6 +35,21 @@ export function VehicleFormCard() {
         return addSuccessNotification("Успешно создано")
     }
 
+    const handleBlur = () => {
+        if (String.isNullOrWhitespace(vehicleBlank.brand)) {
+            setHasError(true);
+        } else {
+            setHasError(false);
+        }
+    };
+
+    const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        setVehicleBlank({ ...vehicleBlank, brand: event.target.value });
+        if (hasError && !String.isNullOrWhitespace(event.target.value)) {
+            setHasError(false);
+        }
+    };
+
     return (
         <Box maxWidth="1200px" bgcolor="#eaeaea"
             borderRadius={5} padding={3}>
@@ -48,9 +64,10 @@ export function VehicleFormCard() {
                             <TextField label="Название марки автомобиля"
                                 variant="standard"
                                 fullWidth
-                                error={String.isNullOrWhitespace(vehicleBlank.brand)}
+                                onBlur={handleBlur}
+                                error={hasError}
                                 value={vehicleBlank.brand ?? undefined}
-                                onChange={(event) => setVehicleBlank((vehicleBlank) => ({ ...vehicleBlank, brand: event.target.value }))}
+                                onChange={handleChange}
                             />
                         </Grid>
                         <Grid item xs={12} md={6} lg={4}>

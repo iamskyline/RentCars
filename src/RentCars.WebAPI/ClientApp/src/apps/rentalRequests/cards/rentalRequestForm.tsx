@@ -1,7 +1,18 @@
-import { Box, Button, FormControl, Grid, InputLabel, Select, Typography } from "@mui/material";
+import { Box, Button, FormControl, Grid, InputLabel, MenuItem, Select, Typography } from "@mui/material";
 import { DatePicker } from "react-widgets/cjs";
+import { RentalStatus } from "../../../domain/rentalRequests/enums/rentalStatus";
+import { enumToArrayNumber } from "../../../tools/utils/enumUtils";
+import { useState } from "react";
+import { RentalRequestBlank } from "../../../domain/rentalRequests/rentalRequestBlank";
+import { useNotifications } from "../../../hooks/useNotifications";
 
-export function RequestForm() {
+export function RentalRequestForm() {
+    const { addErrorNotification, addSuccessNotification } = useNotifications();
+
+    const [rentalRequestBlank, setRentalRequestBlank] = useState<RentalRequestBlank>(RentalRequestBlank.empty());
+
+    const statusTypes = enumToArrayNumber<RentalStatus>(RentalStatus);
+
     return (
         <Box maxWidth="950px" bgcolor="#eaeaea"
             borderRadius={5} padding={3}>
@@ -43,8 +54,16 @@ export function RequestForm() {
                         <InputLabel>
                             Выберите статус заявки
                         </InputLabel>
-                        <Select>
-
+                        <Select
+                            value={rentalRequestBlank.status}
+                            onChange={(event) => setRentalRequestBlank((rentalRequestBlank) => ({ ...rentalRequestBlank, status: (+(event.target.value)) }))}>
+                            {
+                                statusTypes.map(type => (
+                                    <MenuItem key={type} value={type}>
+                                        {RentalStatus.getDisplayName(type)}
+                                    </MenuItem>
+                                ))
+                            }
                         </Select>
                     </FormControl>
                 </Grid>
