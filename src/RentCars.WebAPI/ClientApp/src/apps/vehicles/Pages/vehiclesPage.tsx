@@ -28,7 +28,7 @@ export function VehiclesPage() {
                 padding={5}>
                 <Grid container spacing={3}>
                     {vehicles.map(vehicle =>
-                        <Grid item xs={12} md={4} lg={3}
+                        <Grid key={vehicle.id} item xs={12} md={4} lg={3}
                             sx={{ cursor: 'pointer' }}
                             onClick={() => navigate(VehicleLinks.toCard(vehicle.id))}
                             display="flex" justifyContent="center"

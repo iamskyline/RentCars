@@ -16,21 +16,3 @@ C:\Users\1234f\Desktop\Курсовой проект\RentCars\src\RentCars.Servi
 C:\Users\1234f\Desktop\Курсовой проект\RentCars\src\RentCars.Services\obj\Debug\net6.0\refint\RentCars.Services.dll
 C:\Users\1234f\Desktop\Курсовой проект\RentCars\src\RentCars.Services\obj\Debug\net6.0\RentCars.Services.pdb
 C:\Users\1234f\Desktop\Курсовой проект\RentCars\src\RentCars.Services\obj\Debug\net6.0\ref\RentCars.Services.dll
-C:\Users\1234f\Desktop\Диплом\RentCars\src\RentCars.Services\bin\Debug\net6.0\RentCars.Services.deps.json
-C:\Users\1234f\Desktop\Диплом\RentCars\src\RentCars.Services\bin\Debug\net6.0\RentCars.Services.dll
-C:\Users\1234f\Desktop\Диплом\RentCars\src\RentCars.Services\bin\Debug\net6.0\RentCars.Services.pdb
-C:\Users\1234f\Desktop\Диплом\RentCars\src\RentCars.Services\bin\Debug\net6.0\RentCars.Domain.dll
-C:\Users\1234f\Desktop\Диплом\RentCars\src\RentCars.Services\bin\Debug\net6.0\RentCars.Tools.dll
-C:\Users\1234f\Desktop\Диплом\RentCars\src\RentCars.Services\bin\Debug\net6.0\RentCars.Domain.pdb
-C:\Users\1234f\Desktop\Диплом\RentCars\src\RentCars.Services\bin\Debug\net6.0\RentCars.Tools.pdb
-C:\Users\1234f\Desktop\Диплом\RentCars\src\RentCars.Services\obj\Debug\net6.0\RentCars.Services.csproj.AssemblyReference.cache
-C:\Users\1234f\Desktop\Диплом\RentCars\src\RentCars.Services\obj\Debug\net6.0\RentCars.Services.GeneratedMSBuildEditorConfig.editorconfig
-C:\Users\1234f\Desktop\Диплом\RentCars\src\RentCars.Services\obj\Debug\net6.0\RentCars.Services.AssemblyInfoInputs.cache
-C:\Users\1234f\Desktop\Диплом\RentCars\src\RentCars.Services\obj\Debug\net6.0\RentCars.Services.AssemblyInfo.cs
-C:\Users\1234f\Desktop\Диплом\RentCars\src\RentCars.Services\obj\Debug\net6.0\RentCars.Services.csproj.CoreCompileInputs.cache
-C:\Users\1234f\Desktop\Диплом\RentCars\src\RentCars.Services\obj\Debug\net6.0\RentCars.Services.sourcelink.json
-C:\Users\1234f\Desktop\Диплом\RentCars\src\RentCars.Services\obj\Debug\net6.0\RentCars.Services.csproj.CopyComplete
-C:\Users\1234f\Desktop\Диплом\RentCars\src\RentCars.Services\obj\Debug\net6.0\RentCars.Services.dll
-C:\Users\1234f\Desktop\Диплом\RentCars\src\RentCars.Services\obj\Debug\net6.0\refint\RentCars.Services.dll
-C:\Users\1234f\Desktop\Диплом\RentCars\src\RentCars.Services\obj\Debug\net6.0\RentCars.Services.pdb
-C:\Users\1234f\Desktop\Диплом\RentCars\src\RentCars.Services\obj\Debug\net6.0\ref\RentCars.Services.dll

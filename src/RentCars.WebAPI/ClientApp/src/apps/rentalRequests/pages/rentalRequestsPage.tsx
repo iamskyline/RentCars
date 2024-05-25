@@ -29,12 +29,12 @@ export function RentalRequestsPage() {
                 <Grid container spacing={3}>
                     {
                         rentalRequests.map(rentalRequest =>
-                            <Grid item xs={12} md={4} lg={4}
+                            <Grid key={rentalRequest.id} item xs={12} md={4} lg={4}
                                 sx={{ cursor: 'pointer' }}
                                 onClick={() => navigate(RentalRequestLinks.toCard(rentalRequest.id))}
                                 display="flex" justifyContent="center"
                                 alignItems="center">
-                                <RentalRequestCard />
+                                <RentalRequestCard rentalRequest={rentalRequest} />
                             </Grid>
                         )}
                 </Grid>

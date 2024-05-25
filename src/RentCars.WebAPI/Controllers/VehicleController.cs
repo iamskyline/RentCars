@@ -16,8 +16,14 @@ public class VehicleController : BaseController
     }
 
     [HttpGet("/vehicles")]
-    [HttpGet("/vehicle-card/{vehicleId}")]
+    [HttpGet("/vehicle/{vehicleId}")]
     public IActionResult ViewVehicles()
+    {
+        return ReactApplication();
+    }
+
+    [HttpGet("/vehicle-form")]
+    public IActionResult ViewVehicleFormPage()
     {
         return ReactApplication();
     }

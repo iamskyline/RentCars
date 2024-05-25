@@ -35,21 +35,6 @@ export function VehicleFormCard() {
         return addSuccessNotification("Успешно создано")
     }
 
-    const handleBlur = () => {
-        if (String.isNullOrWhitespace(vehicleBlank.brand)) {
-            setHasError(true);
-        } else {
-            setHasError(false);
-        }
-    };
-
-    const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        setVehicleBlank({ ...vehicleBlank, brand: event.target.value });
-        if (hasError && !String.isNullOrWhitespace(event.target.value)) {
-            setHasError(false);
-        }
-    };
-
     return (
         <Box maxWidth="1200px" bgcolor="#eaeaea"
             borderRadius={5} padding={3}>
@@ -64,16 +49,16 @@ export function VehicleFormCard() {
                             <TextField label="Название марки автомобиля"
                                 variant="standard"
                                 fullWidth
-                                onBlur={handleBlur}
-                                error={hasError}
+                                error={vehicleBlank.brand == null}
                                 value={vehicleBlank.brand ?? undefined}
-                                onChange={handleChange}
+                                onChange={(event) => setVehicleBlank((vehicleBlank) => ({ ...vehicleBlank, brand: (event.target.value) }))}
                             />
                         </Grid>
                         <Grid item xs={12} md={6} lg={4}>
                             <TextField label="Цвет кузова автомобиля"
                                 variant="standard"
                                 fullWidth
+                                error={vehicleBlank.bodyColor == null}
                                 value={vehicleBlank.bodyColor ?? undefined}
                                 onChange={(event) => setVehicleBlank((vehicleBlank) => ({ ...vehicleBlank, bodyColor: (event.target.value) }))}
                             />
@@ -83,6 +68,7 @@ export function VehicleFormCard() {
                                 variant="standard"
                                 type="number"
                                 fullWidth
+                                error={vehicleBlank.dayCost == null}
                                 value={vehicleBlank.dayCost ?? undefined}
                                 onChange={(event) => setVehicleBlank((vehicleBlank) => ({ ...vehicleBlank, dayCost: (+(event.target.value)) }))}
                             />
@@ -91,6 +77,7 @@ export function VehicleFormCard() {
                             <TextField label="Название модели автомобиля"
                                 variant="standard"
                                 fullWidth
+                                error={vehicleBlank.model == null}
                                 value={vehicleBlank.model ?? undefined}
                                 onChange={(event) => setVehicleBlank((vehicleBlank) => ({ ...vehicleBlank, model: (event.target.value) }))}
                             />
@@ -99,6 +86,7 @@ export function VehicleFormCard() {
                             <TextField label="Мощность автомобиля"
                                 variant="standard"
                                 fullWidth
+                                error={vehicleBlank.enginePower == null}
                                 value={vehicleBlank.enginePower ?? undefined}
                                 onChange={(event) => setVehicleBlank((vehicleBlank) => ({ ...vehicleBlank, enginePower: (+(event.target.value)) }))}
                             />
@@ -107,6 +95,7 @@ export function VehicleFormCard() {
                             <TextField label="Стоимость 2-4 суток аренды"
                                 variant="standard"
                                 fullWidth
+                                error={vehicleBlank.twoFourDaysCost == null}
                                 value={vehicleBlank.twoFourDaysCost ?? undefined}
                                 onChange={(event) => setVehicleBlank((vehicleBlank) => ({ ...vehicleBlank, twoFourDaysCost: (+(event.target.value)) }))}
                             />
@@ -115,6 +104,7 @@ export function VehicleFormCard() {
                             <TextField label="Год выпуска автомобиля"
                                 variant="standard"
                                 fullWidth
+                                error={vehicleBlank.yearOfManufacture == null}
                                 value={vehicleBlank.yearOfManufacture ?? undefined}
                                 onChange={(event) => setVehicleBlank((vehicleBlank) => ({ ...vehicleBlank, yearOfManufacture: (+(event.target.value)) }))}
                             />
@@ -142,6 +132,7 @@ export function VehicleFormCard() {
                             <TextField label="Стоимость 4-7 суток аренды"
                                 variant="standard"
                                 fullWidth
+                                error={vehicleBlank.fourSevenDaysCost == null}
                                 value={vehicleBlank.fourSevenDaysCost ?? undefined}
                                 onChange={(event) => setVehicleBlank((vehicleBlank) => ({ ...vehicleBlank, fourSevenDaysCost: (+(event.target.value)) }))}
                             />
@@ -188,6 +179,7 @@ export function VehicleFormCard() {
                             <TextField label="Стоимость 7-14 суток аренды"
                                 variant="standard"
                                 fullWidth
+                                error={vehicleBlank.sevenFourteenDaysCost == null}
                                 value={vehicleBlank.sevenFourteenDaysCost ?? undefined}
                                 onChange={(event) => setVehicleBlank((vehicleBlank) => ({ ...vehicleBlank, sevenFourteenDaysCost: (+(event.target.value)) }))}
                             />
@@ -235,6 +227,7 @@ export function VehicleFormCard() {
                             <TextField label="Стоимость 14+ суток аренды"
                                 variant="standard"
                                 fullWidth
+                                error={vehicleBlank.fourteenAndMoreDaysCost == null}
                                 value={vehicleBlank.fourteenAndMoreDaysCost ?? undefined}
                                 onChange={(event) => setVehicleBlank((vehicleBlank) => ({ ...vehicleBlank, fourteenAndMoreDaysCost: (+(event.target.value)) }))}
                             />

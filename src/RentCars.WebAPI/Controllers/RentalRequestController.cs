@@ -16,8 +16,14 @@ public class RentalRequestController : BaseController
     }
 
     [HttpGet("/requests")]
-    [HttpGet("/request-card/{rentalId}")]
+    [HttpGet("/request/{rentalId}")]
     public IActionResult ViewRequestsPage()
+    {
+        return ReactApplication();
+    }
+
+    [HttpGet("/request-form")]
+    public IActionResult ViewRequestForm()
     {
         return ReactApplication();
     }
@@ -29,9 +35,9 @@ public class RentalRequestController : BaseController
     }
 
     [HttpGet("api/rental-request/get-by-id")]
-    public RentalRequest? GetRentalRequestById(Guid id)
+    public RentalRequest? GetRentalRequestById(Guid rentalId)
     {
-        return _rentalRequestService.GetRentalRequest(id);
+        return _rentalRequestService.GetRentalRequest(rentalId);
     }
 
     [HttpGet("api/rental-request/get-all-rental-requests")]

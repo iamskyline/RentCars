@@ -2,16 +2,36 @@
 using RentCars.Domain.Services.Users;
 using RentCars.Domain.Users;
 using RentCars.Tools.Results;
+using RentCars.WebAPI.Infrastructure;
 
 namespace RentCars.WebAPI.Controllers;
 
-public class UserController : ControllerBase
+public class UserController : BaseController
 {
     private readonly IUserService _userService;
 
     public UserController(IUserService userService)
     {
         _userService = userService;
+    }
+
+    [HttpGet("/users")]
+    [HttpGet("/profile/{userId}")]
+    public IActionResult ViewVehicles()
+    {
+        return ReactApplication();
+    }
+
+    [HttpGet("/registration")]
+    public IActionResult ViewRegistrationPage()
+    {
+        return ReactApplication();
+    }
+
+    [HttpGet("/profile-form")]
+    public IActionResult ViewEditProfileForm()
+    {
+        return ReactApplication();
     }
 
     [HttpPost("api/users/registration")]
@@ -21,9 +41,9 @@ public class UserController : ControllerBase
     }
 
     [HttpGet("api/users/get-user-by-id")]
-    public User GetUser(Guid id)
+    public User? GetUser([FromQuery] Guid userId)
     {
-        return _userService.GetUser(id);
+        return _userService.GetUser(userId);
     }
 
     [HttpGet("api/users/get-all-users")]
