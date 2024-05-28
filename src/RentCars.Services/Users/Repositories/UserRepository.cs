@@ -1,5 +1,6 @@
 ﻿using Npgsql;
 using RentCars.Domain.Users;
+using RentCars.Domain.Users.Enums;
 using RentCars.Services.Users.Repositories.Converters;
 using RentCars.Services.Users.Repositories.Models;
 using RentCars.Tools.DataBase;
@@ -69,9 +70,29 @@ public class UserRepository : IUserRepository
         return _mainConnector.Get<UserDb?>("SELECT * FROM users WHERE login = @p_login", parameters)?.ToUser();
     }
 
+    public Int32 GetRentedVehiclesQuantityByUserId(Guid userId)
+    {
+        NpgsqlParameter[] parameters =
+        {
+            new("p_ids", userId)
+        };
+
+        return _mainConnector.Get<Int32>("SELECT COUNT(*) FROM rentalrequests WHERE userId = @p_ids", parameters);
+    }
+
     public User[] GetAllUsers()
     {
         return _mainConnector.GetList<UserDb>("SELECT * FROM users").ToUsers();
+    }
+
+    public User[] GetAllClients()
+    {
+        NpgsqlParameter[] parameters =
+        {
+            new("p_role", (Int32)Role.Client)
+        };
+
+        return _mainConnector.GetList<UserDb>("SELECT * FROM users WHERE userrole = @p_role", parameters).ToUsers();
     }
 
     public User[] GetUsers(Guid[] ids)

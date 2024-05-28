@@ -33,13 +33,14 @@ export function ProfileFormModal(props: IProps) {
                             value={props.user.name}
                         />
                     </Grid>
-                    <Grid item xs={12}>
-                        <TextField label="Кол-во арендованных ТС"
-                            variant="filled"
-                            fullWidth
-                        />
+                    <Grid item xs={6} display="flex" justifyContent="flex-start">
+                        <Button variant="outlined"
+                            onClick={props.onClose}
+                        >
+                            Закрыть
+                        </Button>
                     </Grid>
-                    <Grid item xs={12} display="flex" justifyContent="flex-end">
+                    <Grid item xs={6} display="flex" justifyContent="flex-end">
                         <Button variant="contained">
                             Сохранить
                         </Button>

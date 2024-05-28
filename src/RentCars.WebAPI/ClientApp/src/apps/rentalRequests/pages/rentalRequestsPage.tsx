@@ -12,8 +12,6 @@ import { NameOfUser } from "../../../domain/users/nameOfUser";
 import { NameOfVehicle } from "../../../domain/vehicles/nameOfVehicle";
 
 export function RentalRequestsPage() {
-    const navigate = useNavigate();
-
     const [rentalRequests, setRenalRequests] = useState<RentalRequest[]>([]);
     const [users, setUsers] = useState<NameOfUser[]>([]);
     const [vehicles, setVehicles] = useState<NameOfVehicle[]>([]);
@@ -43,8 +41,7 @@ export function RentalRequestsPage() {
 
                             return (
                                 <Grid key={rentalRequest.id} item xs={12} md={4} lg={4}
-                                    sx={{ cursor: 'pointer', zIndex: 10 }}
-                                    onClick={() => navigate(RentalRequestLinks.toCard(rentalRequest.id))}
+                                    sx={{ zIndex: 10 }}
                                     display="flex" justifyContent="center"
                                     alignItems="center">
                                     <RentalRequestCard rentalRequest={rentalRequest} user={user} vehicle={vehicle} />

@@ -10,12 +10,12 @@ export class VehicleLinks {
 
 export class RentalRequestLinks {
     static all = "/requests";
-    static card = "/request/:rentalId";
+    //static card = "/request/:rentalId";
     //static form = "/request-form"
 
-    static toCard(rentalId: string) {
-        return `/request/${rentalId}`
-    }
+    // static toCard(rentalId: string) {
+    //     return `/request/${rentalId}`
+    // }
 }
 
 export class UserLinks {

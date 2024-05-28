@@ -128,9 +128,19 @@ public class UserService : IUserService
         return _userRepository.GetUser(userId);
     }
 
+    public Int32 GetRentedVehiclesQuantityByUserId(Guid userId)
+    {
+        return _userRepository.GetRentedVehiclesQuantityByUserId(userId);
+    }
+
     public User[] GetAllUsers()
     {
         return _userRepository.GetAllUsers();
+    }
+
+    public User[] GetAllClients()
+    {
+        return _userRepository.GetAllClients();
     }
 
     public User[] GetUsers(Guid[] ids)

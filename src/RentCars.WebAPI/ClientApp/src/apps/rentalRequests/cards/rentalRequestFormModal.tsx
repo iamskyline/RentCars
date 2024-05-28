@@ -2,21 +2,39 @@ import { Box, Button, Dialog, FormControl, Grid, InputLabel, MenuItem, Select, T
 import { DatePicker } from "react-widgets/cjs";
 import { RentalStatus } from "../../../domain/rentalRequests/enums/rentalStatus";
 import { enumToArrayNumber } from "../../../tools/utils/enumUtils";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { RentalRequestBlank } from "../../../domain/rentalRequests/rentalRequestBlank";
 import { useNotifications } from "../../../hooks/useNotifications";
+import { UserProvider } from "../../../domain/users/userProvider";
+import { NameOfUser } from "../../../domain/users/nameOfUser";
+import { NameOfVehicle } from "../../../domain/vehicles/nameOfVehicle";
+import { VehicleProvider } from "../../../domain/vehicles/vehicleProvider";
+import { RentalRequest } from "../../../domain/rentalRequests/rentalRequest";
 
 interface IProps {
+    rentalRequest: RentalRequest,
     isOpen: boolean,
     onClose: () => void
 }
 
 export function RentalRequestFormModal(props: IProps) {
     const { addErrorNotification, addSuccessNotification } = useNotifications();
-
+    const [clients, setClients] = useState<NameOfUser[]>([]);
+    const [vehicles, setVehicles] = useState<NameOfVehicle[]>([]);
     const [rentalRequestBlank, setRentalRequestBlank] = useState<RentalRequestBlank>(RentalRequestBlank.empty());
 
     const statusTypes = enumToArrayNumber<RentalStatus>(RentalStatus);
+
+    useEffect(() => {
+        async function loadAllRentalRequests() {
+            const allClients = await UserProvider.getAllClients();
+            setClients(allClients);
+
+            const allVehicles = await VehicleProvider.getAllNameOfVehicles();
+            setVehicles(allVehicles);
+        }
+        loadAllRentalRequests();
+    }, [])
 
     return (
         <Dialog
@@ -38,7 +56,9 @@ export function RentalRequestFormModal(props: IProps) {
                     <Grid item xs={12} md={6} lg={4}
                         display="flex" alignItems="center"
                         justifyContent="center">
-                        <DatePicker placeholder="Дата начала аренды" />
+                        <DatePicker placeholder="Дата начала аренды"
+                            value={props.rentalRequest.rentalStartDateTimeUtc}
+                        />
                     </Grid>
                     <Grid item xs={12} md={6} lg={4}>
                         <FormControl variant="standard" fullWidth>
@@ -46,7 +66,13 @@ export function RentalRequestFormModal(props: IProps) {
                                 Выберите клиента
                             </InputLabel>
                             <Select>
-
+                                {
+                                    clients.map((client) => (
+                                        <MenuItem key={client.id}>
+                                            {client.login}
+                                        </MenuItem>
+                                    ))
+                                }
                             </Select>
                         </FormControl>
                     </Grid>
@@ -56,13 +82,21 @@ export function RentalRequestFormModal(props: IProps) {
                                 Выберите автомобиль
                             </InputLabel>
                             <Select>
-
+                                {
+                                    vehicles.map((vehicle) => (
+                                        <MenuItem key={vehicle.id}>
+                                            {vehicle.brand}
+                                        </MenuItem>
+                                    ))
+                                }
                             </Select>
                         </FormControl>
                     </Grid>
                     <Grid item xs={12} md={6} lg={4} display="flex" alignItems="center"
                         justifyContent="center">
-                        <DatePicker placeholder="Дата окончания аренды" />
+                        <DatePicker placeholder="Дата окончания аренды"
+                            value={props.rentalRequest.rentalEndDateTimeUtc}
+                        />
                     </Grid>
                     <Grid item xs={12} md={6} lg={4}>
                         <FormControl variant="standard" fullWidth>
@@ -71,7 +105,13 @@ export function RentalRequestFormModal(props: IProps) {
                             </InputLabel>
                             <Select
                                 value={rentalRequestBlank.status}
-                                onChange={(event) => setRentalRequestBlank((rentalRequestBlank) => ({ ...rentalRequestBlank, status: (+(event.target.value)) }))}>
+                                onChange={(event) =>
+                                    setRentalRequestBlank((rentalRequestBlank) =>
+                                    ({
+                                        ...rentalRequestBlank, status: (+(event.target.value))
+
+                                    }))}
+                            >
                                 {
                                     statusTypes.map(type => (
                                         <MenuItem key={type} value={type}>
@@ -85,6 +125,12 @@ export function RentalRequestFormModal(props: IProps) {
                     <Grid item xs={12} md={6} lg={4}>
                         <Button variant="contained" fullWidth>
                             Сохранить
+                        </Button>
+                    </Grid>
+                    <Grid item xs={12} md={6} lg={4}>
+                        <Button variant="outlined" fullWidth
+                            onClick={props.onClose}>
+                            Закрыть
                         </Button>
                     </Grid>
                 </Grid>

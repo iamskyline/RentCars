@@ -8,7 +8,9 @@ public interface IUserService
     Result SaveUser(UserBlank blank);
 
     User? GetUser(Guid userId);
+    Int32 GetRentedVehiclesQuantityByUserId(Guid userId);
     User[] GetAllUsers();
+    User[] GetAllClients();
     User[] GetUsers(Guid[] ids);
     DataResult<String> Authorization(String login, String password);
 

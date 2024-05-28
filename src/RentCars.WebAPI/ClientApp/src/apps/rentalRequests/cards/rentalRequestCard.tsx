@@ -84,7 +84,10 @@ export function RentalRequestCard(props: IProps) {
                     </IconButton>
                 </Grid>
             </Grid>
-            <RentalRequestFormModal onClose={handleEditModalClose} isOpen={openEditModal} />
+            <RentalRequestFormModal onClose={handleEditModalClose}
+                isOpen={openEditModal}
+                rentalRequest={props.rentalRequest}
+            />
             <ConfirmationCard onClose={handleDeleteModalClose} isOpen={openDeleteModal} />
         </Box>
     );

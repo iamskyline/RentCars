@@ -9,6 +9,7 @@ export function ClientProfileCard() {
     const { userId } = useParams();
 
     const [user, setUser] = useState<User | null>(null)
+    const [vehiclesQuantity, setVehiclesQuantity] = useState<number | null>(null)
 
     useEffect(() => {
         async function loadUser() {
@@ -16,6 +17,9 @@ export function ClientProfileCard() {
 
             const user = await UserProvider.get(userId);
             setUser(user);
+
+            const rentedVehiclesQuantity = await UserProvider.getQuantityRentedVehicles(userId);
+            setVehiclesQuantity(rentedVehiclesQuantity);
         }
         loadUser();
     }, [userId])
@@ -41,7 +45,7 @@ export function ClientProfileCard() {
                         </Typography>
                         <Typography variant="body1"
                             mb={1}>
-                            Количество арендованных автомобилей: x
+                            Количество арендованных автомобилей: {vehiclesQuantity}
                         </Typography>
                     </Grid>
                     <Grid item xs={1} md={1} lg={1}

@@ -1,6 +1,5 @@
 ﻿using Npgsql;
 using RentCars.Domain.Vehicles;
-using RentCars.Services.Users.Repositories.Models;
 using RentCars.Services.Vehicles.Repositories.Converters;
 using RentCars.Services.Vehicles.Repositories.Models;
 using RentCars.Tools.DataBase;

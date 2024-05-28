@@ -46,10 +46,22 @@ public class UserController : BaseController
         return _userService.GetUser(userId);
     }
 
+    [HttpGet("api/users/get-quantity-rented-vehicles-by-userid")]
+    public Int32 GetRentedVehiclesQuantityByUserId([FromQuery] Guid userId)
+    {
+        return _userService.GetRentedVehiclesQuantityByUserId(userId);
+    }
+
     [HttpGet("api/users/get-all-users")]
     public User[] GetAllUsers()
     {
         return _userService.GetAllUsers();
+    }
+
+    [HttpGet("api/users/get-all-clients")]
+    public User[] GetAllClients()
+    {
+        return _userService.GetAllClients();
     }
 
     [HttpPost("api/users/edit")]
