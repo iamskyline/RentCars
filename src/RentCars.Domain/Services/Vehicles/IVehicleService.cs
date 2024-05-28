@@ -9,6 +9,7 @@ public interface IVehicleService
 
     Vehicle? GetVehicle(Guid vehicleId);
     Vehicle[] GetAllVehicles();
+    Vehicle[] GetVehicles(Guid[] ids);
 
     void RemoveVehicle(Guid vehicleId);
 }

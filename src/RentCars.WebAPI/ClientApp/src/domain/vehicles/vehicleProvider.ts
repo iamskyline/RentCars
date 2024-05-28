@@ -17,6 +17,14 @@ export class VehicleProvider {
         return (any as any[]).map(mapToVehicle);
     }
 
+    // public static async getByIds(vehicleIds: string[]): Promise<Vehicle[]> {
+    //     const any = await HttpClient.get("/api/vehicles/get-vehicles-by-ids", {
+    //         params: { ids: vehicleIds }
+    //     });
+
+    //     return mapToVehicles(any);
+    // }
+
     public static async save(vehicleBlank: VehicleBlank): Promise<Result> {
         const any = await HttpClient.post("/api/vehicles/save", vehicleBlank)
         return mapToResult(any);

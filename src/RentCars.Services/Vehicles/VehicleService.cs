@@ -1,4 +1,5 @@
 ﻿using RentCars.Domain.Services.Vehicles;
+using RentCars.Domain.Users;
 using RentCars.Domain.Vehicles;
 using RentCars.Services.Vehicles.Repositories;
 using RentCars.Tools.Extensions;
@@ -163,6 +164,11 @@ public class VehicleService : IVehicleService
     public Vehicle[] GetAllVehicles()
     {
         return _vehicleRepository.GetAllVehicles();
+    }
+
+    public Vehicle[] GetVehicles(Guid[] ids)
+    {
+        return _vehicleRepository.GetVehicles(ids);
     }
 
     public void RemoveVehicle(Guid vehicleId)

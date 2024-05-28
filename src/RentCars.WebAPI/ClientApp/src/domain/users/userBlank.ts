@@ -7,12 +7,9 @@ export class UserBlank {
         public tel: string | null,
         public login: string | null,
         public password: string | null,
-        public photo: string | null,
-        //public registrationDate: null,
-        public role: RoleType | null
     ) { }
 
     public static empty() {
-        return new UserBlank(null, null, null, null, null, null, null);
+        return new UserBlank(null, null, null, null, null);
     }
 }

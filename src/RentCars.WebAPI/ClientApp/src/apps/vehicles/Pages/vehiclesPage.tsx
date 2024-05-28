@@ -10,6 +10,8 @@ export function VehiclesPage() {
     const navigate = useNavigate();
 
     const [vehicles, setVehicles] = useState<Vehicle[]>([]);
+    //поправить?
+    const [userRole, setUserRole] = useState<string>("admin");
 
     useEffect(() => {
         async function loadAllVehicles() {
@@ -29,11 +31,11 @@ export function VehiclesPage() {
                 <Grid container spacing={3}>
                     {vehicles.map(vehicle =>
                         <Grid key={vehicle.id} item xs={12} md={4} lg={3}
-                            sx={{ cursor: 'pointer' }}
+                            sx={{ cursor: 'pointer', zIndex: 10 }}
                             onClick={() => navigate(VehicleLinks.toCard(vehicle.id))}
                             display="flex" justifyContent="center"
                             alignItems="center">
-                            <VehicleCard vehicle={vehicle} />
+                            <VehicleCard vehicle={vehicle} isAdmin={userRole === "admin"} />
                         </Grid>
                     )}
                 </Grid>

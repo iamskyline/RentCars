@@ -1,5 +1,6 @@
 ﻿using Npgsql;
 using RentCars.Domain.Vehicles;
+using RentCars.Services.Users.Repositories.Models;
 using RentCars.Services.Vehicles.Repositories.Converters;
 using RentCars.Services.Vehicles.Repositories.Models;
 using RentCars.Tools.DataBase;
@@ -86,6 +87,16 @@ public class VehicleRepository : IVehicleRepository
     public Vehicle[] GetAllVehicles()
     {
         return _mainConnector.GetList<VehicleDb>("SELECT * FROM vehicles").ToVehicles();
+    }
+
+    public Vehicle[] GetVehicles(Guid[] ids)
+    {
+        NpgsqlParameter[] parameters =
+        {
+            new("p_ids", ids)
+        };
+
+        return _mainConnector.GetList<VehicleDb>("SELECT * FROM vehicles where id = ANY(@p_ids)", parameters).ToVehicles();
     }
 
     public void RemoveVehicle(Guid vehicleId)

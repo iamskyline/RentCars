@@ -1,14 +1,25 @@
-import { Box, Grid, Typography } from "@mui/material";
+import { Box, Grid, IconButton, Typography } from "@mui/material";
 import { useEffect, useState } from "react";
 import { Vehicle } from "../../../domain/vehicles/vehicle";
 import axios from "axios";
 import { FuelType } from "../../../domain/vehicles/enums/fuelType";
+import EditIcon from '@mui/icons-material/Edit';
+import DeleteIcon from '@mui/icons-material/Delete';
+import { useNavigate } from "react-router-dom";
+import { VehicleLinks } from "../../../domain/constants/links";
+import { ConfirmationCard } from "../../confirmations/confirmationModal";
 
 interface IProps {
-    vehicle: Vehicle
+    vehicle: Vehicle,
+    isAdmin: boolean
 }
 
 export function VehicleCard(props: IProps) {
+    const navigate = useNavigate();
+
+    const [openDeleteModal, setOpenDeleteModal] = useState(false);
+    const handleDeleteModalClose = () => setOpenDeleteModal(false);
+
     return (
         <Box maxWidth="220px"
             bgcolor="#d2d2d2"
@@ -55,7 +66,28 @@ export function VehicleCard(props: IProps) {
                         {props.vehicle.yearOfManufacture}
                     </Typography>
                 </Grid>
+                {
+                    props.isAdmin && (
+                        <Grid item xs={12} display="flex" justifyContent="space-between">
+                            <IconButton color="default" sx={{ zIndex: 100 }}
+                                onClick={(event) => {
+                                    event.stopPropagation();
+                                    navigate(VehicleLinks.form);
+                                }}>
+                                <EditIcon />
+                            </IconButton>
+                            <IconButton color="default" sx={{ zIndex: 100 }}
+                                onClick={(event) => {
+                                    event.stopPropagation();
+                                    setOpenDeleteModal(true);
+                                }}>
+                                <DeleteIcon />
+                            </IconButton>
+                        </Grid>
+                    )
+                }
             </Grid>
+            <ConfirmationCard onClose={handleDeleteModalClose} isOpen={openDeleteModal} />
         </Box>
     );
 }

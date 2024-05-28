@@ -7,7 +7,6 @@ import { UserCard } from "../cards/userCard";
 import { UserLinks } from "../../../domain/constants/links";
 
 export function UsersPage() {
-    const navigate = useNavigate();
 
     const [users, setUsers] = useState<User[]>([]);
 
@@ -29,10 +28,7 @@ export function UsersPage() {
                 <Grid container spacing={3}>
                     {users.map(user =>
                         <Grid key={user.id} item xs={12} md={4} lg={3}
-                            sx={{ cursor: 'pointer' }}
-                            onClick={() => navigate(UserLinks.toProfile(user.id))}
-                            display="flex" justifyContent="center"
-                            alignItems="center">
+                            sx={{ cursor: 'pointer', zIndex: 10 }}>
                             <UserCard user={user} />
                         </Grid>
                     )}

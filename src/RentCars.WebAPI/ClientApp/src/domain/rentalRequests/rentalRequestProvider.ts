@@ -1,4 +1,7 @@
 import { HttpClient } from "../../tools/httpClients/httpClient";
+import { NameOfUser, mapToNameOfUser } from "../users/nameOfUser";
+import { User, mapToUser } from "../users/user";
+import { NameOfVehicle, mapToNameOfVehicle } from "../vehicles/nameOfVehicle";
 import { RentalRequest, mapToRentalRequest } from "./rentalRequest";
 
 export class RentalRequestProvider {
@@ -9,9 +12,13 @@ export class RentalRequestProvider {
         return mapToRentalRequest(any);
     }
 
-    public static async getAll(): Promise<RentalRequest[]> {
+    public static async getAll(): Promise<{ rents: RentalRequest[], users: NameOfUser[], vehicles: NameOfVehicle[] }> {
         const any = await HttpClient.get("/api/rental-request/get-all-rental-requests")
 
-        return (any as any[]).map(mapToRentalRequest);
+        const rents = (any.rents as any[]).map(mapToRentalRequest);
+        const users = (any.users as any[]).map(mapToNameOfUser);
+        const vehicles = (any.vehicles as any[]).map(mapToNameOfVehicle);
+
+        return { rents, users, vehicles };
     }
 }

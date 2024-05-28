@@ -14,7 +14,6 @@ export function VehicleFormCard() {
     const { addErrorNotification, addSuccessNotification } = useNotifications();
 
     const [vehicleBlank, setVehicleBlank] = useState<VehicleBlank>(VehicleBlank.empty());
-    const [hasError, setHasError] = useState(false);
 
     const fuelTypes = enumToArrayNumber<FuelType>(FuelType);
     const bodyTypes = enumToArrayNumber<BodyType>(BodyType);

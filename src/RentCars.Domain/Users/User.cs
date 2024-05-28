@@ -29,6 +29,11 @@ public class User
         UserRole = userRole;
     }
 
+    public NameOfUser ToNameOf()
+    {
+        return new NameOfUser(Id, Name, Login);
+    }
+
     public static User CreateSimpleUser(
         Guid id, String name, String tel, String login,
         String password, String? photo, DateTime registrationDate

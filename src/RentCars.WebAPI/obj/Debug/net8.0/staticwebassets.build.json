@@ -1,0 +1,77 @@
+{
+  "Version": 1,
+  "Hash": "EgBuasa12kjgcMkzVCy0KG5TZMksYaO0x7/BG4yTVSU=",
+  "Source": "RentCars.WebAPI",
+  "BasePath": "_content/RentCars.WebAPI",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [
+    {
+      "Name": "RentCars.WebAPI\\wwwroot",
+      "Source": "RentCars.WebAPI",
+      "ContentRoot": "C:\\Users\\1234f\\Desktop\\Диплом\\RentCars\\src\\RentCars.WebAPI\\wwwroot\\",
+      "BasePath": "_content/RentCars.WebAPI",
+      "Pattern": "**"
+    }
+  ],
+  "Assets": [
+    {
+      "Identity": "C:\\Users\\1234f\\Desktop\\Диплом\\RentCars\\src\\RentCars.WebAPI\\wwwroot\\api.png",
+      "SourceId": "RentCars.WebAPI",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\1234f\\Desktop\\Диплом\\RentCars\\src\\RentCars.WebAPI\\wwwroot\\",
+      "BasePath": "_content/RentCars.WebAPI",
+      "RelativePath": "api.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\api.png"
+    },
+    {
+      "Identity": "C:\\Users\\1234f\\Desktop\\Диплом\\RentCars\\src\\RentCars.WebAPI\\wwwroot\\dist\\images\\6452f022cea9f1ac7b2f2f40a6f640a4.png",
+      "SourceId": "RentCars.WebAPI",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\1234f\\Desktop\\Диплом\\RentCars\\src\\RentCars.WebAPI\\wwwroot\\",
+      "BasePath": "_content/RentCars.WebAPI",
+      "RelativePath": "dist/images/6452f022cea9f1ac7b2f2f40a6f640a4.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\dist\\images\\6452f022cea9f1ac7b2f2f40a6f640a4.png"
+    },
+    {
+      "Identity": "C:\\Users\\1234f\\Desktop\\Диплом\\RentCars\\src\\RentCars.WebAPI\\wwwroot\\dist\\main.js",
+      "SourceId": "RentCars.WebAPI",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\1234f\\Desktop\\Диплом\\RentCars\\src\\RentCars.WebAPI\\wwwroot\\",
+      "BasePath": "_content/RentCars.WebAPI",
+      "RelativePath": "dist/main.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\dist\\main.js"
+    }
+  ]
+}

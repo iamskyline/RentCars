@@ -1,4 +1,5 @@
 import { HttpClient } from "../../tools/httpClients/httpClient";
+import { Vehicle } from "../vehicles/vehicle";
 import { User, mapToUser } from "./user";
 
 export class UserProvider {

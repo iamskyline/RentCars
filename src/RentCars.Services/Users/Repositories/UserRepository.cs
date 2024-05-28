@@ -74,6 +74,16 @@ public class UserRepository : IUserRepository
         return _mainConnector.GetList<UserDb>("SELECT * FROM users").ToUsers();
     }
 
+    public User[] GetUsers(Guid[] ids)
+    {
+        NpgsqlParameter[] parameters =
+        {
+            new("p_ids", ids)
+        };
+
+        return _mainConnector.GetList<UserDb>("SELECT * FROM users where id = ANY(@p_ids)", parameters).ToUsers();
+    }
+
     public Result Authorization(String login, String password)
     {
         throw new NotImplementedException();

@@ -45,6 +45,12 @@ public class VehicleController : BaseController
     {
         return _vehicleService.GetAllVehicles();
     }
+
+    /*[HttpPost("api/vehicles/get-vehicles-by-ids")]
+    public Vehicle[] GetVehiclesByIds([FromBody] Guid[] ids)
+    {
+        return _vehicleService.GetVehiclesByIds(ids);
+    }*/
     
     [HttpPost("api/vehicles/remove")]
     public void RemoveVehicle([FromBody] Guid id)

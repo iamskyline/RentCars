@@ -1,4 +1,6 @@
-﻿using RentCars.Domain.Vehicles.Enums;
+﻿using RentCars.Domain.Users;
+using RentCars.Domain.Vehicles.Enums;
+using System.Xml.Linq;
 
 namespace RentCars.Domain.Vehicles;
 
@@ -53,5 +55,10 @@ public class Vehicle
         FourteenAndMoreDaysCost = fourteenAndMoreDaysCost;
         MainPhoto = mainPhoto;
         Photos = photos;
+    }
+
+    public NameOfVehicle ToNameOf()
+    {
+        return new NameOfVehicle(Id, Brand, Model);
     }
 }

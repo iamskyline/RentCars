@@ -133,6 +133,11 @@ public class UserService : IUserService
         return _userRepository.GetAllUsers();
     }
 
+    public User[] GetUsers(Guid[] ids)
+    {
+        return _userRepository.GetUsers(ids);
+    }
+
     public Result Logout(Guid userId)
     {
         throw new NotImplementedException();

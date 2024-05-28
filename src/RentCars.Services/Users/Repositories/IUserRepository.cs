@@ -10,6 +10,7 @@ public interface IUserRepository
     User? GetUser(Guid userId);
     User? GetUserByLogin(String login);
     User[] GetAllUsers();
+    User[] GetUsers(Guid[] ids);
     Result Authorization(String login, String password);
 
     Result Logout(Guid userId);

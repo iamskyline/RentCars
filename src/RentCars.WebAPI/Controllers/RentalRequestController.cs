@@ -1,6 +1,10 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using RentCars.Domain.RentalRequests;
 using RentCars.Domain.Services.RentalRequests;
+using RentCars.Domain.Services.Users;
+using RentCars.Domain.Services.Vehicles;
+using RentCars.Domain.Users;
+using RentCars.Domain.Vehicles;
 using RentCars.Tools.Results;
 using RentCars.WebAPI.Infrastructure;
 
@@ -9,10 +13,17 @@ namespace RentCars.WebAPI.Controllers;
 public class RentalRequestController : BaseController
 {
     private readonly IRentalRequestService _rentalRequestService;
+    private readonly IUserService _userService;
+    private readonly IVehicleService _vehicleService;
 
-    public RentalRequestController(IRentalRequestService rentalRequestService)
+    public RentalRequestController(
+        IRentalRequestService rentalRequestService,
+        IUserService userService, IVehicleService vehicleService
+    )
     {
         _rentalRequestService = rentalRequestService;
+        _userService = userService;
+        _vehicleService = vehicleService;
     }
 
     [HttpGet("/requests")]
@@ -35,15 +46,26 @@ public class RentalRequestController : BaseController
     }
 
     [HttpGet("api/rental-request/get-by-id")]
-    public RentalRequest? GetRentalRequestById(Guid rentalId)
+    public RentalRequest? GetRentalRequestById([FromQuery] Guid rentalRequestId)
     {
-        return _rentalRequestService.GetRentalRequest(rentalId);
+        return _rentalRequestService.GetRentalRequest(rentalRequestId);
     }
 
     [HttpGet("api/rental-request/get-all-rental-requests")]
-    public RentalRequest[] GetAllRentalRequests()
+    public Object GetAllRentalRequests()
     {
-        return _rentalRequestService.GetAllRentalRequests();
+        RentalRequest[] rents = _rentalRequestService.GetAllRentalRequests();
+        Guid[] userRentIds = rents.Select(r => r.UserId).ToArray();
+        Guid[] vehicleRentIds = rents.Select(r => r.VehicleId).ToArray();
+        NameOfUser[] rentUsers = _userService.GetUsers(userRentIds).Select(u => u.ToNameOf()).ToArray();
+        NameOfVehicle[] rentVehicles = _vehicleService.GetVehicles(vehicleRentIds).Select(v => v.ToNameOf()).ToArray();
+        
+        return new
+        {
+            Rents = rents,
+            Users = rentUsers,
+            Vehicles = rentVehicles
+        };
     }
 
     [HttpPost("api/rental-request/edit")]
