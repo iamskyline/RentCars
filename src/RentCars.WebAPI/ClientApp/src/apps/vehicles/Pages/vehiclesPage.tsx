@@ -27,8 +27,8 @@ export function VehiclesPage() {
             <Box maxWidth="1200px" bgcolor="#eaeaea"
                 width="100%"
                 borderRadius={5}
-                padding={5}>
-                <Grid container spacing={3}>
+                padding={2}>
+                <Grid container spacing={1}>
                     {vehicles.map(vehicle =>
                         <Grid key={vehicle.id} item xs={12} md={4} lg={3}
                             sx={{ cursor: 'pointer', zIndex: 10 }}

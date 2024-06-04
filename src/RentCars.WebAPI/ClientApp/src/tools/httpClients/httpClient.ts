@@ -1,5 +1,5 @@
 import axios, { AxiosResponse } from "axios";
-import { useNotifications } from "../../hooks/useNotifications";
+import { addErrorNotification } from "../../hooks/useNotifications";
 
 export class HttpClient {
     public static async get(url: string, params?: any) {
@@ -43,8 +43,6 @@ export class HttpClient {
     };
 
     private static async handleResponse(response: AxiosResponse) {
-        const { addErrorNotification } = useNotifications();
-
         if (response.headers && response.headers['content-type']) {
             if (response.headers['content-type'].includes('text/html')) {
                 window.location.href = response.request.responseURL;

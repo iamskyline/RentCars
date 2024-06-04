@@ -13,6 +13,10 @@
       "PackagePath": "staticwebassets\\dist\\main.js"
     },
     {
+      "Id": "C:\\Users\\1234f\\Desktop\\Диплом\\RentCars\\src\\RentCars.WebAPI\\wwwroot\\dist\\main.js.map",
+      "PackagePath": "staticwebassets\\dist\\main.js.map"
+    },
+    {
       "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.RentCars.WebAPI.Microsoft.AspNetCore.StaticWebAssets.props",
       "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssets.props"
     },

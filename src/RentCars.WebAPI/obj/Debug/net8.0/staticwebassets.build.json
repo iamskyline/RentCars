@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "EgBuasa12kjgcMkzVCy0KG5TZMksYaO0x7/BG4yTVSU=",
+  "Hash": "gWHacC0yTBbrzqdmQoGEJym5HPnejkAkq9BQLyQgnD0=",
   "Source": "RentCars.WebAPI",
   "BasePath": "_content/RentCars.WebAPI",
   "Mode": "Default",
@@ -72,6 +72,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\dist\\main.js"
+    },
+    {
+      "Identity": "C:\\Users\\1234f\\Desktop\\Диплом\\RentCars\\src\\RentCars.WebAPI\\wwwroot\\dist\\main.js.map",
+      "SourceId": "RentCars.WebAPI",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\1234f\\Desktop\\Диплом\\RentCars\\src\\RentCars.WebAPI\\wwwroot\\",
+      "BasePath": "_content/RentCars.WebAPI",
+      "RelativePath": "dist/main.js.map",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\dist\\main.js.map"
     }
   ]
 }

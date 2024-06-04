@@ -17,7 +17,7 @@ public class UserRepository : IUserRepository
         _mainConnector = mainConnector;
     }
 
-    public void SaveUser(User user)
+    public DataResult<Guid> SaveUser(User user)
     {
         DateTime dateTimeNowUtc = DateTime.UtcNow;
         Boolean defaultIsRemovedValue = false;
@@ -46,8 +46,17 @@ public class UserRepository : IUserRepository
                        "avatarpath = @p_avatarpath, registrationdate = @p_registrationdate, " +
                        "userrole = @p_userrole, isremoved = @p_isremoved, " +
                        "modifieddatetimeutc = @p_modifieddatetimeutc";
+        
+        try
+        {
+            _mainConnector.ExecuteNonQuery(query, parameters);
+        }
+        catch (Exception e)
+        {
+            return DataResult<Guid>.Fail($"Не удалось сохранить пользователя. {e}");
+        }
 
-        _mainConnector.ExecuteNonQuery(query, parameters);
+        return DataResult<Guid>.Success(user.Id);
     }
 
     public User? GetUser(Guid userId)

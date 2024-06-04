@@ -7,7 +7,7 @@ const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
 module.exports = (env) => merge(common(env), {
     mode: 'development',
     watch: true,
-    devtool: 'eval-source-map',
+    devtool: 'source-map',
     module: {
         rules: [
             {

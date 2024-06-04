@@ -16,10 +16,4 @@ public class HomeController : BaseController
     {
         return ReactApplication();
     }
-
-    /*[HttpGet("/confirmation")]
-    public IActionResult ViewConfirmationCard()
-    {
-        return ReactApplication();
-    }*/
 }

@@ -4,7 +4,6 @@ import { RentalStatus } from "../../../domain/rentalRequests/enums/rentalStatus"
 import { enumToArrayNumber } from "../../../tools/utils/enumUtils";
 import { useEffect, useState } from "react";
 import { RentalRequestBlank } from "../../../domain/rentalRequests/rentalRequestBlank";
-import { useNotifications } from "../../../hooks/useNotifications";
 import { UserProvider } from "../../../domain/users/userProvider";
 import { NameOfUser } from "../../../domain/users/nameOfUser";
 import { NameOfVehicle } from "../../../domain/vehicles/nameOfVehicle";
@@ -18,7 +17,6 @@ interface IProps {
 }
 
 export function RentalRequestFormModal(props: IProps) {
-    const { addErrorNotification, addSuccessNotification } = useNotifications();
     const [clients, setClients] = useState<NameOfUser[]>([]);
     const [vehicles, setVehicles] = useState<NameOfVehicle[]>([]);
     const [rentalRequestBlank, setRentalRequestBlank] = useState<RentalRequestBlank>(RentalRequestBlank.empty());

@@ -5,7 +5,7 @@ namespace RentCars.Services.Users.Repositories;
 
 public interface IUserRepository
 {
-    void SaveUser(User user);
+    DataResult<Guid> SaveUser(User user);
 
     User? GetUser(Guid userId);
     User? GetUserByLogin(String login);

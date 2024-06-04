@@ -2,6 +2,7 @@ const path = require('path');
 
 module.exports = env => {
     return {
+        mode: 'development',
         entry: './src/apps/app.tsx',
         output: {
             filename: '[name].js',
@@ -10,6 +11,7 @@ module.exports = env => {
         resolve: {
             extensions: ['.tsx', '.ts', '.js', '.css', '.json', '.scss'],
         },
+        devtool: 'source-map',
         module: {
             rules: [
                 {

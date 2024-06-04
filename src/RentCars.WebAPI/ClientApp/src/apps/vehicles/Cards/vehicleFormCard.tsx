@@ -8,11 +8,9 @@ import { TransmissionType } from "../../../domain/vehicles/enums/transmissionTyp
 import { VehicleClass } from "../../../domain/vehicles/enums/vehicleClass";
 import { WheelDrive } from "../../../domain/vehicles/enums/wheelDrive";
 import { VehicleProvider } from "../../../domain/vehicles/vehicleProvider";
-import { useNotifications } from "../../../hooks/useNotifications";
+import { addErrorNotification, addSuccessNotification } from "../../../hooks/useNotifications";
 
 export function VehicleFormCard() {
-    const { addErrorNotification, addSuccessNotification } = useNotifications();
-
     const [vehicleBlank, setVehicleBlank] = useState<VehicleBlank>(VehicleBlank.empty());
 
     const fuelTypes = enumToArrayNumber<FuelType>(FuelType);

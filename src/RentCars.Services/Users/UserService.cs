@@ -8,6 +8,9 @@ using RentCars.Tools.Extensions;
 using RentCars.Tools.JWT;
 using RentCars.Tools.Results;
 using System.Security.Claims;
+using System.Numerics;
+using RentCars.Domain.Infrastructure;
+using RentCars.Domain.Users.Enums;
 
 namespace RentCars.Services.Users;
 
@@ -22,12 +25,12 @@ public class UserService : IUserService
         _configuration = configuration;
     }
 
-    public Result SaveUser(UserBlank blank)
+    public DataResult<Guid> SaveUser(UserBlank blank)
     {
         PreprocessUserBlank(blank);
 
         Result validateUserBlankResult = ValidateUserBlank(blank, out UserBlank.Valid validUserBlank);
-        if (!validateUserBlankResult.IsSuccess) return Result.Fail(validateUserBlankResult.Errors);
+        if (!validateUserBlankResult.IsSuccess) return DataResult<Guid>.Fail(validateUserBlankResult.Errors);
 
         String hashedPassword = validUserBlank.Password.GetHash();
 
@@ -38,9 +41,32 @@ public class UserService : IUserService
             validUserBlank.RegistrationDate
         );
 
-        _userRepository.SaveUser(newUser);
+        return _userRepository.SaveUser(newUser);
+    }
 
-        return Result.Success();
+    public DataResult<AuthResponse> Registration(UserBlank userBlank)
+    {
+        if (userBlank.Name.IsNullOrWhiteSpace())
+            return DataResult<AuthResponse>.Fail("Поле \"Имя\" не заполнено!");
+        if (userBlank.Tel.IsNullOrWhiteSpace())
+            return DataResult<AuthResponse>.Fail("Поле \"Телефон\" не заполнено!");
+        if (userBlank.Login.IsNullOrWhiteSpace())
+            return DataResult<AuthResponse>.Fail("Поле \"Логин\" не заполнено!");
+        if (userBlank.Password.IsNullOrWhiteSpace())
+            return DataResult<AuthResponse>.Fail("Поле \"Пароль\" не заполнено!");
+
+        User? existUser = _userRepository.GetUserByLogin(userBlank.Login!);
+        if (existUser != null) return DataResult<AuthResponse>.Fail("Такой пользователь уже существует!");
+
+        DataResult<Guid> saveResult = SaveUser(userBlank);
+        if(!saveResult.IsSuccess) return DataResult<AuthResponse>.Fail(saveResult.Errors);
+
+        User? savedUser = _userRepository.GetUser(saveResult.Data);
+        if(savedUser is null) return DataResult<AuthResponse>.Fail("Сохранённый пользователь не найден");
+
+        String token = FormToken(savedUser);
+        AuthResponse authResponse = new(token, savedUser.IsAdmin);
+        return DataResult<AuthResponse>.Success(authResponse);
     }
 
     private void PreprocessUserBlank(UserBlank blank)
@@ -66,7 +92,7 @@ public class UserService : IUserService
             return Result.Fail("Поле \"Телефон\" не заполнено!");
         if (blank.Login.IsNullOrWhiteSpace())
             return Result.Fail("Поле \"Логин\" не заполнено!");
-        if (blank.Login.IsNullOrWhiteSpace())
+        if (blank.Password.IsNullOrWhiteSpace())
             return Result.Fail("Поле \"Пароль\" не заполнено!");
 
         if (blank.RegistrationDate is not { } registrationDate)
@@ -80,33 +106,35 @@ public class UserService : IUserService
         return Result.Success();
     }
 
-    public DataResult<String> Authorization(String login, String password)
+    public DataResult<AuthResponse> Authorization(String login, String password)
     {
         //проверка логина
         User? existUser = _userRepository.GetUserByLogin(login);
-        if (existUser == null) return DataResult<String>.Fail("Пользователя с таким логином не существует!");
+        if (existUser == null) return DataResult<AuthResponse>.Fail("Пользователя с таким логином не существует!");
 
         //проверка пароля
-        if(existUser.Password != password) return DataResult<String>.Fail("Пароль неверен!");
+        if(existUser.Password != password.GetHash()) return DataResult<AuthResponse>.Fail("Пароль неверен!");
 
         //формирование токена
         String token = FormToken(existUser);
 
-        return DataResult<String>.Success(token);
+        AuthResponse authResponse = new(token, existUser.IsAdmin);
+        return DataResult<AuthResponse>.Success(authResponse);
     }
 
     private String FormToken(User user)
     {
-        /*String role = user.UserRole switch
+        String role = user.UserRole switch
         {
             Role.Client => "Client",
-            Role.Admin => "Admin"
-        };*/
+            Role.Admin => "Admin",
+            _ => throw new ArgumentException("Неизвестный тип пользователя")
+        };
 
         List<Claim> claims = new List<Claim>
         {
             new Claim(ClaimTypes.NameIdentifier, user.Id.ToString()),
-            new Claim(ClaimTypes.Role, user.UserRole.ToString())
+            new Claim(ClaimTypes.Role, role)
         };
 
         DateTime startDateTime = DateTime.Now;

@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using RentCars.Domain.Infrastructure;
 using RentCars.Domain.Services.Users;
 using RentCars.Domain.Users;
 using RentCars.Tools.Results;
@@ -35,9 +36,9 @@ public class UserController : BaseController
     }
 
     [HttpPost("api/users/registration")]
-    public Result Registration([FromBody] UserBlank blank)
+    public DataResult<AuthResponse> Registration([FromBody] UserBlank blank)
     {
-        return _userService.SaveUser(blank);
+        return _userService.Registration(blank);
     }
 
     [HttpGet("api/users/get-user-by-id")]
@@ -64,11 +65,11 @@ public class UserController : BaseController
         return _userService.GetAllClients();
     }
 
-    [HttpPost("api/users/edit")]
+    /*[HttpPost("api/users/edit")]
     public Result EditUser([FromBody] UserBlank blank)
     {
         return _userService.SaveUser(blank);
-    }
+    }*/
 
     [HttpPost("api/users/remove-account")]
     public void RemoveAccount([FromBody] Guid id)

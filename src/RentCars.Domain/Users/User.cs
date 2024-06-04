@@ -12,6 +12,7 @@ public class User
     public String? Photo { get; }
     public DateTime RegistrationDate { get; }
     public Role UserRole { get; set; }
+    public Boolean IsAdmin => UserRole == Role.Admin;
 
     public User(
         Guid id, String name, String tel, String login,
