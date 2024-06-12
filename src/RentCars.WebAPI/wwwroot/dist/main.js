@@ -4023,6 +4023,347 @@ var _utils = __webpack_require__(/*! @mui/material/utils */ "./node_modules/@mui
 
 /***/ }),
 
+/***/ "./node_modules/@mui/material/Avatar/Avatar.js":
+/*!*****************************************************!*\
+  !*** ./node_modules/@mui/material/Avatar/Avatar.js ***!
+  \*****************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _babel_runtime_helpers_esm_objectWithoutPropertiesLoose__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/helpers/esm/objectWithoutPropertiesLoose */ "./node_modules/@babel/runtime/helpers/esm/objectWithoutPropertiesLoose.js");
+/* harmony import */ var _babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime/helpers/esm/extends */ "./node_modules/@babel/runtime/helpers/esm/extends.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! prop-types */ "./node_modules/prop-types/index.js");
+/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_11___default = /*#__PURE__*/__webpack_require__.n(prop_types__WEBPACK_IMPORTED_MODULE_11__);
+/* harmony import */ var clsx__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! clsx */ "./node_modules/clsx/dist/clsx.mjs");
+/* harmony import */ var _mui_utils_composeClasses__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @mui/utils/composeClasses */ "./node_modules/@mui/utils/composeClasses/composeClasses.js");
+/* harmony import */ var _zero_styled__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../zero-styled */ "./node_modules/@mui/material/zero-styled/index.js");
+/* harmony import */ var _zero_styled__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../zero-styled */ "./node_modules/@mui/material/styles/styled.js");
+/* harmony import */ var _internal_svg_icons_Person__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../internal/svg-icons/Person */ "./node_modules/@mui/material/internal/svg-icons/Person.js");
+/* harmony import */ var _avatarClasses__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./avatarClasses */ "./node_modules/@mui/material/Avatar/avatarClasses.js");
+/* harmony import */ var _utils_useSlot__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../utils/useSlot */ "./node_modules/@mui/material/utils/useSlot.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+'use client';
+
+
+
+const _excluded = ["alt", "children", "className", "component", "slots", "slotProps", "imgProps", "sizes", "src", "srcSet", "variant"];
+
+
+
+
+
+
+
+
+
+const useThemeProps = (0,_zero_styled__WEBPACK_IMPORTED_MODULE_5__.createUseThemeProps)('MuiAvatar');
+const useUtilityClasses = ownerState => {
+  const {
+    classes,
+    variant,
+    colorDefault
+  } = ownerState;
+  const slots = {
+    root: ['root', variant, colorDefault && 'colorDefault'],
+    img: ['img'],
+    fallback: ['fallback']
+  };
+  return (0,_mui_utils_composeClasses__WEBPACK_IMPORTED_MODULE_6__["default"])(slots, _avatarClasses__WEBPACK_IMPORTED_MODULE_7__.getAvatarUtilityClass, classes);
+};
+const AvatarRoot = (0,_zero_styled__WEBPACK_IMPORTED_MODULE_8__["default"])('div', {
+  name: 'MuiAvatar',
+  slot: 'Root',
+  overridesResolver: (props, styles) => {
+    const {
+      ownerState
+    } = props;
+    return [styles.root, styles[ownerState.variant], ownerState.colorDefault && styles.colorDefault];
+  }
+})(({
+  theme
+}) => ({
+  position: 'relative',
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'center',
+  flexShrink: 0,
+  width: 40,
+  height: 40,
+  fontFamily: theme.typography.fontFamily,
+  fontSize: theme.typography.pxToRem(20),
+  lineHeight: 1,
+  borderRadius: '50%',
+  overflow: 'hidden',
+  userSelect: 'none',
+  variants: [{
+    props: {
+      variant: 'rounded'
+    },
+    style: {
+      borderRadius: (theme.vars || theme).shape.borderRadius
+    }
+  }, {
+    props: {
+      variant: 'square'
+    },
+    style: {
+      borderRadius: 0
+    }
+  }, {
+    props: {
+      colorDefault: true
+    },
+    style: (0,_babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_1__["default"])({
+      color: (theme.vars || theme).palette.background.default
+    }, theme.vars ? {
+      backgroundColor: theme.vars.palette.Avatar.defaultBg
+    } : (0,_babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_1__["default"])({
+      backgroundColor: theme.palette.grey[400]
+    }, theme.applyStyles('dark', {
+      backgroundColor: theme.palette.grey[600]
+    })))
+  }]
+}));
+const AvatarImg = (0,_zero_styled__WEBPACK_IMPORTED_MODULE_8__["default"])('img', {
+  name: 'MuiAvatar',
+  slot: 'Img',
+  overridesResolver: (props, styles) => styles.img
+})({
+  width: '100%',
+  height: '100%',
+  textAlign: 'center',
+  // Handle non-square image. The property isn't supported by IE11.
+  objectFit: 'cover',
+  // Hide alt text.
+  color: 'transparent',
+  // Hide the image broken icon, only works on Chrome.
+  textIndent: 10000
+});
+const AvatarFallback = (0,_zero_styled__WEBPACK_IMPORTED_MODULE_8__["default"])(_internal_svg_icons_Person__WEBPACK_IMPORTED_MODULE_9__["default"], {
+  name: 'MuiAvatar',
+  slot: 'Fallback',
+  overridesResolver: (props, styles) => styles.fallback
+})({
+  width: '75%',
+  height: '75%'
+});
+function useLoaded({
+  crossOrigin,
+  referrerPolicy,
+  src,
+  srcSet
+}) {
+  const [loaded, setLoaded] = react__WEBPACK_IMPORTED_MODULE_2__.useState(false);
+  react__WEBPACK_IMPORTED_MODULE_2__.useEffect(() => {
+    if (!src && !srcSet) {
+      return undefined;
+    }
+    setLoaded(false);
+    let active = true;
+    const image = new Image();
+    image.onload = () => {
+      if (!active) {
+        return;
+      }
+      setLoaded('loaded');
+    };
+    image.onerror = () => {
+      if (!active) {
+        return;
+      }
+      setLoaded('error');
+    };
+    image.crossOrigin = crossOrigin;
+    image.referrerPolicy = referrerPolicy;
+    image.src = src;
+    if (srcSet) {
+      image.srcset = srcSet;
+    }
+    return () => {
+      active = false;
+    };
+  }, [crossOrigin, referrerPolicy, src, srcSet]);
+  return loaded;
+}
+const Avatar = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2__.forwardRef(function Avatar(inProps, ref) {
+  const props = useThemeProps({
+    props: inProps,
+    name: 'MuiAvatar'
+  });
+  const {
+      alt,
+      children: childrenProp,
+      className,
+      component = 'div',
+      slots = {},
+      slotProps = {},
+      imgProps,
+      sizes,
+      src,
+      srcSet,
+      variant = 'circular'
+    } = props,
+    other = (0,_babel_runtime_helpers_esm_objectWithoutPropertiesLoose__WEBPACK_IMPORTED_MODULE_0__["default"])(props, _excluded);
+  let children = null;
+
+  // Use a hook instead of onError on the img element to support server-side rendering.
+  const loaded = useLoaded((0,_babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_1__["default"])({}, imgProps, {
+    src,
+    srcSet
+  }));
+  const hasImg = src || srcSet;
+  const hasImgNotFailing = hasImg && loaded !== 'error';
+  const ownerState = (0,_babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_1__["default"])({}, props, {
+    colorDefault: !hasImgNotFailing,
+    component,
+    variant
+  });
+  const classes = useUtilityClasses(ownerState);
+  const [ImgSlot, imgSlotProps] = (0,_utils_useSlot__WEBPACK_IMPORTED_MODULE_10__["default"])('img', {
+    className: classes.img,
+    elementType: AvatarImg,
+    externalForwardedProps: {
+      slots,
+      slotProps: {
+        img: (0,_babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_1__["default"])({}, imgProps, slotProps.img)
+      }
+    },
+    additionalProps: {
+      alt,
+      src,
+      srcSet,
+      sizes
+    },
+    ownerState
+  });
+  if (hasImgNotFailing) {
+    children = /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(ImgSlot, (0,_babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_1__["default"])({}, imgSlotProps));
+    // We only render valid children, non valid children are rendered with a fallback
+    // We consider that invalid children are all falsy values, except 0, which is valid.
+  } else if (!!childrenProp || childrenProp === 0) {
+    children = childrenProp;
+  } else if (hasImg && alt) {
+    children = alt[0];
+  } else {
+    children = /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(AvatarFallback, {
+      ownerState: ownerState,
+      className: classes.fallback
+    });
+  }
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(AvatarRoot, (0,_babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_1__["default"])({
+    as: component,
+    ownerState: ownerState,
+    className: (0,clsx__WEBPACK_IMPORTED_MODULE_3__["default"])(classes.root, className),
+    ref: ref
+  }, other, {
+    children: children
+  }));
+});
+ true ? Avatar.propTypes /* remove-proptypes */ = {
+  // ┌────────────────────────────── Warning ──────────────────────────────┐
+  // │ These PropTypes are generated from the TypeScript type definitions. │
+  // │    To update them, edit the d.ts file and run `pnpm proptypes`.     │
+  // └─────────────────────────────────────────────────────────────────────┘
+  /**
+   * Used in combination with `src` or `srcSet` to
+   * provide an alt attribute for the rendered `img` element.
+   */
+  alt: (prop_types__WEBPACK_IMPORTED_MODULE_11___default().string),
+  /**
+   * Used to render icon or text elements inside the Avatar if `src` is not set.
+   * This can be an element, or just a string.
+   */
+  children: (prop_types__WEBPACK_IMPORTED_MODULE_11___default().node),
+  /**
+   * Override or extend the styles applied to the component.
+   */
+  classes: (prop_types__WEBPACK_IMPORTED_MODULE_11___default().object),
+  /**
+   * @ignore
+   */
+  className: (prop_types__WEBPACK_IMPORTED_MODULE_11___default().string),
+  /**
+   * The component used for the root node.
+   * Either a string to use a HTML element or a component.
+   */
+  component: (prop_types__WEBPACK_IMPORTED_MODULE_11___default().elementType),
+  /**
+   * [Attributes](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/img#attributes) applied to the `img` element if the component is used to display an image.
+   * It can be used to listen for the loading error event.
+   * @deprecated Use `slotProps.img` instead. This prop will be removed in v7. [How to migrate](/material-ui/migration/migrating-from-deprecated-apis/).
+   */
+  imgProps: (prop_types__WEBPACK_IMPORTED_MODULE_11___default().object),
+  /**
+   * The `sizes` attribute for the `img` element.
+   */
+  sizes: (prop_types__WEBPACK_IMPORTED_MODULE_11___default().string),
+  /**
+   * The props used for each slot inside.
+   * @default {}
+   */
+  slotProps: prop_types__WEBPACK_IMPORTED_MODULE_11___default().shape({
+    img: prop_types__WEBPACK_IMPORTED_MODULE_11___default().oneOfType([(prop_types__WEBPACK_IMPORTED_MODULE_11___default().func), (prop_types__WEBPACK_IMPORTED_MODULE_11___default().object)])
+  }),
+  /**
+   * The components used for each slot inside.
+   * @default {}
+   */
+  slots: prop_types__WEBPACK_IMPORTED_MODULE_11___default().shape({
+    img: (prop_types__WEBPACK_IMPORTED_MODULE_11___default().elementType)
+  }),
+  /**
+   * The `src` attribute for the `img` element.
+   */
+  src: (prop_types__WEBPACK_IMPORTED_MODULE_11___default().string),
+  /**
+   * The `srcSet` attribute for the `img` element.
+   * Use this attribute for responsive image display.
+   */
+  srcSet: (prop_types__WEBPACK_IMPORTED_MODULE_11___default().string),
+  /**
+   * The system prop that allows defining system overrides as well as additional CSS styles.
+   */
+  sx: prop_types__WEBPACK_IMPORTED_MODULE_11___default().oneOfType([prop_types__WEBPACK_IMPORTED_MODULE_11___default().arrayOf(prop_types__WEBPACK_IMPORTED_MODULE_11___default().oneOfType([(prop_types__WEBPACK_IMPORTED_MODULE_11___default().func), (prop_types__WEBPACK_IMPORTED_MODULE_11___default().object), (prop_types__WEBPACK_IMPORTED_MODULE_11___default().bool)])), (prop_types__WEBPACK_IMPORTED_MODULE_11___default().func), (prop_types__WEBPACK_IMPORTED_MODULE_11___default().object)]),
+  /**
+   * The shape of the avatar.
+   * @default 'circular'
+   */
+  variant: prop_types__WEBPACK_IMPORTED_MODULE_11___default().oneOfType([prop_types__WEBPACK_IMPORTED_MODULE_11___default().oneOf(['circular', 'rounded', 'square']), (prop_types__WEBPACK_IMPORTED_MODULE_11___default().string)])
+} : 0;
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Avatar);
+
+/***/ }),
+
+/***/ "./node_modules/@mui/material/Avatar/avatarClasses.js":
+/*!************************************************************!*\
+  !*** ./node_modules/@mui/material/Avatar/avatarClasses.js ***!
+  \************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__),
+/* harmony export */   getAvatarUtilityClass: () => (/* binding */ getAvatarUtilityClass)
+/* harmony export */ });
+/* harmony import */ var _mui_utils_generateUtilityClasses__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @mui/utils/generateUtilityClasses */ "./node_modules/@mui/utils/generateUtilityClasses/generateUtilityClasses.js");
+/* harmony import */ var _mui_utils_generateUtilityClass__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @mui/utils/generateUtilityClass */ "./node_modules/@mui/utils/generateUtilityClass/generateUtilityClass.js");
+
+
+function getAvatarUtilityClass(slot) {
+  return (0,_mui_utils_generateUtilityClass__WEBPACK_IMPORTED_MODULE_0__["default"])('MuiAvatar', slot);
+}
+const avatarClasses = (0,_mui_utils_generateUtilityClasses__WEBPACK_IMPORTED_MODULE_1__["default"])('MuiAvatar', ['root', 'colorDefault', 'circular', 'rounded', 'square', 'img', 'fallback']);
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (avatarClasses);
+
+/***/ }),
+
 /***/ "./node_modules/@mui/material/Backdrop/Backdrop.js":
 /*!*********************************************************!*\
   !*** ./node_modules/@mui/material/Backdrop/Backdrop.js ***!
@@ -16874,6 +17215,36 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./node_modules/@mui/material/internal/svg-icons/Person.js":
+/*!*****************************************************************!*\
+  !*** ./node_modules/@mui/material/internal/svg-icons/Person.js ***!
+  \*****************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _utils_createSvgIcon__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../utils/createSvgIcon */ "./node_modules/@mui/material/utils/createSvgIcon.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+'use client';
+
+
+
+
+/**
+ * @ignore - internal component.
+ */
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((0,_utils_createSvgIcon__WEBPACK_IMPORTED_MODULE_2__["default"])( /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("path", {
+  d: "M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"
+}), 'Person'));
+
+/***/ }),
+
 /***/ "./node_modules/@mui/material/node_modules/react-is/cjs/react-is.development.js":
 /*!**************************************************************************************!*\
   !*** ./node_modules/@mui/material/node_modules/react-is/cjs/react-is.development.js ***!
@@ -18517,6 +18888,132 @@ __webpack_require__.r(__webpack_exports__);
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_mui_utils_useIsFocusVisible__WEBPACK_IMPORTED_MODULE_0__["default"]);
+
+/***/ }),
+
+/***/ "./node_modules/@mui/material/utils/useSlot.js":
+/*!*****************************************************!*\
+  !*** ./node_modules/@mui/material/utils/useSlot.js ***!
+  \*****************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ useSlot)
+/* harmony export */ });
+/* harmony import */ var _babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/helpers/esm/extends */ "./node_modules/@babel/runtime/helpers/esm/extends.js");
+/* harmony import */ var _babel_runtime_helpers_esm_objectWithoutPropertiesLoose__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime/helpers/esm/objectWithoutPropertiesLoose */ "./node_modules/@babel/runtime/helpers/esm/objectWithoutPropertiesLoose.js");
+/* harmony import */ var _mui_utils_useForkRef__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @mui/utils/useForkRef */ "./node_modules/@mui/utils/useForkRef/useForkRef.js");
+/* harmony import */ var _mui_base_utils__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @mui/base/utils */ "./node_modules/@mui/base/utils/resolveComponentProps.js");
+/* harmony import */ var _mui_base_utils__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @mui/base/utils */ "./node_modules/@mui/base/utils/mergeSlotProps.js");
+/* harmony import */ var _mui_base_utils__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @mui/base/utils */ "./node_modules/@mui/base/utils/appendOwnerState.js");
+'use client';
+
+
+
+const _excluded = ["className", "elementType", "ownerState", "externalForwardedProps", "getSlotOwnerState", "internalForwardedProps"],
+  _excluded2 = ["component", "slots", "slotProps"],
+  _excluded3 = ["component"];
+
+
+/**
+ * An internal function to create a Material UI slot.
+ *
+ * This is an advanced version of Base UI `useSlotProps` because Material UI allows leaf component to be customized via `component` prop
+ * while Base UI does not need to support leaf component customization.
+ *
+ * @param {string} name: name of the slot
+ * @param {object} parameters
+ * @returns {[Slot, slotProps]} The slot's React component and the slot's props
+ *
+ * Note: the returned slot's props
+ * - will never contain `component` prop.
+ * - might contain `as` prop.
+ */
+function useSlot(
+/**
+ * The slot's name. All Material UI components should have `root` slot.
+ *
+ * If the name is `root`, the logic behaves differently from other slots,
+ * e.g. the `externalForwardedProps` are spread to `root` slot but not other slots.
+ */
+name, parameters) {
+  const {
+      className,
+      elementType: initialElementType,
+      ownerState,
+      externalForwardedProps,
+      getSlotOwnerState,
+      internalForwardedProps
+    } = parameters,
+    useSlotPropsParams = (0,_babel_runtime_helpers_esm_objectWithoutPropertiesLoose__WEBPACK_IMPORTED_MODULE_1__["default"])(parameters, _excluded);
+  const {
+      component: rootComponent,
+      slots = {
+        [name]: undefined
+      },
+      slotProps = {
+        [name]: undefined
+      }
+    } = externalForwardedProps,
+    other = (0,_babel_runtime_helpers_esm_objectWithoutPropertiesLoose__WEBPACK_IMPORTED_MODULE_1__["default"])(externalForwardedProps, _excluded2);
+  const elementType = slots[name] || initialElementType;
+
+  // `slotProps[name]` can be a callback that receives the component's ownerState.
+  // `resolvedComponentsProps` is always a plain object.
+  const resolvedComponentsProps = (0,_mui_base_utils__WEBPACK_IMPORTED_MODULE_2__.resolveComponentProps)(slotProps[name], ownerState);
+  const _mergeSlotProps = (0,_mui_base_utils__WEBPACK_IMPORTED_MODULE_3__.mergeSlotProps)((0,_babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_0__["default"])({
+      className
+    }, useSlotPropsParams, {
+      externalForwardedProps: name === 'root' ? other : undefined,
+      externalSlotProps: resolvedComponentsProps
+    })),
+    {
+      props: {
+        component: slotComponent
+      },
+      internalRef
+    } = _mergeSlotProps,
+    mergedProps = (0,_babel_runtime_helpers_esm_objectWithoutPropertiesLoose__WEBPACK_IMPORTED_MODULE_1__["default"])(_mergeSlotProps.props, _excluded3);
+  const ref = (0,_mui_utils_useForkRef__WEBPACK_IMPORTED_MODULE_4__["default"])(internalRef, resolvedComponentsProps == null ? void 0 : resolvedComponentsProps.ref, parameters.ref);
+  const slotOwnerState = getSlotOwnerState ? getSlotOwnerState(mergedProps) : {};
+  const finalOwnerState = (0,_babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_0__["default"])({}, ownerState, slotOwnerState);
+  const LeafComponent = name === 'root' ? slotComponent || rootComponent : slotComponent;
+  const props = (0,_mui_base_utils__WEBPACK_IMPORTED_MODULE_5__.appendOwnerState)(elementType, (0,_babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_0__["default"])({}, name === 'root' && !rootComponent && !slots[name] && internalForwardedProps, name !== 'root' && !slots[name] && internalForwardedProps, mergedProps, LeafComponent && {
+    as: LeafComponent
+  }, {
+    ref
+  }), finalOwnerState);
+  Object.keys(slotOwnerState).forEach(propName => {
+    delete props[propName];
+  });
+  return [elementType, props];
+}
+
+/***/ }),
+
+/***/ "./node_modules/@mui/material/zero-styled/index.js":
+/*!*********************************************************!*\
+  !*** ./node_modules/@mui/material/zero-styled/index.js ***!
+  \*********************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   createUseThemeProps: () => (/* binding */ createUseThemeProps),
+/* harmony export */   styled: () => (/* reexport safe */ _styles_styled__WEBPACK_IMPORTED_MODULE_0__["default"])
+/* harmony export */ });
+/* harmony import */ var _styles_useThemeProps__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../styles/useThemeProps */ "./node_modules/@mui/material/styles/useThemeProps.js");
+/* harmony import */ var _styles_styled__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../styles/styled */ "./node_modules/@mui/material/styles/styled.js");
+
+
+
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+function createUseThemeProps(name) {
+  return _styles_useThemeProps__WEBPACK_IMPORTED_MODULE_1__["default"];
+}
 
 /***/ }),
 
@@ -74717,6 +75214,7 @@ function AuthProvider(props) {
         };
     }
     var _a = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(getDefaultValue()), authContext = _a[0], setAuthContext = _a[1];
+    console.log(authContext);
     function changeContext(context) {
         setAuthContext(function (prevContext) { return (__assign(__assign({}, prevContext), { context: context })); });
     }
@@ -74731,9 +75229,10 @@ function AuthProvider(props) {
     }
     function checkIsAdmin() {
         var isAdmin = localStorage.getItem('isAdmin');
-        if (!isAdmin)
+        if (isAdmin == null)
             return false;
-        return isAdmin == "true" ? true : false;
+        console.log(isAdmin === "true");
+        return isAdmin === "true";
     }
     return ((0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(AuthContext.Provider, __assign({ value: authContext }, { children: props.children })));
 }
@@ -75234,11 +75733,75 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   Layout: () => (/* binding */ Layout)
 /* harmony export */ });
 /* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
-/* harmony import */ var _mui_material__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @mui/material */ "./node_modules/@mui/material/Box/Box.js");
+/* harmony import */ var _mui_material__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @mui/material */ "./node_modules/@mui/material/Box/Box.js");
+/* harmony import */ var _mui_material__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @mui/material */ "./node_modules/@mui/material/Avatar/Avatar.js");
+/* harmony import */ var _mui_material__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @mui/material */ "./node_modules/@mui/material/Typography/Typography.js");
+/* harmony import */ var _apps_contexts_authContext__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../apps/contexts/authContext */ "./src/apps/contexts/authContext.tsx");
+/* harmony import */ var _navItem__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./navItem */ "./src/components/navItem.tsx");
+var __assign = (undefined && undefined.__assign) || function () {
+    __assign = Object.assign || function (t) {
+        for (var s, i = 1, n = arguments.length; i < n; i++) {
+            s = arguments[i];
+            for (var p in s)
+                if (Object.prototype.hasOwnProperty.call(s, p))
+                    t[p] = s[p];
+        }
+        return t;
+    };
+    return __assign.apply(this, arguments);
+};
 
 
+
+
+var tabs = [
+    { title: "Автомобили", route: "/vehicles", private: true },
+    { title: "Пользователи", route: "/users", private: false },
+    { title: "Запросы на аренду", route: "/requests", private: false },
+];
 function Layout(props) {
-    return ((0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)(_mui_material__WEBPACK_IMPORTED_MODULE_1__["default"], { children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_mui_material__WEBPACK_IMPORTED_MODULE_1__["default"], { width: "100%", bgcolor: "#737272", padding: 2, display: "flex", minHeight: "50px", position: "fixed" }), props.children] }));
+    var isAdmin = (0,_apps_contexts_authContext__WEBPACK_IMPORTED_MODULE_1__.useAuthContext)().isAdmin;
+    console.log(isAdmin);
+    return ((0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)(_mui_material__WEBPACK_IMPORTED_MODULE_3__["default"], { children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)(_mui_material__WEBPACK_IMPORTED_MODULE_3__["default"], __assign({ width: "100%", bgcolor: "#737272", padding: 2, display: "flex", minHeight: "50px", position: "fixed", gap: 1, justifyContent: "space-between" }, { children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_mui_material__WEBPACK_IMPORTED_MODULE_3__["default"], __assign({ display: "flex", justifyContent: "center", alignItems: "center", gap: 5 }, { children: tabs.map(function (tab, index) {
+                            return (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_navItem__WEBPACK_IMPORTED_MODULE_2__.NavItem, { isShow: isAdmin && tab.private, route: tab.route, title: tab.title }, index);
+                        }) })), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)(_mui_material__WEBPACK_IMPORTED_MODULE_3__["default"], __assign({ display: "flex", gap: 1, bgcolor: "#d2d2d2", borderRadius: 12, padding: 1, justifyContent: "center", alignItems: "center", sx: { cursor: "pointer" } }, { children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_mui_material__WEBPACK_IMPORTED_MODULE_4__["default"], {}), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_mui_material__WEBPACK_IMPORTED_MODULE_5__["default"], { children: "\u0418\u043C\u044F \u043F\u043E\u043B\u044C\u0437\u043E\u0432\u0430\u0442\u0435\u043B\u044F" })] }))] })), props.children] }));
+}
+
+
+/***/ }),
+
+/***/ "./src/components/navItem.tsx":
+/*!************************************!*\
+  !*** ./src/components/navItem.tsx ***!
+  \************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   NavItem: () => (/* binding */ NavItem)
+/* harmony export */ });
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+/* harmony import */ var _mui_material__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @mui/material */ "./node_modules/@mui/material/Box/Box.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/dist/index.js");
+var __assign = (undefined && undefined.__assign) || function () {
+    __assign = Object.assign || function (t) {
+        for (var s, i = 1, n = arguments.length; i < n; i++) {
+            s = arguments[i];
+            for (var p in s)
+                if (Object.prototype.hasOwnProperty.call(s, p))
+                    t[p] = s[p];
+        }
+        return t;
+    };
+    return __assign.apply(this, arguments);
+};
+
+
+
+function NavItem(props) {
+    return ((0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_mui_material__WEBPACK_IMPORTED_MODULE_1__["default"], { children: props.isShow &&
+            (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_2__.Link, __assign({ to: props.route }, { children: props.title })) }));
 }
 
 

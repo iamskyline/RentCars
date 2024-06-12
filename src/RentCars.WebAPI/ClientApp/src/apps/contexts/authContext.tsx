@@ -46,9 +46,9 @@ function AuthProvider(props: PropsWithChildren) {
 
     function checkIsAdmin(): boolean {
         const isAdmin = localStorage.getItem('isAdmin')
-        if (!isAdmin) return false
-
-        return isAdmin == "true" ? true : false
+        if (isAdmin == null) return false
+        console.log(isAdmin === "true")
+        return isAdmin === "true"
     }
 
     return (
