@@ -1,7 +1,5 @@
 import axios from "axios";
-import { HttpClient } from "../../tools/httpClients/httpClient";
 import { NameOfUser, mapToNameOfUser } from "../users/nameOfUser";
-import { User, mapToUser } from "../users/user";
 import { NameOfVehicle, mapToNameOfVehicle } from "../vehicles/nameOfVehicle";
 import { RentalRequest, mapToRentalRequest } from "./rentalRequest";
 

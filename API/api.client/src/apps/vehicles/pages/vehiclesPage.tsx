@@ -5,13 +5,13 @@ import { Vehicle } from "../../../domain/vehicles/vehicle";
 import { useEffect, useState } from "react";
 import { VehicleProvider } from "../../../domain/vehicles/vehicleProvider";
 import { VehicleLinks } from "../../../domain/constants/links";
+import { useAuthContext } from "../../contexts/authContext";
 
 export function VehiclesPage() {
     const navigate = useNavigate();
 
     const [vehicles, setVehicles] = useState<Vehicle[]>([]);
-    //поправить?
-    const [userRole, setUserRole] = useState<string>("admin");
+    const {isAdmin} = useAuthContext()
 
     useEffect(() => {
         async function loadAllVehicles() {
@@ -35,7 +35,7 @@ export function VehiclesPage() {
                             onClick={() => navigate(VehicleLinks.toCard(vehicle.id))}
                             display="flex" justifyContent="center"
                             alignItems="center">
-                            <VehicleCard vehicle={vehicle} isAdmin={userRole === "admin"} />
+                            <VehicleCard vehicle={vehicle} isAdmin={isAdmin} />
                         </Grid>
                     )}
                 </Grid>

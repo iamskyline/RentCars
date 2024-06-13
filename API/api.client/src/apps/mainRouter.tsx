@@ -1,13 +1,8 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { AuthorizationPage } from "./authorizations/authorizationPage";
 import { RegistrationPage } from "./registrations/registrationPage";
-import { ProfilePage } from "./profiles/pages/profilePage";
 import { VehiclesPage } from "./vehicles/pages/vehiclesPage";
-import { VehiclePage } from "./vehicles/pages/vehiclePage";
-import { VehicleFormPage } from "./vehicles/pages/vehicleFormPage";
-import { RentalRequestsPage } from "./rentalRequests/pages/rentalRequestsPage";
-import { RentalRequestLinks, UserLinks, VehicleLinks } from "../domain/constants/links";
-import { UsersPage } from "./profiles/pages/usersPage";
+import { VehicleLinks } from "../domain/constants/links";
 import AuthProvider from "./contexts/authContext";
 import ProtectedRoute from "./protectedRoute";
 import { Layout } from "../components/layout";

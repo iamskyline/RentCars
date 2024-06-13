@@ -1,5 +1,4 @@
 import axios from "axios"
-import { HttpClient } from "../../tools/httpClients/httpClient"
 import DataResult, { mapToDataResult } from "../../tools/results/dataResult"
 import { UserBlank } from "../users/userBlank"
 import { AuthResponse } from "./authResponse"
