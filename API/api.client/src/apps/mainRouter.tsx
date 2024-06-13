@@ -2,10 +2,12 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { AuthorizationPage } from "./authorizations/authorizationPage";
 import { RegistrationPage } from "./registrations/registrationPage";
 import { VehiclesPage } from "./vehicles/pages/vehiclesPage";
-import { VehicleLinks } from "../domain/constants/links";
+import { UserLinks, VehicleLinks } from "../domain/constants/links";
 import AuthProvider from "./contexts/authContext";
 import ProtectedRoute from "./protectedRoute";
 import { Layout } from "../components/layout";
+import { AdminProfileCard } from "./profiles/cards/adminProfileCard";
+import { ClientProfileCard } from "./profiles/cards/clientProfileCard";
 
 export function MainRouter() {
     return (
@@ -17,12 +19,20 @@ export function MainRouter() {
                     <Route path='*' element={
                         <Layout>
                             <Routes>
-
                                 <Route path={VehicleLinks.all} element={
                                     <ProtectedRoute>
                                         <VehiclesPage />
                                     </ProtectedRoute>
-                                } />
+                                    } 
+                                />
+                                <Route path={UserLinks.adminProfile} element={
+                                    <AdminProfileCard />
+                                }
+                                />
+                                <Route path={UserLinks.profile} element={
+                                    <ClientProfileCard />
+                                }
+                                />
                             </Routes>
                         </Layout>
                     } errorElement={<>Ты лох</>} />

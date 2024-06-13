@@ -36,7 +36,7 @@ export function AuthorizationPage() {
             return addErrorNotification(response.errors[0])
         }
 
-        authorize(response.data.token, response.data.isAdmin)
+        authorize(response.data.token, response.data.isAdmin, response.data.userId)
         navigate(VehicleLinks.all);
     }
 

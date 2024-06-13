@@ -21,8 +21,13 @@ export class RentalRequestLinks {
 export class UserLinks {
     static all = "/users";
     static profile = "/profile/:userId";
+    static adminProfile = "/adminProfile";
 
     static toProfile(userId: string) {
         return `/profile/${userId}`
+    }
+
+    static toAdminProfile(){
+        return `/adminProfile`
     }
 }

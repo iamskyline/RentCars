@@ -2,23 +2,23 @@ import { Avatar, Box, Button, Grid, IconButton, Typography } from "@mui/material
 import LogoutIcon from '@mui/icons-material/Logout';
 import { UserProvider } from "../../../domain/users/userProvider";
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
 import { User } from "../../../domain/users/user";
+import { useAuthContext } from "../../contexts/authContext";
 
 export function AdminProfileCard() {
-    const { usersId } = useParams();
+    const { userId } = useAuthContext();
 
     const [user, setUser] = useState<User | null>(null)
 
     useEffect(() => {
         async function loadUser() {
-            if (usersId == null) return;
+            if (userId == null) return;
 
-            const user = await UserProvider.get(usersId);
+            const user = await UserProvider.get(userId);
             setUser(user);
         }
         loadUser();
-    }, [usersId])
+    }, [userId])
 
     return (
         <Box maxWidth="1200px" bgcolor="#eaeaea"

@@ -1,5 +1,5 @@
-import { Box } from "@mui/material";
-import { Link, To } from "react-router-dom";
+import { Box, Typography } from "@mui/material";
+import { Link, To, useNavigate } from "react-router-dom";
 
 interface IProps {
     title: string
@@ -8,13 +8,14 @@ interface IProps {
 }
 
 export function NavItem(props: IProps) {
+    const navigate = useNavigate()
     return (
-        <Box>
+        <Box onClick={() => navigate(props.route)} sx={{cursor: 'pointer'}}>
             {
                 props.isShow &&
-                <Link to={props.route}>
+                <Typography variant="body1" sx={{color: 'white'}}>
                     {props.title}
-                </Link>
+                </Typography>
             }
         </Box>
     )

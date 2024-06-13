@@ -17,7 +17,7 @@ export function RegistrationPage() {
     async function save() {
         const result = await InfrastructureProvider.register(userBlank);
         if (!result.isSuccess || result.data == null) return addErrorNotification(result.errors[0]);
-        authorize(result.data.token, result.data.isAdmin)
+        authorize(result.data.token, result.data.isAdmin, result.data.userId)
 
         navigate(VehicleLinks.all);
         return addSuccessNotification("Вы успешно зарегистрировались!")
