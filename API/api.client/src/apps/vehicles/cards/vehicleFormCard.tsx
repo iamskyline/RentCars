@@ -9,9 +9,12 @@ import { VehicleClass } from "../../../domain/vehicles/enums/vehicleClass";
 import { WheelDrive } from "../../../domain/vehicles/enums/wheelDrive";
 import { VehicleProvider } from "../../../domain/vehicles/vehicleProvider";
 import { addErrorNotification, addSuccessNotification } from "../../../hooks/useNotifications";
+import { useNavigate } from "react-router-dom";
+import { VehicleLinks } from "../../../domain/constants/links";
 
 export function VehicleFormCard() {
     const [vehicleBlank, setVehicleBlank] = useState<VehicleBlank>(VehicleBlank.empty());
+    const navigate = useNavigate()
 
     const fuelTypes = enumToArrayNumber<FuelType>(FuelType);
     const bodyTypes = enumToArrayNumber<BodyType>(BodyType);
@@ -29,7 +32,8 @@ export function VehicleFormCard() {
         const result = await VehicleProvider.save(vehicleBlank);
         if (!result.isSuccess) return addErrorNotification(result.errorsString);
 
-        return addSuccessNotification("Успешно создано")
+        addSuccessNotification("Успешно создано")
+        return navigate(VehicleLinks.all)
     }
 
     return (

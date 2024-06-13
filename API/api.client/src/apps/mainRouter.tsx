@@ -8,6 +8,7 @@ import ProtectedRoute from "./protectedRoute";
 import { Layout } from "../components/layout";
 import { AdminProfileCard } from "./profiles/cards/adminProfileCard";
 import { ClientProfileCard } from "./profiles/cards/clientProfileCard";
+import { VehicleFormPage } from "./vehicles/pages/vehicleFormPage";
 
 export function MainRouter() {
     return (
@@ -31,6 +32,10 @@ export function MainRouter() {
                                 />
                                 <Route path={UserLinks.profile} element={
                                     <ClientProfileCard />
+                                }
+                                />
+                                <Route path={VehicleLinks.form} element={
+                                    <VehicleFormPage/>
                                 }
                                 />
                             </Routes>

@@ -4,11 +4,15 @@ import { UserProvider } from "../../../domain/users/userProvider";
 import { useEffect, useState } from "react";
 import { User } from "../../../domain/users/user";
 import { useAuthContext } from "../../contexts/authContext";
+import { useNavigate } from "react-router-dom";
+import { Vehicle } from "../../../domain/vehicles/vehicle";
+import { VehicleLinks } from "../../../domain/constants/links";
 
 export function AdminProfileCard() {
     const { userId } = useAuthContext();
 
     const [user, setUser] = useState<User | null>(null)
+    const navigate = useNavigate()
 
     useEffect(() => {
         async function loadUser() {
@@ -46,26 +50,6 @@ export function AdminProfileCard() {
                                     <LogoutIcon />
                                 </IconButton>
                             </Box>
-                        </Grid>
-                    </Grid>
-                    <Grid item xs={12} container spacing={3}>
-                        <Grid item xs={12} md={4} lg={4}
-                            display="flex" justifyContent="center">
-                            <Button variant="contained" fullWidth>
-                                Добавить новый автомобиль
-                            </Button>
-                        </Grid>
-                        <Grid item xs={12} md={4} lg={4}
-                            display="flex" justifyContent="center">
-                            <Button variant="contained" fullWidth>
-                                Список всех автомобилей
-                            </Button>
-                        </Grid>
-                        <Grid item xs={12} md={4} lg={4}
-                            display="flex" justifyContent="center">
-                            <Button variant="contained" fullWidth>
-                                Список всех клиентов
-                            </Button>
                         </Grid>
                     </Grid>
                 </Grid>

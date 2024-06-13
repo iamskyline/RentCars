@@ -1,4 +1,4 @@
-import { Box, Grid } from "@mui/material";
+import { Box, Button, Grid } from "@mui/material";
 import { VehicleCard } from "../cards/vehicleCard";
 import { useNavigate } from "react-router-dom";
 import { Vehicle } from "../../../domain/vehicles/vehicle";
@@ -22,20 +22,23 @@ export function VehiclesPage() {
     }, [])
 
     return (
-        <Box display="flex" justifyContent="center"
-            alignItems="center" height="100vh">
-            <Box maxWidth="1200px" bgcolor="#eaeaea"
+        <Box display="flex" flexDirection={'column'} alignItems={'center'} mt={2} px={2}>
+            <Button
+                variant="contained"
+                onClick={() => navigate(VehicleLinks.form)}
+                >
+                Добавить новый автомобиль
+            </Button>
+            <Box mt={2} bgcolor="#eaeaea"
                 width="100%"
                 borderRadius={5}
-                padding={2}>
+                paddingY={2}>
                 <Grid container spacing={1}>
                     {vehicles.map(vehicle =>
-                        <Grid key={vehicle.id} item xs={12} md={4} lg={3}
-                            sx={{ cursor: 'pointer', zIndex: 10 }}
-                            onClick={() => navigate(VehicleLinks.toCard(vehicle.id))}
+                        <Grid key={vehicle.id} item xs={12} md={4} lg={2}
                             display="flex" justifyContent="center"
                             alignItems="center">
-                            <VehicleCard vehicle={vehicle} isAdmin={isAdmin} />
+                                <VehicleCard vehicle={vehicle} isAdmin={isAdmin} />
                         </Grid>
                     )}
                 </Grid>

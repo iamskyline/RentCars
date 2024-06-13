@@ -5,7 +5,7 @@ import axios from "axios";
 import { FuelType } from "../../../domain/vehicles/enums/fuelType";
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { VehicleLinks } from "../../../domain/constants/links";
 import { ConfirmationCard } from "../../confirmations/confirmationModal";
 
@@ -16,9 +16,12 @@ interface IProps {
 
 export function VehicleCard(props: IProps) {
     const navigate = useNavigate();
-
     const [openDeleteModal, setOpenDeleteModal] = useState(false);
     const handleDeleteModalClose = () => setOpenDeleteModal(false);
+    
+    function handleOpenCard(){
+        navigate(VehicleLinks.toCard(props.vehicle.id))
+    }
 
     return (
         <Box maxWidth="220px"
@@ -28,19 +31,19 @@ export function VehicleCard(props: IProps) {
             <Grid container spacing={2}>
                 <Grid item xs={12}>
                     {/* ФОТА ТУТ */}
-                    <Box sx={{ width: "100%", height: "140px", bgcolor: "#737272" }}></Box>
+                    <Box
+                        sx={{ width: "100%", height: "140px", bgcolor: "#737272", cursor: 'pointer' }} 
+                        onClick={handleOpenCard}
+                    >
+                    </Box>
                 </Grid>
                 <Grid item xs={12}>
-                    <Typography variant="h4"
-                        align="center">
-                        {props.vehicle.brand}
-                    </Typography>
-                </Grid>
-                <Grid item xs={12}>
-                    <Typography variant="h5"
-                        align="center">
-                        {props.vehicle.model}
-                    </Typography>
+                    <Link to={VehicleLinks.toCard(props.vehicle.id)}>
+                        <Typography variant="h4"
+                            align="center">
+                            {props.vehicle.brand}<br/>{props.vehicle.model}
+                        </Typography>
+                    </Link>
                 </Grid>
                 <Grid item xs={6}>
                     <Typography variant="h6"
