@@ -1,5 +1,5 @@
 import { Box, Button, FormControl, Grid, InputLabel, MenuItem, Select, Stack, TextField, Typography } from "@mui/material";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { VehicleBlank } from "../../../domain/vehicles/vehicleBlank";
 import { enumToArrayNumber } from "../../../tools/utils/enumUtils";
 import { FuelType } from "../../../domain/vehicles/enums/fuelType";
@@ -9,12 +9,24 @@ import { VehicleClass } from "../../../domain/vehicles/enums/vehicleClass";
 import { WheelDrive } from "../../../domain/vehicles/enums/wheelDrive";
 import { VehicleProvider } from "../../../domain/vehicles/vehicleProvider";
 import { addErrorNotification, addSuccessNotification } from "../../../hooks/useNotifications";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { VehicleLinks } from "../../../domain/constants/links";
 
 export function VehicleFormCard() {
     const [vehicleBlank, setVehicleBlank] = useState<VehicleBlank>(VehicleBlank.empty());
+    const { vehicleId } = useParams()
     const navigate = useNavigate()
+
+    useEffect(() => {
+        if(vehicleId == null) return
+        loadVehicle(vehicleId)
+    }, [])
+
+    async function loadVehicle(vehicleId: string){
+        const vehicle = await VehicleProvider.get(vehicleId)
+        if(vehicle == null) return
+        setVehicleBlank(VehicleBlank.fromDomain(vehicle))
+    }
 
     const fuelTypes = enumToArrayNumber<FuelType>(FuelType);
     const bodyTypes = enumToArrayNumber<BodyType>(BodyType);
@@ -41,7 +53,10 @@ export function VehicleFormCard() {
             borderRadius={5} padding={3}>
             <Typography variant="h5"
                 align="center">
-                Добавление / Редактирование автомобиля
+                {vehicleId == null 
+                    ? 'Добавление автомобиля'
+                    : 'Редактирование автомобиля'
+                }
             </Typography>
             <Stack direction="column" gap={3} mt={2}>
                 <Grid container>
@@ -51,7 +66,7 @@ export function VehicleFormCard() {
                                 variant="standard"
                                 fullWidth
                                 error={vehicleBlank.brand == null}
-                                value={vehicleBlank.brand ?? undefined}
+                                value={vehicleBlank.brand ?? ''}
                                 onChange={(event) => setVehicleBlank((vehicleBlank) => ({ ...vehicleBlank, brand: (event.target.value) }))}
                             />
                         </Grid>
@@ -60,7 +75,7 @@ export function VehicleFormCard() {
                                 variant="standard"
                                 fullWidth
                                 error={vehicleBlank.bodyColor == null}
-                                value={vehicleBlank.bodyColor ?? undefined}
+                                value={vehicleBlank.bodyColor ?? ''}
                                 onChange={(event) => setVehicleBlank((vehicleBlank) => ({ ...vehicleBlank, bodyColor: (event.target.value) }))}
                             />
                         </Grid>
@@ -70,7 +85,7 @@ export function VehicleFormCard() {
                                 type="number"
                                 fullWidth
                                 error={vehicleBlank.dayCost == null}
-                                value={vehicleBlank.dayCost ?? undefined}
+                                value={vehicleBlank.dayCost ?? ''}
                                 onChange={(event) => setVehicleBlank((vehicleBlank) => ({ ...vehicleBlank, dayCost: (+(event.target.value)) }))}
                             />
                         </Grid>
@@ -79,7 +94,7 @@ export function VehicleFormCard() {
                                 variant="standard"
                                 fullWidth
                                 error={vehicleBlank.model == null}
-                                value={vehicleBlank.model ?? undefined}
+                                value={vehicleBlank.model ?? ''}
                                 onChange={(event) => setVehicleBlank((vehicleBlank) => ({ ...vehicleBlank, model: (event.target.value) }))}
                             />
                         </Grid>
@@ -88,7 +103,7 @@ export function VehicleFormCard() {
                                 variant="standard"
                                 fullWidth
                                 error={vehicleBlank.enginePower == null}
-                                value={vehicleBlank.enginePower ?? undefined}
+                                value={vehicleBlank.enginePower ?? ''}
                                 onChange={(event) => setVehicleBlank((vehicleBlank) => ({ ...vehicleBlank, enginePower: (+(event.target.value)) }))}
                             />
                         </Grid>
@@ -97,7 +112,7 @@ export function VehicleFormCard() {
                                 variant="standard"
                                 fullWidth
                                 error={vehicleBlank.twoFourDaysCost == null}
-                                value={vehicleBlank.twoFourDaysCost ?? undefined}
+                                value={vehicleBlank.twoFourDaysCost ?? ''}
                                 onChange={(event) => setVehicleBlank((vehicleBlank) => ({ ...vehicleBlank, twoFourDaysCost: (+(event.target.value)) }))}
                             />
                         </Grid>
@@ -106,7 +121,7 @@ export function VehicleFormCard() {
                                 variant="standard"
                                 fullWidth
                                 error={vehicleBlank.yearOfManufacture == null}
-                                value={vehicleBlank.yearOfManufacture ?? undefined}
+                                value={vehicleBlank.yearOfManufacture ?? ''}
                                 onChange={(event) => setVehicleBlank((vehicleBlank) => ({ ...vehicleBlank, yearOfManufacture: (+(event.target.value)) }))}
                             />
                         </Grid>
@@ -134,7 +149,7 @@ export function VehicleFormCard() {
                                 variant="standard"
                                 fullWidth
                                 error={vehicleBlank.fourSevenDaysCost == null}
-                                value={vehicleBlank.fourSevenDaysCost ?? undefined}
+                                value={vehicleBlank.fourSevenDaysCost ?? ''}
                                 onChange={(event) => setVehicleBlank((vehicleBlank) => ({ ...vehicleBlank, fourSevenDaysCost: (+(event.target.value)) }))}
                             />
                         </Grid>
@@ -181,7 +196,7 @@ export function VehicleFormCard() {
                                 variant="standard"
                                 fullWidth
                                 error={vehicleBlank.sevenFourteenDaysCost == null}
-                                value={vehicleBlank.sevenFourteenDaysCost ?? undefined}
+                                value={vehicleBlank.sevenFourteenDaysCost ?? ''}
                                 onChange={(event) => setVehicleBlank((vehicleBlank) => ({ ...vehicleBlank, sevenFourteenDaysCost: (+(event.target.value)) }))}
                             />
                         </Grid>
@@ -229,7 +244,7 @@ export function VehicleFormCard() {
                                 variant="standard"
                                 fullWidth
                                 error={vehicleBlank.fourteenAndMoreDaysCost == null}
-                                value={vehicleBlank.fourteenAndMoreDaysCost ?? undefined}
+                                value={vehicleBlank.fourteenAndMoreDaysCost ?? ''}
                                 onChange={(event) => setVehicleBlank((vehicleBlank) => ({ ...vehicleBlank, fourteenAndMoreDaysCost: (+(event.target.value)) }))}
                             />
                         </Grid>

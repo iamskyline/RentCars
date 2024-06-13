@@ -12,8 +12,8 @@ import { VehicleFormPage } from "./vehicles/pages/vehicleFormPage";
 
 export function MainRouter() {
     return (
-        <AuthProvider>
-            <BrowserRouter>
+        <BrowserRouter>
+            <AuthProvider>
                 <Routes>
                     <Route path="/" element={<AuthorizationPage />} />
                     <Route path="/registration" element={<RegistrationPage />} />
@@ -27,23 +27,29 @@ export function MainRouter() {
                                     } 
                                 />
                                 <Route path={UserLinks.adminProfile} element={
-                                    <AdminProfileCard />
+                                    <ProtectedRoute>
+                                        <AdminProfileCard />
+                                    </ProtectedRoute>
                                 }
                                 />
                                 <Route path={UserLinks.profile} element={
-                                    <ClientProfileCard />
+                                    <ProtectedRoute>
+                                        <ClientProfileCard />
+                                    </ProtectedRoute>
                                 }
                                 />
                                 <Route path={VehicleLinks.form} element={
-                                    <VehicleFormPage/>
+                                    <ProtectedRoute>
+                                        <VehicleFormPage/>
+                                    </ProtectedRoute>
                                 }
                                 />
                             </Routes>
                         </Layout>
                     } errorElement={<>Ты лох</>} />
                 </Routes>
-            </BrowserRouter>
-        </AuthProvider>
+            </AuthProvider>
+        </BrowserRouter>
         // <BrowserRouter>
         //     <Routes>
         //         <Route path={UserLinks.all} element={<UsersPage />} />

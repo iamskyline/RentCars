@@ -3,6 +3,7 @@ import { FuelType } from "./enums/fuelType";
 import { TransmissionType } from "./enums/transmissionType";
 import { VehicleClass } from "./enums/vehicleClass";
 import { WheelDrive } from "./enums/wheelDrive";
+import { Vehicle } from "./vehicle";
 
 export class VehicleBlank {
     constructor(
@@ -32,5 +33,14 @@ export class VehicleBlank {
             BodyType.Sedan, null, 2.5, FuelType.Gasoline,
             WheelDrive.AllWheelDrive, TransmissionType.Automatic,
             null, null, null, null, null, null, null);
+    }
+
+    public static fromDomain(vehicle: Vehicle): VehicleBlank {
+        return new VehicleBlank(vehicle.id, vehicle.brand, vehicle.model, vehicle.yearOfManufacture,
+            vehicle.vehicleClass, vehicle.bodyColor, vehicle.bodyType, vehicle.enginePower,
+            vehicle.engineCapacity, vehicle.fuelType, vehicle.wheelDrive, vehicle.transmissionType, 
+            vehicle.dayCost, vehicle.twoFourDaysCost, vehicle.fourSevenDaysCost, vehicle.sevenFourteenDaysCost, 
+            vehicle.fourteenAndMoreDaysCost, vehicle.mainPhoto, vehicle.photos
+        )
     }
 }

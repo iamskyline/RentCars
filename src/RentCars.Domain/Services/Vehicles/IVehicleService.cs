@@ -11,5 +11,5 @@ public interface IVehicleService
     Vehicle[] GetAllVehicles();
     Vehicle[] GetVehicles(Guid[] ids);
 
-    void RemoveVehicle(Guid vehicleId);
+    Result RemoveVehicle(Guid vehicleId);
 }

@@ -4,6 +4,7 @@ import HelpIcon from '@mui/icons-material/Help';
 interface IProps {
     isOpen: boolean,
     onClose: () => void
+    onConfirm: () => void
 }
 
 export function ConfirmationCard(props: IProps) {
@@ -15,7 +16,6 @@ export function ConfirmationCard(props: IProps) {
             aria-describedby="modal-modal-description"
             maxWidth="sm"
             sx={{
-                bgcolor: "#eaeaea",
                 borderRadius: 5
             }}
         >
@@ -45,7 +45,7 @@ export function ConfirmationCard(props: IProps) {
                             </Button>
                         </Grid>
                         <Grid item xs={6} md={6} lg={6}>
-                            <Button variant="contained" fullWidth>
+                            <Button variant="contained" fullWidth onClick={props.onConfirm}>
                                 Подтвердить
                             </Button>
                         </Grid>

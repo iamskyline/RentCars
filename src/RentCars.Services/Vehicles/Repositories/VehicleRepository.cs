@@ -3,6 +3,7 @@ using RentCars.Domain.Vehicles;
 using RentCars.Services.Vehicles.Repositories.Converters;
 using RentCars.Services.Vehicles.Repositories.Models;
 using RentCars.Tools.DataBase;
+using RentCars.Tools.Results;
 
 namespace RentCars.Services.Vehicles.Repositories;
 
@@ -85,7 +86,8 @@ public class VehicleRepository : IVehicleRepository
 
     public Vehicle[] GetAllVehicles()
     {
-        return _mainConnector.GetList<VehicleDb>("SELECT * FROM vehicles").ToVehicles();
+        return _mainConnector.GetList<VehicleDb>("SELECT * FROM vehicles v " +
+            "WHERE NOT v.isRemoved").ToVehicles();
     }
 
     public Vehicle[] GetVehicles(Guid[] ids)
@@ -98,16 +100,25 @@ public class VehicleRepository : IVehicleRepository
         return _mainConnector.GetList<VehicleDb>("SELECT * FROM vehicles where id = ANY(@p_ids)", parameters).ToVehicles();
     }
 
-    public void RemoveVehicle(Guid vehicleId)
+    public Result RemoveVehicle(Guid vehicleId)
     {
         NpgsqlParameter[] parameters =
         {
             new("p_id", vehicleId)
         };
 
-        _mainConnector.ExecuteNonQuery(
-            expression: "UPDATE vehicles SET isRemoved = true WHERE id = @p_id",
-            parameters
-        );
+        try
+        {
+            _mainConnector.ExecuteNonQuery(
+                expression: "UPDATE vehicles SET isRemoved = true WHERE id = @p_id",
+                parameters
+            );
+        }
+        catch (Exception e)
+        {
+            return Result.Fail($"Не удалось удалить автомобиль {e.Message}");
+        }
+
+        return Result.Success();
     }
 }

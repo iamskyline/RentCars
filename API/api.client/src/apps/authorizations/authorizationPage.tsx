@@ -20,11 +20,11 @@ const defaultAuthData: AuthData = {
 export function AuthorizationPage() {
 
     const [authDto, setAuthDto] = useState<AuthData>(defaultAuthData);
-    const { authorize, isAuthenticated } = useAuthContext()
+    const { authorize, checkAuthorize } = useAuthContext()
     const navigate = useNavigate()
 
     useEffect(() => {
-        if (isAuthenticated) return navigate(VehicleLinks.all)
+        if (checkAuthorize()) return navigate(VehicleLinks.all)
     }, [])
 
     async function handleAuthButtonClick() {

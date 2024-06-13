@@ -1,11 +1,13 @@
 import { PropsWithChildren, createContext, useContext, useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 
 interface IAuthContext {
     isAdmin: boolean
     isAuthenticated: boolean
     userId: string | null
     authorize: (token: string, isAdmin: boolean, userId: string) => void
-    checkAuthorize: () => boolean
+    checkAuthorize: () => boolean,
+    logout: () => Promise<void>,
 }
 
 const defaultValue: IAuthContext = {
@@ -13,13 +15,13 @@ const defaultValue: IAuthContext = {
     isAuthenticated: false,
     isAdmin: false,
     checkAuthorize: () => false,
-    authorize: () => { }
+    authorize: () => { },
+    logout: async() => { }
 }
 
 export const AuthContext = createContext<IAuthContext>(defaultValue)
 
 function AuthProvider(props: PropsWithChildren) {
-
     function getDefaultValue(): IAuthContext {
         const isAdmin = localStorage.getItem('isAdmin')
         const userId = localStorage.getItem('userId')
@@ -28,8 +30,9 @@ function AuthProvider(props: PropsWithChildren) {
             userId,
             isAdmin: isAdmin === "true",
             isAuthenticated: checkAuthorize(),
-            authorize: authorize,
-            checkAuthorize
+            authorize,
+            checkAuthorize,
+            logout
         }
     }
 
@@ -43,12 +46,17 @@ function AuthProvider(props: PropsWithChildren) {
         localStorage.setItem('token', token)
         localStorage.setItem('isAdmin', isAdmin ? 'true' : 'false')
         localStorage.setItem('userId', userId)
-        changeContext({ isAuthenticated: true, isAdmin })
+        changeContext({ isAuthenticated: true, isAdmin, userId })
     }
 
     function checkAuthorize(): boolean {
         const token = localStorage.getItem('token')
         return token != null
+    }
+
+    async function logout() {
+        localStorage.clear()
+        changeContext({isAuthenticated: false})
     }
 
     return (

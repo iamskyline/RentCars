@@ -25,7 +25,7 @@ export function VehiclesPage() {
         <Box display="flex" flexDirection={'column'} alignItems={'center'} mt={2} px={2}>
             <Button
                 variant="contained"
-                onClick={() => navigate(VehicleLinks.form)}
+                onClick={() => navigate(VehicleLinks.toForm())}
                 >
                 Добавить новый автомобиль
             </Button>

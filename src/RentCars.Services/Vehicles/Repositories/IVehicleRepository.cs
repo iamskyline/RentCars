@@ -1,4 +1,5 @@
 ﻿using RentCars.Domain.Vehicles;
+using RentCars.Tools.Results;
 
 namespace RentCars.Services.Vehicles.Repositories;
 
@@ -10,5 +11,5 @@ public interface IVehicleRepository
     Vehicle[] GetAllVehicles();
     Vehicle[] GetVehicles(Guid[] ids);
 
-    void RemoveVehicle(Guid vehicleId);
+    Result RemoveVehicle(Guid vehicleId);
 }

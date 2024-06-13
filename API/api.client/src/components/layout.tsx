@@ -1,4 +1,5 @@
-import { Avatar, Box, Stack, Typography } from '@mui/material'
+import { Avatar, Box, IconButton, Stack, Typography } from '@mui/material'
+import LogoutIcon from '@mui/icons-material/Logout';
 import { PropsWithChildren } from 'react'
 import { Link, Navigate, To, useNavigate } from 'react-router-dom'
 import { useAuthContext } from '../apps/contexts/authContext'
@@ -19,8 +20,13 @@ const tabs: NavItemProps[] = [
 ]
 
 export function Layout(props: PropsWithChildren<{}>) {
-    const { isAdmin, userId } = useAuthContext();
+    const { isAdmin, userId, logout } = useAuthContext();
     const navigate = useNavigate()
+
+    async function handleLogout(){
+        await logout()
+        navigate('/')
+    }
 
     return (
         <Box width="100%">
@@ -50,8 +56,8 @@ export function Layout(props: PropsWithChildren<{}>) {
                     borderRadius={12} padding={1}
                     justifyContent="center" alignItems="center"
                     onClick={() => {
+                        console.log(userId)
                         if(userId == null) return
-
                         isAdmin 
                             ? navigate(UserLinks.toAdminProfile())
                             : navigate(UserLinks.toProfile(userId))
@@ -62,6 +68,9 @@ export function Layout(props: PropsWithChildren<{}>) {
                     <Typography>
                         Имя пользователя
                     </Typography>
+                    <IconButton aria-label="logout" onClick={handleLogout}>
+                        <LogoutIcon />
+                    </IconButton>
                 </Box>
             </Box>
             {props.children}

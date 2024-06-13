@@ -8,6 +8,8 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import { Link, useNavigate } from "react-router-dom";
 import { VehicleLinks } from "../../../domain/constants/links";
 import { ConfirmationCard } from "../../confirmations/confirmationModal";
+import { VehicleProvider } from "../../../domain/vehicles/vehicleProvider";
+import { addErrorNotification, addSuccessNotification } from "../../../hooks/useNotifications";
 
 interface IProps {
     vehicle: Vehicle,
@@ -21,6 +23,12 @@ export function VehicleCard(props: IProps) {
     
     function handleOpenCard(){
         navigate(VehicleLinks.toCard(props.vehicle.id))
+    }
+
+    async function handleDeleteCar(){
+        const response = await VehicleProvider.delete(props.vehicle.id)
+        if(!response.isSuccess) return addErrorNotification(response.errors[0])
+        addSuccessNotification('Автомобиль успешно удалён')
     }
 
     return (
@@ -75,7 +83,7 @@ export function VehicleCard(props: IProps) {
                             <IconButton color="default" sx={{ zIndex: 100 }}
                                 onClick={(event) => {
                                     event.stopPropagation();
-                                    navigate(VehicleLinks.form);
+                                    navigate(VehicleLinks.toForm(props.vehicle.id));
                                 }}>
                                 <EditIcon />
                             </IconButton>
@@ -90,7 +98,12 @@ export function VehicleCard(props: IProps) {
                     )
                 }
             </Grid>
-            <ConfirmationCard onClose={handleDeleteModalClose} isOpen={openDeleteModal} />
+            <ConfirmationCard 
+                isOpen={openDeleteModal}
+                onConfirm={handleDeleteCar}
+                onClose={handleDeleteModalClose} 
+            />
         </Box>
     );
 }
+

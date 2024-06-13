@@ -171,8 +171,8 @@ public class VehicleService : IVehicleService
         return _vehicleRepository.GetVehicles(ids);
     }
 
-    public void RemoveVehicle(Guid vehicleId)
+    public Result RemoveVehicle(Guid vehicleId)
     {
-        _vehicleRepository.RemoveVehicle(vehicleId);
+        return _vehicleRepository.RemoveVehicle(vehicleId);
     }
 }

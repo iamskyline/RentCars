@@ -1,10 +1,16 @@
 export class VehicleLinks {
     static all = "/vehicles";
     static card = "/vehicle/:vehicleId";
-    static form = "/vehicle-form";
+    static form = "/vehicle-form/:vehicleId?";
 
     static toCard(vehicleId: string) {
         return `/vehicle/${vehicleId}`
+    }
+
+    static toForm(vehicleId?: string) {
+        return vehicleId != null 
+            ? `/vehicle-form/${vehicleId}`
+            : `/vehicle-form/`
     }
 }
 

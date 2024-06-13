@@ -32,9 +32,9 @@ public class VehicleController : Controller
         return _vehicleService.GetAllVehicles();
     }
     
-    [HttpPost("api/vehicles/remove")]
-    public void RemoveVehicle([FromBody] Guid id)
+    [HttpGet("api/vehicles/remove")]
+    public Result RemoveVehicle(Guid id)
     {
-        _vehicleService.RemoveVehicle(id);
+        return _vehicleService.RemoveVehicle(id);
     }
 }

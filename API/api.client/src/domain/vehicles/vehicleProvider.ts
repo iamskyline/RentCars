@@ -6,12 +6,12 @@ import { VehicleBlank } from "./vehicleBlank";
 
 export class VehicleProvider {
     public static async get(vehicleId: string): Promise<Vehicle | null> {
-        const any = await axios.get("/api/vehicles/get-by-id", {params: {
+        const response = await axios.get("/api/vehicles/get-by-id", {params: {
             vehicleId
         }})
-        if (any == null) return null;
+        if (response.data == null) return null;
 
-        return mapToVehicle(any);
+        return mapToVehicle(response.data);
     }
 
     public static async getAll(): Promise<Vehicle[]> {
@@ -29,5 +29,15 @@ export class VehicleProvider {
     public static async save(vehicleBlank: VehicleBlank): Promise<Result> {
         const response = await axios.post("/api/vehicles/save", vehicleBlank)
         return mapToResult(response.data);
+    }
+
+    public static async delete(id: string): Promise<Result> {
+        const response = await axios.get("/api/vehicles/remove", {
+            params: {
+                id
+            }
+        })
+
+        return mapToResult(response.data)
     }
 }
