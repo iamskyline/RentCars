@@ -1,3 +1,4 @@
+import axios from "axios"
 import { HttpClient } from "../../tools/httpClients/httpClient"
 import DataResult, { mapToDataResult } from "../../tools/results/dataResult"
 import { UserBlank } from "../users/userBlank"
@@ -5,9 +6,9 @@ import { AuthResponse } from "./authResponse"
 
 export class InfrastructureProvider {
     public static async register(userBlank: UserBlank): Promise<DataResult<AuthResponse | null>> {
-        const response = await HttpClient.post("/api/users/registration", userBlank)
+        const response = await axios.post("/api/users/registration", userBlank)
 
-        const result = mapToDataResult<DataResult<AuthResponse | null>>(response)
+        const result = mapToDataResult<DataResult<AuthResponse | null>>(response.data)
 
         if (!result.data.isSuccess) {
             return DataResult.fail(result.data.errors[0])
@@ -22,9 +23,9 @@ export class InfrastructureProvider {
             password
         }
 
-        const response = await HttpClient.post("/api/users/authorization", request)
+        const response = await axios.post("/api/users/authorization", request)
 
-        const result = mapToDataResult<DataResult<AuthResponse | null>>(response)
+        const result = mapToDataResult<DataResult<AuthResponse | null>>(response.data)
 
         if (!result.data.isSuccess) {
             return DataResult.fail(result.data.errors[0])

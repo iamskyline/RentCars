@@ -1,3 +1,4 @@
+import axios from "axios";
 import { HttpClient } from "../../tools/httpClients/httpClient";
 import { Result, mapToResult } from "../../tools/results/result";
 import { NameOfVehicle, mapToNameOfVehicle } from "./nameOfVehicle";
@@ -6,26 +7,28 @@ import { VehicleBlank } from "./vehicleBlank";
 
 export class VehicleProvider {
     public static async get(vehicleId: string): Promise<Vehicle | null> {
-        const any = await HttpClient.get("/api/vehicles/get-by-id", { vehicleId })
+        const any = await axios.get("/api/vehicles/get-by-id", {params: {
+            vehicleId
+        }})
         if (any == null) return null;
 
         return mapToVehicle(any);
     }
 
     public static async getAll(): Promise<Vehicle[]> {
-        const any = await HttpClient.get("/api/vehicles/get-all-vehicles")
+        const response = await axios.get("/api/vehicles/get-all-vehicles")
 
-        return (any as any[]).map(mapToVehicle);
+        return response.data.map(mapToVehicle);
     }
 
     public static async getAllNameOfVehicles(): Promise<NameOfVehicle[]> {
-        const any = await HttpClient.get("/api/vehicles/get-all-vehicles")
+        const response = await axios.get("/api/vehicles/get-all-vehicles")
 
-        return (any as any[]).map(mapToNameOfVehicle);
+        return response.data.map(mapToNameOfVehicle);
     }
 
     public static async save(vehicleBlank: VehicleBlank): Promise<Result> {
-        const any = await HttpClient.post("/api/vehicles/save", vehicleBlank)
-        return mapToResult(any);
+        const response = await axios.post("/api/vehicles/save", vehicleBlank)
+        return mapToResult(response.data);
     }
 }

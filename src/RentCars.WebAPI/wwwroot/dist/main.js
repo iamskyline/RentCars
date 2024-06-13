@@ -75213,8 +75213,10 @@ function AuthProvider(props) {
             checkAuthorize: checkAuthorize
         };
     }
-    var _a = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(getDefaultValue()), authContext = _a[0], setAuthContext = _a[1];
-    console.log(authContext);
+    var _a = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(defaultValue), authContext = _a[0], setAuthContext = _a[1];
+    (0,react__WEBPACK_IMPORTED_MODULE_1__.useEffect)(function () {
+        setAuthContext(getDefaultValue());
+    }, []);
     function changeContext(context) {
         setAuthContext(function (prevContext) { return (__assign(__assign({}, prevContext), { context: context })); });
     }
@@ -75231,8 +75233,9 @@ function AuthProvider(props) {
         var isAdmin = localStorage.getItem('isAdmin');
         if (isAdmin == null)
             return false;
-        console.log(isAdmin === "true");
-        return isAdmin === "true";
+        var result = isAdmin === "true";
+        console.log(result);
+        return result;
     }
     return ((0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(AuthContext.Provider, __assign({ value: authContext }, { children: props.children })));
 }
@@ -75761,7 +75764,6 @@ var tabs = [
 ];
 function Layout(props) {
     var isAdmin = (0,_apps_contexts_authContext__WEBPACK_IMPORTED_MODULE_1__.useAuthContext)().isAdmin;
-    console.log(isAdmin);
     return ((0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)(_mui_material__WEBPACK_IMPORTED_MODULE_3__["default"], { children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)(_mui_material__WEBPACK_IMPORTED_MODULE_3__["default"], __assign({ width: "100%", bgcolor: "#737272", padding: 2, display: "flex", minHeight: "50px", position: "fixed", gap: 1, justifyContent: "space-between" }, { children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_mui_material__WEBPACK_IMPORTED_MODULE_3__["default"], __assign({ display: "flex", justifyContent: "center", alignItems: "center", gap: 5 }, { children: tabs.map(function (tab, index) {
                             return (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_navItem__WEBPACK_IMPORTED_MODULE_2__.NavItem, { isShow: isAdmin && tab.private, route: tab.route, title: tab.title }, index);
                         }) })), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)(_mui_material__WEBPACK_IMPORTED_MODULE_3__["default"], __assign({ display: "flex", gap: 1, bgcolor: "#d2d2d2", borderRadius: 12, padding: 1, justifyContent: "center", alignItems: "center", sx: { cursor: "pointer" } }, { children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_mui_material__WEBPACK_IMPORTED_MODULE_4__["default"], {}), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_mui_material__WEBPACK_IMPORTED_MODULE_5__["default"], { children: "\u0418\u043C\u044F \u043F\u043E\u043B\u044C\u0437\u043E\u0432\u0430\u0442\u0435\u043B\u044F" })] }))] })), props.children] }));

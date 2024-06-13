@@ -19,7 +19,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\RentCars.Domain\RentCars.Domain.csproj" />
-    <ProjectReference Include="..\RentCars.Services.Configurator\RentCars.Services.Configurator.csproj" />
     <ProjectReference Include="..\RentCars.Services\RentCars.Services.csproj" />
   </ItemGroup>
 

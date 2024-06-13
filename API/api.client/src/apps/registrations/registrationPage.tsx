@@ -1,5 +1,5 @@
 import { Avatar, Box, Button, Grid, Stack, TextField, Typography } from "@mui/material";
-import Logo from "../../../assets/logos/Logotype.png";
+import Logo from "../../assets/logos/Logotype.png";
 import { Link, useNavigate } from "react-router-dom";
 import { MuiTelInput } from "mui-tel-input";
 import { VehicleLinks } from "../../domain/constants/links";

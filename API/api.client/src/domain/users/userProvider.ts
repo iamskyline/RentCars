@@ -1,3 +1,4 @@
+import axios from "axios";
 import { HttpClient } from "../../tools/httpClients/httpClient";
 import DataResult, { mapToDataResult } from "../../tools/results/dataResult";
 import { Result, mapToResult } from "../../tools/results/result";
@@ -8,28 +9,32 @@ import { UserBlank } from "./userBlank";
 
 export class UserProvider {
     public static async get(userId: string): Promise<User | null> {
-        const any = await HttpClient.get("/api/users/get-user-by-id", { userId })
-        if (any == null) return null;
+        const response = await axios.get("/api/users/get-user-by-id", {params: {
+            userId
+        }})
+        if (response.data == null) return null;
 
-        return mapToUser(any);
+        return mapToUser(response.data);
     }
 
     public static async getQuantityRentedVehicles(userId: string): Promise<number | null> {
-        const any = await HttpClient.get("/api/users/get-quantity-rented-vehicles-by-userid", { userId })
-        if (any == null) return null;
+        const response = await axios.get("/api/users/get-quantity-rented-vehicles-by-userid", { params: {
+            userId
+        }})
+        if (response.data == null) return null;
 
-        return any;
+        return response.data;
     }
 
     public static async getAll(): Promise<User[]> {
-        const any = await HttpClient.get("/api/users/get-all-users")
+        const response = await axios.get("/api/users/get-all-users")
 
-        return (any as any[]).map(mapToUser);
+        return response.data.map(mapToUser);
     }
 
     public static async getAllClients(): Promise<NameOfUser[]> {
-        const any = await HttpClient.get("/api/users/get-all-clients")
+        const response = await axios.get("/api/users/get-all-clients")
 
-        return (any as any[]).map(mapToNameOfUser);
+        return response.data.map(mapToNameOfUser);
     }
 }

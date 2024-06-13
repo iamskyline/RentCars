@@ -1,4 +1,4 @@
-import { PropsWithChildren, createContext, useContext, useState } from 'react'
+import { PropsWithChildren, createContext, useContext, useEffect, useState } from 'react'
 
 interface IAuthContext {
     authorize: (token: string, isAdmin: boolean) => void
@@ -19,9 +19,11 @@ export const AuthContext = createContext<IAuthContext>(defaultValue)
 function AuthProvider(props: PropsWithChildren) {
 
     function getDefaultValue(): IAuthContext {
+        const isAdmin = localStorage.getItem('isAdmin')
+
         return {
             authorize: authorize,
-            isAdmin: checkIsAdmin(),
+            isAdmin: isAdmin === "true",
             isAuthenticated: checkAuthorize(),
             checkAuthorize
         }
@@ -42,13 +44,6 @@ function AuthProvider(props: PropsWithChildren) {
     function checkAuthorize(): boolean {
         const token = localStorage.getItem('token')
         return token != null
-    }
-
-    function checkIsAdmin(): boolean {
-        const isAdmin = localStorage.getItem('isAdmin')
-        if (isAdmin == null) return false
-        console.log(isAdmin === "true")
-        return isAdmin === "true"
     }
 
     return (

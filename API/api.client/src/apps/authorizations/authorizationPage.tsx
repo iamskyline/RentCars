@@ -1,5 +1,5 @@
 import { Box, Button, Grid, Stack, TextField, Typography } from "@mui/material";
-import Logo from "../../../assets/logos/Logotype.png";
+import Logo from "../../assets/logos/Logotype.png";
 import { Link, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { InfrastructureProvider } from "../../domain/infrastructure/infrastructureProvider";
