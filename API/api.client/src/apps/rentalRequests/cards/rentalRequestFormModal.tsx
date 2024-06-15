@@ -9,6 +9,7 @@ import { NameOfVehicle } from "../../../domain/vehicles/nameOfVehicle";
 import { VehicleProvider } from "../../../domain/vehicles/vehicleProvider";
 import { RentalRequest } from "../../../domain/rentalRequests/rentalRequest";
 import { DatePicker } from "react-widgets/cjs";
+import "react-widgets/styles.css";
 
 interface IProps {
     rentalRequest: RentalRequest,
