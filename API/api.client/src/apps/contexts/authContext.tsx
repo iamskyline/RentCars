@@ -37,9 +37,9 @@ function AuthProvider(props: PropsWithChildren) {
     }
 
     const [authContext, setAuthContext] = useState<IAuthContext>(getDefaultValue())
-
+    
     function changeContext(context: Partial<IAuthContext>) {
-        setAuthContext((prevContext) => ({ ...prevContext, context }))
+        setAuthContext((prevContext) => ({ ...prevContext, ...context }))
     }
 
     function authorize(token: string, isAdmin: boolean, userId: string) {
@@ -56,7 +56,7 @@ function AuthProvider(props: PropsWithChildren) {
 
     async function logout() {
         localStorage.clear()
-        changeContext({isAuthenticated: false})
+        changeContext(getDefaultValue())
     }
 
     return (
