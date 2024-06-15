@@ -14,4 +14,8 @@ export class RentalRequestBlank {
     public static empty() {
         return new RentalRequestBlank(null, null, null, null, null, RentalStatus.Processing);
     }
+
+    public static toBlank(request: RentalRequest) {
+        return new RentalRequestBlank(request.id, request.userId, request.vehicleId, request.rentalStartDateTimeUtc, request.rentalEndDateTimeUtc, request.status)
+    }
 }

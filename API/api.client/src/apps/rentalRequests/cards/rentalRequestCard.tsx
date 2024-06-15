@@ -14,19 +14,19 @@ import { addErrorNotification, addSuccessNotification } from "../../../hooks/use
 interface IProps {
     rentalRequest: RentalRequest,
     user: NameOfUser,
-    vehicle: NameOfVehicle
+    vehicle: NameOfVehicle,
+    onEdit: () => void,
 }
 
 export function RentalRequestCard(props: IProps) {
-    const [openEditModal, setOpenEditModal] = useState(false);
     const [openDeleteModal, setOpenDeleteModal] = useState(false);
-    const handleEditModalClose = () => setOpenEditModal(false);
     const handleDeleteModalClose = () => setOpenDeleteModal(false);
 
     async function handleDeleteRentalRequest() {
         const response = await RentalRequestProvider.delete(props.vehicle.id)
         if (!response.isSuccess) return addErrorNotification(response.errors[0])
         addSuccessNotification('Запрос аренды успешно удалён')
+        setOpenDeleteModal(false)
     }
 
     return (
@@ -82,7 +82,7 @@ export function RentalRequestCard(props: IProps) {
                     <IconButton color="default" sx={{ zIndex: 100 }}
                         onClick={(event) => {
                             event.stopPropagation();
-                            setOpenEditModal(true);
+                            props.onEdit();
                         }}>
                         <EditIcon />
                     </IconButton>
@@ -95,10 +95,6 @@ export function RentalRequestCard(props: IProps) {
                     </IconButton>
                 </Grid>
             </Grid>
-            <RentalRequestFormModal onClose={handleEditModalClose}
-                isOpen={openEditModal}
-                rentalRequest={props.rentalRequest}
-            />
             <ConfirmationCard
                 onClose={handleDeleteModalClose}
                 isOpen={openDeleteModal}

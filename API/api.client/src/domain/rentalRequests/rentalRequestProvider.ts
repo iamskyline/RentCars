@@ -3,8 +3,14 @@ import { NameOfUser, mapToNameOfUser } from "../users/nameOfUser";
 import { NameOfVehicle, mapToNameOfVehicle } from "../vehicles/nameOfVehicle";
 import { RentalRequest, mapToRentalRequest } from "./rentalRequest";
 import { Result, mapToResult } from "../../tools/results/result";
+import { RentalRequestBlank } from "./rentalRequestBlank";
 
 export class RentalRequestProvider {
+    public static async save(blank: RentalRequestBlank): Promise<Result>{
+        const response = await axios.post("/api/rental-request/create", blank)
+        return mapToResult(response.data)
+    }
+
     public static async get(rentalRequestId: string): Promise<RentalRequest | null> {
         const response = await axios.get("/api/rental-request/get-by-id", {
             params: {

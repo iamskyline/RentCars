@@ -1,4 +1,4 @@
-import { Box, Grid } from "@mui/material";
+import { Box, Button, Grid } from "@mui/material";
 import { RentalRequestCard } from "../cards/rentalRequestCard";
 import { useNavigate } from "react-router-dom";
 import { RentalRequest } from "../../../domain/rentalRequests/rentalRequest";
@@ -10,25 +10,70 @@ import { Vehicle } from "../../../domain/vehicles/vehicle";
 import { User } from "../../../domain/users/user";
 import { NameOfUser } from "../../../domain/users/nameOfUser";
 import { NameOfVehicle } from "../../../domain/vehicles/nameOfVehicle";
+import { RentalRequestFormModal } from "../cards/rentalRequestFormModal";
+import { RentalRequestBlank } from "../../../domain/rentalRequests/rentalRequestBlank";
+import { addErrorNotification, addSuccessNotification } from "../../../hooks/useNotifications";
 
 export function RentalRequestsPage() {
     const [rentalRequests, setRenalRequests] = useState<RentalRequest[]>([]);
+    const [selectedRentalRequest, setSelectedRentalRequest] = useState<string | null>(null)
     const [users, setUsers] = useState<NameOfUser[]>([]);
     const [vehicles, setVehicles] = useState<NameOfVehicle[]>([]);
+    const [isOpen, setIsOpen] = useState<boolean>(false)
 
     useEffect(() => {
-        async function loadAllRentalRequests() {
-            const allRentalRequests = await RentalRequestProvider.getAll();
-            setRenalRequests(allRentalRequests.rents);
-            setUsers(allRentalRequests.users);
-            setVehicles(allRentalRequests.vehicles);
-        }
         loadAllRentalRequests();
     }, [])
 
+    async function loadAllRentalRequests() {
+        const allRentalRequests = await RentalRequestProvider.getAll();
+        setRenalRequests(allRentalRequests.rents);
+        setUsers(allRentalRequests.users);
+        setVehicles(allRentalRequests.vehicles);
+    }
+    
+    async function saveRentalRequest(blank: RentalRequestBlank){
+        const saveResponse = await RentalRequestProvider.save(blank)
+        if(!saveResponse.isSuccess) return addErrorNotification(saveResponse.errorsString)
+        addSuccessNotification("Запрос на аренду успешно сохранён")
+        loadAllRentalRequests()
+        handleCloseModal()
+    }
+
+    function handleEdit(rentalRequestId: string){
+        setSelectedRentalRequest(rentalRequestId)
+        handleOpenModal()
+    }
+
+    function handleOpenModal(){
+        setIsOpen(true)
+    }
+
+    function handleCloseModal(){
+        setIsOpen(false)
+        setSelectedRentalRequest(null)
+    }
+
     return (
-        <Box display="flex" justifyContent="center"
-            alignItems="center" height="100vh">
+        <Box
+            mt={2}
+            display="flex" 
+            flexDirection={'column'} 
+            alignItems="center"
+            gap={2}
+            height="100vh"
+        >
+            {isOpen &&
+                <RentalRequestFormModal
+                    rentalRequestId={selectedRentalRequest}
+                    isOpen={isOpen}
+                    onSave={(blank) => saveRentalRequest(blank)}
+                    onClose={handleCloseModal}
+                />
+            }
+            <Button variant="contained" onClick={handleOpenModal}>
+                Добавить запрос на аренду
+            </Button>
             <Box maxWidth="1200px" bgcolor="#eaeaea"
                 width="100%"
                 borderRadius={5}
@@ -44,7 +89,12 @@ export function RentalRequestsPage() {
                                     sx={{ zIndex: 10 }}
                                     display="flex" justifyContent="center"
                                     alignItems="center">
-                                    <RentalRequestCard rentalRequest={rentalRequest} user={user} vehicle={vehicle} />
+                                    <RentalRequestCard 
+                                        rentalRequest={rentalRequest} 
+                                        user={user} 
+                                        vehicle={vehicle} 
+                                        onEdit={() => handleEdit(rentalRequest.id)}
+                                    />
                                 </Grid>
                             )
                         }
