@@ -51,9 +51,9 @@ public class UserController : Controller
         return _userService.SaveUser(blank);
     }*/
 
-    [HttpPost("api/users/remove-account")]
-    public void RemoveAccount([FromBody] Guid id)
+    [HttpGet("api/users/remove-account")]
+    public Result RemoveAccount(Guid id)
     {
-        _userService.RemoveUser(id);
+        return _userService.RemoveUser(id);
     }
 }

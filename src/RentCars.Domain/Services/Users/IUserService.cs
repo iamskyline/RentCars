@@ -16,5 +16,5 @@ public interface IUserService
     DataResult<AuthResponse> Authorization(String login, String password);
 
     Result Logout(Guid userId);
-    void RemoveUser(Guid userId);
+    Result RemoveUser(Guid userId);
 }

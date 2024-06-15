@@ -20,14 +20,14 @@ export function VehicleCard(props: IProps) {
     const navigate = useNavigate();
     const [openDeleteModal, setOpenDeleteModal] = useState(false);
     const handleDeleteModalClose = () => setOpenDeleteModal(false);
-    
-    function handleOpenCard(){
+
+    function handleOpenCard() {
         navigate(VehicleLinks.toCard(props.vehicle.id))
     }
 
-    async function handleDeleteCar(){
+    async function handleDeleteCar() {
         const response = await VehicleProvider.delete(props.vehicle.id)
-        if(!response.isSuccess) return addErrorNotification(response.errors[0])
+        if (!response.isSuccess) return addErrorNotification(response.errors[0])
         addSuccessNotification('Автомобиль успешно удалён')
     }
 
@@ -40,7 +40,7 @@ export function VehicleCard(props: IProps) {
                 <Grid item xs={12}>
                     {/* ФОТА ТУТ */}
                     <Box
-                        sx={{ width: "100%", height: "140px", bgcolor: "#737272", cursor: 'pointer' }} 
+                        sx={{ width: "100%", height: "140px", bgcolor: "#737272", cursor: 'pointer' }}
                         onClick={handleOpenCard}
                     >
                     </Box>
@@ -49,7 +49,7 @@ export function VehicleCard(props: IProps) {
                     <Link to={VehicleLinks.toCard(props.vehicle.id)}>
                         <Typography variant="h4"
                             align="center">
-                            {props.vehicle.brand}<br/>{props.vehicle.model}
+                            {props.vehicle.brand}<br />{props.vehicle.model}
                         </Typography>
                     </Link>
                 </Grid>
@@ -98,10 +98,10 @@ export function VehicleCard(props: IProps) {
                     )
                 }
             </Grid>
-            <ConfirmationCard 
+            <ConfirmationCard
                 isOpen={openDeleteModal}
                 onConfirm={handleDeleteCar}
-                onClose={handleDeleteModalClose} 
+                onClose={handleDeleteModalClose}
             />
         </Box>
     );

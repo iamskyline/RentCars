@@ -43,7 +43,6 @@ export function RegistrationPage() {
                         <Grid item xs={12}>
                             <MuiTelInput fullWidth defaultCountry="RU" disableDropdown
                                 value={userBlank.tel ?? undefined}
-                                error={userBlank.tel == null}
                                 onChange={(tel) => {
                                     setUserBlank(prev => ({ ...prev, tel }));
                                 }}
@@ -56,7 +55,6 @@ export function RegistrationPage() {
                             <TextField label="Укажите свое имя"
                                 variant="standard"
                                 fullWidth
-                                error={userBlank.name == null}
                                 value={userBlank.name ?? undefined}
                                 onChange={(event) => {
                                     setUserBlank(prev => ({ ...prev, name: event.target.value }));
@@ -67,7 +65,6 @@ export function RegistrationPage() {
                             <TextField label="Придумайте логин"
                                 variant="standard"
                                 fullWidth
-                                error={userBlank.login == null}
                                 value={userBlank.login ?? undefined}
                                 onChange={(event) => {
                                     setUserBlank(prev => ({ ...prev, login: event.target.value }));
@@ -79,7 +76,6 @@ export function RegistrationPage() {
                                 variant="standard"
                                 type="password"
                                 fullWidth
-                                error={userBlank.password == null}
                                 value={userBlank.password ?? undefined}
                                 onChange={(event) => {
                                     setUserBlank(prev => ({ ...prev, password: event.target.value }));

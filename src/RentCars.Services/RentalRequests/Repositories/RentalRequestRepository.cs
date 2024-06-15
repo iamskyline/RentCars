@@ -3,6 +3,7 @@ using RentCars.Domain.RentalRequests;
 using RentCars.Services.RentalRequests.Repositories.Converters;
 using RentCars.Services.RentalRequests.Repositories.Models;
 using RentCars.Tools.DataBase;
+using RentCars.Tools.Results;
 
 namespace RentCars.Services.RentalRequests.Repositories;
 
@@ -64,16 +65,25 @@ public class RentalRequestRepository : IRentalRequestRepository
         return _mainConnector.GetList<RentalRequestDb>("SELECT * FROM rentalrequests").ToRentalRequest();
     }
 
-    public void RemoveRentalRequest(Guid rentalRequestId)
+    public Result RemoveRentalRequest(Guid rentalRequestId)
     {
         NpgsqlParameter[] parameters =
         {
             new("p_id", rentalRequestId)
         };
 
-        _mainConnector.ExecuteNonQuery(
-            expression: "UPDATE rentalrequests SET isRemoved = true WHERE id = @p_id",
-            parameters
-        );
+        try
+        {
+            _mainConnector.ExecuteNonQuery(
+                expression: "UPDATE rentalrequests SET isRemoved = true WHERE id = @p_id",
+                parameters
+            );
+        }
+        catch (Exception exception)
+        {
+            return Result.Fail($"Не удалось удалить автомобиль {exception.Message}");
+        }
+
+        return Result.Success();
     }
 }

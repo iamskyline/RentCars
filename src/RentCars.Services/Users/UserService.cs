@@ -181,8 +181,8 @@ public class UserService : IUserService
         throw new NotImplementedException();
     }
 
-    public void RemoveUser(Guid userId)
+    public Result RemoveUser(Guid userId)
     {
-        _userRepository.RemoveUser(userId);
+        return _userRepository.RemoveUser(userId);
     }
 }

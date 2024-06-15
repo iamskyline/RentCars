@@ -2,12 +2,15 @@ import axios from "axios";
 import { NameOfUser, mapToNameOfUser } from "../users/nameOfUser";
 import { NameOfVehicle, mapToNameOfVehicle } from "../vehicles/nameOfVehicle";
 import { RentalRequest, mapToRentalRequest } from "./rentalRequest";
+import { Result, mapToResult } from "../../tools/results/result";
 
 export class RentalRequestProvider {
     public static async get(rentalRequestId: string): Promise<RentalRequest | null> {
-        const response = await axios.get("/api/rental-request/get-by-id", { params: {
-            rentalRequestId
-        }})
+        const response = await axios.get("/api/rental-request/get-by-id", {
+            params: {
+                rentalRequestId
+            }
+        })
         if (response.data == null) return null;
 
         return mapToRentalRequest(response.data);
@@ -21,5 +24,15 @@ export class RentalRequestProvider {
         const vehicles = (response.data.vehicles as any[]).map(mapToNameOfVehicle);
 
         return { rents, users, vehicles };
+    }
+
+    public static async delete(id: string): Promise<Result> {
+        const response = await axios.get("/api/rental-request/remove", {
+            params: {
+                id
+            }
+        })
+
+        return mapToResult(response.data)
     }
 }

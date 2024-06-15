@@ -1,4 +1,5 @@
 ﻿using RentCars.Domain.RentalRequests;
+using RentCars.Tools.Results;
 
 namespace RentCars.Services.RentalRequests.Repositories;
 
@@ -9,5 +10,5 @@ public interface IRentalRequestRepository
     RentalRequest? GetRentalRequest(Guid rentalRequestId);
     RentalRequest[] GetAllRentalRequests();
 
-    void RemoveRentalRequest(Guid rentalRequestId);
+    Result RemoveRentalRequest(Guid rentalRequestId);
 }

@@ -60,9 +60,9 @@ public class RentalRequestController : Controller
         return _rentalRequestService.SaveRentalRequest(blank);
     }
 
-    [HttpPost("api/rental-request/remove")]
-    public void RemoveRentalRequest([FromBody] Guid id)
+    [HttpGet("api/rental-request/remove")]
+    public Result RemoveRentalRequest(Guid id)
     {
-        _rentalRequestService.RemoveRentalRequest(id);
+        return _rentalRequestService.RemoveRentalRequest(id);
     }
 }

@@ -2,13 +2,16 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { AuthorizationPage } from "./authorizations/authorizationPage";
 import { RegistrationPage } from "./registrations/registrationPage";
 import { VehiclesPage } from "./vehicles/pages/vehiclesPage";
-import { UserLinks, VehicleLinks } from "../domain/constants/links";
+import { RentalRequestLinks, UserLinks, VehicleLinks } from "../domain/constants/links";
 import AuthProvider from "./contexts/authContext";
 import ProtectedRoute from "./protectedRoute";
 import { Layout } from "../components/layout";
 import { AdminProfileCard } from "./profiles/cards/adminProfileCard";
 import { ClientProfileCard } from "./profiles/cards/clientProfileCard";
 import { VehicleFormPage } from "./vehicles/pages/vehicleFormPage";
+import { VehicleSpecCard } from "./vehicles/cards/vehicleSpecCard";
+import { UsersPage } from "./profiles/pages/usersPage";
+import { RentalRequestsPage } from "./rentalRequests/pages/rentalRequestsPage";
 
 export function MainRouter() {
     return (
@@ -24,8 +27,21 @@ export function MainRouter() {
                                     <ProtectedRoute>
                                         <VehiclesPage />
                                     </ProtectedRoute>
-                                    } 
+                                }
                                 />
+                                <Route path={VehicleLinks.form} element={
+                                    <ProtectedRoute>
+                                        <VehicleFormPage />
+                                    </ProtectedRoute>
+                                }
+                                />
+                                <Route path={VehicleLinks.card} element={
+                                    <ProtectedRoute>
+                                        <VehicleSpecCard />
+                                    </ProtectedRoute>
+                                }
+                                />
+
                                 <Route path={UserLinks.adminProfile} element={
                                     <ProtectedRoute>
                                         <AdminProfileCard />
@@ -38,31 +54,24 @@ export function MainRouter() {
                                     </ProtectedRoute>
                                 }
                                 />
-                                <Route path={VehicleLinks.form} element={
+                                <Route path={UserLinks.all} element={
                                     <ProtectedRoute>
-                                        <VehicleFormPage/>
+                                        <UsersPage />
+                                    </ProtectedRoute>
+                                }
+                                />
+
+                                <Route path={RentalRequestLinks.all} element={
+                                    <ProtectedRoute>
+                                        <RentalRequestsPage />
                                     </ProtectedRoute>
                                 }
                                 />
                             </Routes>
                         </Layout>
-                    } errorElement={<>Ты лох</>} />
+                    } errorElement={<>Такой страницы не существует!</>} />
                 </Routes>
             </AuthProvider>
         </BrowserRouter>
-        // <BrowserRouter>
-        //     <Routes>
-        //         <Route path={UserLinks.all} element={<UsersPage />} />
-        //         <Route path={UserLinks.profile} element={<ProfilePage />} />
-
-        //         
-        //         <Route path={VehicleLinks.card} element={<VehiclePage />} />
-        //         <Route path={VehicleLinks.form} element={<VehicleFormPage />} />
-
-        //         <Route path={RentalRequestLinks.all} element={<RentalRequestsPage />} />
-        //         {/* <Route path={RentalRequestLinks.card} element={<RentalRequestPage />} /> */}
-        //         {/* <Route path={RentalRequestLinks.form} element={<RentalRequestFormPage />} /> */}
-        //     </Routes>
-        // </BrowserRouter>
     );
 }

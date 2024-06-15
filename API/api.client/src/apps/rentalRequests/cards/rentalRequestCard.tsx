@@ -8,6 +8,8 @@ import { NameOfVehicle } from "../../../domain/vehicles/nameOfVehicle";
 import { ConfirmationCard } from "../../confirmations/confirmationModal";
 import { useState } from "react";
 import { RentalRequestFormModal } from "./rentalRequestFormModal";
+import { RentalRequestProvider } from "../../../domain/rentalRequests/rentalRequestProvider";
+import { addErrorNotification, addSuccessNotification } from "../../../hooks/useNotifications";
 
 interface IProps {
     rentalRequest: RentalRequest,
@@ -16,11 +18,16 @@ interface IProps {
 }
 
 export function RentalRequestCard(props: IProps) {
-
     const [openEditModal, setOpenEditModal] = useState(false);
     const [openDeleteModal, setOpenDeleteModal] = useState(false);
     const handleEditModalClose = () => setOpenEditModal(false);
     const handleDeleteModalClose = () => setOpenDeleteModal(false);
+
+    async function handleDeleteRentalRequest() {
+        const response = await RentalRequestProvider.delete(props.vehicle.id)
+        if (!response.isSuccess) return addErrorNotification(response.errors[0])
+        addSuccessNotification('Запрос аренды успешно удалён')
+    }
 
     return (
         <Box maxWidth="400px"
@@ -43,11 +50,15 @@ export function RentalRequestCard(props: IProps) {
                 </Grid>
                 <Grid item xs={12} md={6} lg={6}>
                     <Typography variant="h6" align="center">
+                        Клиент:
+                        <br />
                         {props.user.login}
                     </Typography>
                 </Grid>
                 <Grid item xs={12} md={6} lg={6}>
                     <Typography variant="h6" align="center">
+                        Автомобиль:
+                        <br />
                         {props.vehicle.brand} {props.vehicle.model}
                     </Typography>
                 </Grid>
@@ -88,7 +99,11 @@ export function RentalRequestCard(props: IProps) {
                 isOpen={openEditModal}
                 rentalRequest={props.rentalRequest}
             />
-            <ConfirmationCard onClose={handleDeleteModalClose} isOpen={openDeleteModal} />
+            <ConfirmationCard
+                onClose={handleDeleteModalClose}
+                isOpen={openDeleteModal}
+                onConfirm={handleDeleteRentalRequest}
+            />
         </Box>
     );
 }

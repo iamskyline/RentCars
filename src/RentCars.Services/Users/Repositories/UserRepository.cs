@@ -91,7 +91,7 @@ public class UserRepository : IUserRepository
 
     public User[] GetAllUsers()
     {
-        return _mainConnector.GetList<UserDb>("SELECT * FROM users").ToUsers();
+        return _mainConnector.GetList<UserDb>("SELECT * FROM users u WHERE NOT u.isRemoved").ToUsers();
     }
 
     public User[] GetAllClients()
@@ -124,16 +124,25 @@ public class UserRepository : IUserRepository
         throw new NotImplementedException();
     }
 
-    public void RemoveUser(Guid userId)
+    public Result RemoveUser(Guid userId)
     {
         NpgsqlParameter[] parameters =
         {
             new("p_id", userId)
         };
 
-        _mainConnector.ExecuteNonQuery(
-            "UPDATE users SET isRemoved = true WHERE id = @p_id",
-            parameters
-        );
+        try
+        {
+            _mainConnector.ExecuteNonQuery(
+                "UPDATE users SET isRemoved = true WHERE id = @p_id",
+                parameters
+            );
+        }
+        catch (Exception exception)
+        {
+            return Result.Fail($"Не удалось удалить аккаунт {exception.Message}");
+        }
+
+        return Result.Success();
     }
 }

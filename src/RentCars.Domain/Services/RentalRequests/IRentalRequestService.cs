@@ -10,5 +10,5 @@ public interface IRentalRequestService
     RentalRequest? GetRentalRequest(Guid rentalRequestId);
     RentalRequest[] GetAllRentalRequests();
 
-    void RemoveRentalRequest(Guid rentalRequestId);
+    Result RemoveRentalRequest(Guid rentalRequestId);
 }

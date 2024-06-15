@@ -1,5 +1,4 @@
 import { Box, Button, Dialog, FormControl, Grid, InputLabel, MenuItem, Select, Typography } from "@mui/material";
-import { DatePicker } from "react-widgets/cjs";
 import { RentalStatus } from "../../../domain/rentalRequests/enums/rentalStatus";
 import { enumToArrayNumber } from "../../../tools/utils/enumUtils";
 import { useEffect, useState } from "react";
@@ -9,6 +8,7 @@ import { NameOfUser } from "../../../domain/users/nameOfUser";
 import { NameOfVehicle } from "../../../domain/vehicles/nameOfVehicle";
 import { VehicleProvider } from "../../../domain/vehicles/vehicleProvider";
 import { RentalRequest } from "../../../domain/rentalRequests/rentalRequest";
+import { DatePicker } from "react-widgets/cjs";
 
 interface IProps {
     rentalRequest: RentalRequest,
@@ -42,7 +42,6 @@ export function RentalRequestFormModal(props: IProps) {
             aria-describedby="modal-modal-description"
             maxWidth="sm"
             sx={{
-                bgcolor: "#eaeaea",
                 borderRadius: 5
             }}
         >

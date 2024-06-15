@@ -83,8 +83,8 @@ public class RentalRequestService : IRentalRequestService
         return _rentalRequestRepository.GetAllRentalRequests();
     }
 
-    public void RemoveRentalRequest(Guid rentalRequestId)
+    public Result RemoveRentalRequest(Guid rentalRequestId)
     {
-        _rentalRequestRepository.RemoveRentalRequest(rentalRequestId);
+        return _rentalRequestRepository.RemoveRentalRequest(rentalRequestId);
     }
 }

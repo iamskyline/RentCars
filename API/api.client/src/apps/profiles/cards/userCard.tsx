@@ -7,6 +7,8 @@ import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { ProfileFormModal } from "./profileFormModal";
 import { ConfirmationCard } from "../../confirmations/confirmationModal";
+import { UserProvider } from "../../../domain/users/userProvider";
+import { addErrorNotification, addSuccessNotification } from "../../../hooks/useNotifications";
 
 interface IProps {
     user: User
@@ -19,6 +21,12 @@ export function UserCard(props: IProps) {
     const [openDeleteModal, setOpenDeleteModal] = useState(false);
     const handleEditModalClose = () => setOpenEditModal(false);
     const handleDeleteModalClose = () => setOpenDeleteModal(false);
+
+    async function handleDeleteUser() {
+        const response = await UserProvider.delete(props.user.id)
+        if (!response.isSuccess) return addErrorNotification(response.errors[0])
+        addSuccessNotification('Запрос аренды успешно удалён')
+    }
 
     return (
         <Box maxWidth="220px"
@@ -62,7 +70,11 @@ export function UserCard(props: IProps) {
                 </Grid>
             </Grid>
             <ProfileFormModal onClose={handleEditModalClose} isOpen={openEditModal} user={props.user} />
-            <ConfirmationCard onClose={handleDeleteModalClose} isOpen={openDeleteModal} />
+            <ConfirmationCard
+                onClose={handleDeleteModalClose}
+                isOpen={openDeleteModal}
+                onConfirm={handleDeleteUser}
+            />
         </Box>
     );
 }

@@ -1,4 +1,4 @@
-import { Avatar, Box, Button, Dialog, Grid, Modal, TextField } from "@mui/material";
+import { Avatar, Box, Button, Dialog, Grid, TextField } from "@mui/material";
 import { User } from "../../../domain/users/user";
 
 interface IProps {
@@ -16,7 +16,6 @@ export function ProfileFormModal(props: IProps) {
             aria-describedby="modal-modal-description"
             maxWidth="sm"
             sx={{
-                bgcolor: "#eaeaea",
                 borderRadius: 5
             }}
         >
