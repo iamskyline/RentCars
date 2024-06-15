@@ -26,6 +26,13 @@ export function ProfileFormModal(props: IProps) {
                         <Avatar sx={{ width: 200, height: 200 }} />
                     </Grid>
                     <Grid item xs={12}>
+                        <TextField label="Логин пользователя"
+                            variant="filled"
+                            fullWidth
+                            value={props.user.login}
+                        />
+                    </Grid>
+                    <Grid item xs={12}>
                         <TextField label="Имя пользователя"
                             variant="filled"
                             fullWidth

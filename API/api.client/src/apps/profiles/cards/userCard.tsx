@@ -2,8 +2,6 @@ import { Avatar, Box, Grid, IconButton, Typography } from "@mui/material";
 import { User } from "../../../domain/users/user";
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
-import { UserLinks } from "../../../domain/constants/links";
-import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { ProfileFormModal } from "./profileFormModal";
 import { ConfirmationCard } from "../../confirmations/confirmationModal";
@@ -12,11 +10,10 @@ import { addErrorNotification, addSuccessNotification } from "../../../hooks/use
 
 interface IProps {
     user: User
+    onDelete: (userId: string) => void
 }
 
 export function UserCard(props: IProps) {
-    const navigate = useNavigate();
-
     const [openEditModal, setOpenEditModal] = useState(false);
     const [openDeleteModal, setOpenDeleteModal] = useState(false);
     const handleEditModalClose = () => setOpenEditModal(false);
@@ -25,7 +22,8 @@ export function UserCard(props: IProps) {
     async function handleDeleteUser() {
         const response = await UserProvider.delete(props.user.id)
         if (!response.isSuccess) return addErrorNotification(response.errors[0])
-        addSuccessNotification('Запрос аренды успешно удалён')
+        addSuccessNotification('Аккаунт пользователя успешно удалён')
+        props.onDelete(props.user.id);
     }
 
     return (
@@ -34,14 +32,13 @@ export function UserCard(props: IProps) {
             borderRadius={2}
             padding={2}
         >
-            <Grid container spacing={3}
-                onClick={() => navigate(UserLinks.toProfile(props.user.id))}>
+            <Grid container spacing={3}>
                 <Grid item xs={12} display="flex" justifyContent="center">
                     <Avatar sx={{ width: 125, height: 125 }} />
                 </Grid>
                 <Grid item xs={12}>
                     <Typography variant="h5" align="center">
-                        {props.user.name}
+                        {props.user.login}
                     </Typography>
                 </Grid>
                 <Grid item xs={12}>

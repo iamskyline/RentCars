@@ -1,10 +1,8 @@
 import { Box, Grid } from "@mui/material";
 import { User } from "../../../domain/users/user";
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
 import { UserProvider } from "../../../domain/users/userProvider";
 import { UserCard } from "../cards/userCard";
-import { UserLinks } from "../../../domain/constants/links";
 
 export function UsersPage() {
 
@@ -18,6 +16,10 @@ export function UsersPage() {
         loadAllUsers();
     }, [])
 
+    function handleDeleteUser(userId: string) {
+        setUsers(users.filter(u => u.id != userId))
+    }
+
     return (
         <Box display="flex" justifyContent="center"
             alignItems="center" height="100vh">
@@ -28,8 +30,8 @@ export function UsersPage() {
                 <Grid container spacing={3}>
                     {users.map(user =>
                         <Grid key={user.id} item xs={12} md={4} lg={3}
-                            sx={{ cursor: 'pointer', zIndex: 10 }}>
-                            <UserCard user={user} />
+                            sx={{ zIndex: 10 }}>
+                            <UserCard user={user} onDelete={handleDeleteUser} />
                         </Grid>
                     )}
                 </Grid>

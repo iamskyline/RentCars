@@ -11,7 +11,7 @@ export function VehiclesPage() {
     const navigate = useNavigate();
 
     const [vehicles, setVehicles] = useState<Vehicle[]>([]);
-    const {isAdmin} = useAuthContext()
+    const { isAdmin } = useAuthContext()
 
     useEffect(() => {
         async function loadAllVehicles() {
@@ -27,12 +27,15 @@ export function VehiclesPage() {
 
     return (
         <Box display="flex" flexDirection={'column'} alignItems={'center'} mt={2} px={2}>
-            <Button
-                variant="contained"
-                onClick={() => navigate(VehicleLinks.toForm())}
-                >
-                Добавить новый автомобиль
-            </Button>
+            {
+                isAdmin &&
+                <Button
+                    variant="contained"
+                    onClick={() => navigate(VehicleLinks.toForm())}>
+                    Добавить новый автомобиль
+                </Button>
+            }
+
             <Box mt={2} bgcolor="#eaeaea"
                 width="100%"
                 borderRadius={5}
@@ -42,11 +45,11 @@ export function VehiclesPage() {
                         <Grid key={vehicle.id} item xs={12} md={4} lg={2}
                             display="flex" justifyContent="center"
                             alignItems="center">
-                                <VehicleCard 
-                                    vehicle={vehicle} 
-                                    isAdmin={isAdmin} 
-                                    onDelete={() => handleDeleteCar(vehicle.id)}
-                                />
+                            <VehicleCard
+                                vehicle={vehicle}
+                                isAdmin={isAdmin}
+                                onDelete={() => handleDeleteCar(vehicle.id)}
+                            />
                         </Grid>
                     )}
                 </Grid>
