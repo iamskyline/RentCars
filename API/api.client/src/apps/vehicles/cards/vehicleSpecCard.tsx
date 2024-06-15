@@ -32,7 +32,7 @@ export function VehicleSpecCard() {
     return (
         <Box maxWidth="1200px" mx="auto"
             display="flex" justifyContent="center"
-            alignItems="center" height="100vh">
+            alignItems="center" mt={4}>
             <Box bgcolor="#eaeaea" width="100%"
                 borderRadius={5}
                 padding={5}>
