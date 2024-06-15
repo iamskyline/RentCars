@@ -18,7 +18,7 @@ interface IProps {
     onClose: () => void
 }
 
-enum DateVariant{
+enum DateVariant {
     begin = 0,
     end = 1
 }
@@ -32,9 +32,9 @@ export function RentalRequestFormModal(props: IProps) {
 
     useEffect(() => {
         async function load() {
-            if(props.rentalRequestId != null){
+            if (props.rentalRequestId != null) {
                 const rentalRequest = await RentalRequestProvider.get(props.rentalRequestId)
-                if(rentalRequest != null) {
+                if (rentalRequest != null) {
                     setRentalRequestBlank(RentalRequestBlank.toBlank(rentalRequest))
                 }
             }
@@ -48,22 +48,22 @@ export function RentalRequestFormModal(props: IProps) {
         load();
     }, [])
 
-    function handleChangeRentalDate(date: Date | null | undefined, variant: DateVariant){
-        if(date == null) return
+    function handleChangeRentalDate(date: Date | null | undefined, variant: DateVariant) {
+        if (date == null) return
 
         switch (variant) {
             case DateVariant.begin:
-                setRentalRequestBlank((blank) => ({...blank, rentalStartDateTimeUtc: date}))
+                setRentalRequestBlank((blank) => ({ ...blank, rentalStartDateTimeUtc: date }))
                 break;
             case DateVariant.end:
-                setRentalRequestBlank((blank) => ({...blank, rentalEndDateTimeUtc: date}))
+                setRentalRequestBlank((blank) => ({ ...blank, rentalEndDateTimeUtc: date }))
                 break;
             default:
                 return
         }
     }
 
-    async function handleSaveRentalRequest(){
+    async function handleSaveRentalRequest() {
         props.onSave(rentalRequestBlank)
     }
 
@@ -81,12 +81,12 @@ export function RentalRequestFormModal(props: IProps) {
             <Box padding={2}>
                 <Typography variant="h5" align="center" gutterBottom>
                     {
-                        props.rentalRequestId == null 
+                        props.rentalRequestId == null
                             ? 'Создание заявки на аренду'
                             : 'Редактирование заявки на аренду'
                     }
                 </Typography>
-                <Divider sx={{mb: 2}}/>
+                <Divider sx={{ mb: 2 }} />
                 <Grid container spacing={3}>
                     <Grid item xs={12} md={6} lg={4}
                         display="flex" alignItems="center"
@@ -101,9 +101,9 @@ export function RentalRequestFormModal(props: IProps) {
                             <InputLabel shrink={!!rentalRequestBlank.userId}>
                                 Выберите клиента
                             </InputLabel>
-                            <Select 
-                                value={rentalRequestBlank.userId} 
-                                onChange={e => setRentalRequestBlank((prevState) => ({...prevState, userId: e.target.value}))}
+                            <Select
+                                value={rentalRequestBlank.userId}
+                                onChange={e => setRentalRequestBlank((prevState) => ({ ...prevState, userId: e.target.value }))}
                             >
                                 {
                                     clients.map((client) => (
@@ -120,14 +120,14 @@ export function RentalRequestFormModal(props: IProps) {
                             <InputLabel shrink={!!rentalRequestBlank.vehicleId}>
                                 Выберите автомобиль
                             </InputLabel>
-                            <Select 
+                            <Select
                                 value={rentalRequestBlank.vehicleId}
-                                onChange={e => setRentalRequestBlank((prevState) => ({...prevState, vehicleId: e.target.value}))}
+                                onChange={e => setRentalRequestBlank((prevState) => ({ ...prevState, vehicleId: e.target.value }))}
                             >
                                 {
                                     vehicles.map((vehicle) => (
                                         <MenuItem key={vehicle.id} value={vehicle.id}>
-                                            {vehicle.brand}
+                                            {vehicle.brand} {vehicle.model}
                                         </MenuItem>
                                     ))
                                 }
@@ -166,11 +166,10 @@ export function RentalRequestFormModal(props: IProps) {
                         </FormControl>
                     </Grid>
                     <Grid item xs={12} md={6} lg={4}>
-                        <Button 
-                            variant="contained" 
+                        <Button
+                            variant="contained"
                             fullWidth
-                            onClick={handleSaveRentalRequest}
-                        >
+                            onClick={handleSaveRentalRequest}>
                             Сохранить
                         </Button>
                     </Grid>

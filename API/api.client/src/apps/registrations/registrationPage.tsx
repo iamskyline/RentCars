@@ -84,7 +84,14 @@ export function RegistrationPage() {
                         </Grid>
                         <Grid item xs={12} md={6} lg={6}>
                             <Button variant="contained"
-                                fullWidth onClick={save}>
+                                fullWidth
+                                disabled={
+                                    userBlank.tel == null ||
+                                    userBlank.login == null ||
+                                    userBlank.name == null ||
+                                    userBlank.password == null
+                                }
+                                onClick={save}>
                                 Зарегистрироваться
                             </Button>
                         </Grid>

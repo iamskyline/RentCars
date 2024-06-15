@@ -9,7 +9,7 @@ import { UserLinks, VehicleLinks } from '../domain/constants/links'
 
 interface NavItemProps {
     title: string
-    route: To,
+    route: To
     private: boolean
 }
 
@@ -23,7 +23,7 @@ export function Layout(props: PropsWithChildren<{}>) {
     const { isAdmin, userId, logout } = useAuthContext();
     const navigate = useNavigate()
 
-    async function handleLogout(){
+    async function handleLogout() {
         await logout()
         navigate('/')
     }
@@ -57,11 +57,11 @@ export function Layout(props: PropsWithChildren<{}>) {
                     justifyContent="center" alignItems="center"
                     onClick={() => {
                         console.log(userId)
-                        if(userId == null) return
-                        isAdmin 
+                        if (userId == null) return
+                        isAdmin
                             ? navigate(UserLinks.toAdminProfile())
                             : navigate(UserLinks.toProfile(userId))
-                        
+
                     }}
                     sx={{ cursor: "pointer" }}>
                     <Avatar />
