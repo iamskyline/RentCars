@@ -21,6 +21,10 @@ export function VehiclesPage() {
         loadAllVehicles();
     }, [])
 
+    function handleDeleteCar(vehicleId: string) {
+        setVehicles(vehicles.filter(v => v.id != vehicleId))
+    }
+
     return (
         <Box display="flex" flexDirection={'column'} alignItems={'center'} mt={2} px={2}>
             <Button
@@ -38,7 +42,11 @@ export function VehiclesPage() {
                         <Grid key={vehicle.id} item xs={12} md={4} lg={2}
                             display="flex" justifyContent="center"
                             alignItems="center">
-                                <VehicleCard vehicle={vehicle} isAdmin={isAdmin} />
+                                <VehicleCard 
+                                    vehicle={vehicle} 
+                                    isAdmin={isAdmin} 
+                                    onDelete={() => handleDeleteCar(vehicle.id)}
+                                />
                         </Grid>
                     )}
                 </Grid>

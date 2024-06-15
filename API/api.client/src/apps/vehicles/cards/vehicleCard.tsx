@@ -13,7 +13,8 @@ import { addErrorNotification, addSuccessNotification } from "../../../hooks/use
 
 interface IProps {
     vehicle: Vehicle,
-    isAdmin: boolean
+    isAdmin: boolean,
+    onDelete: () => void,
 }
 
 export function VehicleCard(props: IProps) {
@@ -29,6 +30,7 @@ export function VehicleCard(props: IProps) {
         const response = await VehicleProvider.delete(props.vehicle.id)
         if (!response.isSuccess) return addErrorNotification(response.errors[0])
         addSuccessNotification('Автомобиль успешно удалён')
+        props.onDelete()
     }
 
     return (
