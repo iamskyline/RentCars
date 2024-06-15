@@ -8,8 +8,8 @@ import { NameOfUser } from "../../../domain/users/nameOfUser";
 import { NameOfVehicle } from "../../../domain/vehicles/nameOfVehicle";
 import { VehicleProvider } from "../../../domain/vehicles/vehicleProvider";
 import DatePicker from "react-widgets/DatePicker";
-import "react-widgets/styles.css";
 import { RentalRequestProvider } from "../../../domain/rentalRequests/rentalRequestProvider";
+import "react-widgets/styles.css";
 
 interface IProps {
     isOpen: boolean

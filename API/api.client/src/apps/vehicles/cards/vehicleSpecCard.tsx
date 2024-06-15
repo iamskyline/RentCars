@@ -4,30 +4,35 @@ import { useParams } from "react-router-dom";
 import { VehicleProvider } from "../../../domain/vehicles/vehicleProvider";
 import { Vehicle } from "../../../domain/vehicles/vehicle";
 import { FuelType } from "../../../domain/vehicles/enums/fuelType";
-import { enumToArrayNumber } from "../../../tools/utils/enumUtils";
 import { BodyType } from "../../../domain/vehicles/enums/bodyType";
 import { WheelDrive } from "../../../domain/vehicles/enums/wheelDrive";
 import { TransmissionType } from "../../../domain/vehicles/enums/transmissionType";
+import { RentalRequestClientForm } from "../../rentalRequests/cards/rentalRequestClientForm";
 
 export function VehicleSpecCard() {
     const { vehicleId } = useParams();
 
-    const [vehicle, setVehicle] = useState<Vehicle | null>(null)
+    const [vehicle, setVehicle] = useState<Vehicle | null>(null);
+    const [openModal, setOpenModal] = useState(false);
+
+    const handleModalClose = () => setOpenModal(false);
+
+    async function loadVehicle() {
+        if (vehicleId == null) return;
+
+        const vehicle = await VehicleProvider.get(vehicleId);
+        setVehicle(vehicle);
+    }
 
     useEffect(() => {
-        async function loadVehicle() {
-            if (vehicleId == null) return;
-
-            const vehicle = await VehicleProvider.get(vehicleId);
-            setVehicle(vehicle);
-        }
         loadVehicle();
     }, [vehicleId])
+
 
     return (
         <Box maxWidth="1200px" mx="auto"
             display="flex" justifyContent="center"
-            alignItems="center" height="100vh">
+            alignItems="center" mt={4}>
             <Box bgcolor="#eaeaea" width="100%"
                 borderRadius={5}
                 padding={5}>
@@ -127,13 +132,19 @@ export function VehicleSpecCard() {
                             </TableContainer>
                         </Grid>
                         <Grid item xs={12} display="flex" justifyContent="flex-end">
-                            <Button variant="contained">
+                            <Button
+                                variant="contained"
+                                onClick={() => setOpenModal(true)}>
                                 Арендовать
                             </Button>
                         </Grid>
                     </Grid>
                 }
+                <RentalRequestClientForm
+                    onClose={handleModalClose}
+                    isOpen={openModal}
+                />
             </Box>
-        </Box>
+        </Box >
     );
 }
