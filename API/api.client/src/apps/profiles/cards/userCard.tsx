@@ -23,7 +23,8 @@ export function UserCard(props: IProps) {
         const response = await UserProvider.delete(props.user.id)
         if (!response.isSuccess) return addErrorNotification(response.errors[0])
         addSuccessNotification('Аккаунт пользователя успешно удалён')
-        props.onDelete(props.user.id);
+        props.onDelete(props.user.id)
+        setOpenDeleteModal(false)
     }
 
     return (

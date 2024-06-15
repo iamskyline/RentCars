@@ -62,7 +62,7 @@ public class RentalRequestRepository : IRentalRequestRepository
 
     public RentalRequest[] GetAllRentalRequests()
     {
-        return _mainConnector.GetList<RentalRequestDb>("SELECT * FROM rentalrequests").ToRentalRequest();
+        return _mainConnector.GetList<RentalRequestDb>("SELECT * FROM rentalrequests r WHERE NOT r.isRemoved").ToRentalRequest();
     }
 
     public Result RemoveRentalRequest(Guid rentalRequestId)

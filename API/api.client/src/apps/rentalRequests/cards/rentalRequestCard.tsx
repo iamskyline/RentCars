@@ -7,15 +7,15 @@ import { NameOfUser } from "../../../domain/users/nameOfUser";
 import { NameOfVehicle } from "../../../domain/vehicles/nameOfVehicle";
 import { ConfirmationCard } from "../../confirmations/confirmationModal";
 import { useState } from "react";
-import { RentalRequestFormModal } from "./rentalRequestFormModal";
 import { RentalRequestProvider } from "../../../domain/rentalRequests/rentalRequestProvider";
 import { addErrorNotification, addSuccessNotification } from "../../../hooks/useNotifications";
 
 interface IProps {
-    rentalRequest: RentalRequest,
-    user: NameOfUser,
-    vehicle: NameOfVehicle,
-    onEdit: () => void,
+    rentalRequest: RentalRequest
+    user: NameOfUser
+    vehicle: NameOfVehicle
+    onEdit: () => void
+    onDelete: (rentalRequestId: string) => void
 }
 
 export function RentalRequestCard(props: IProps) {
@@ -23,9 +23,10 @@ export function RentalRequestCard(props: IProps) {
     const handleDeleteModalClose = () => setOpenDeleteModal(false);
 
     async function handleDeleteRentalRequest() {
-        const response = await RentalRequestProvider.delete(props.vehicle.id)
+        const response = await RentalRequestProvider.delete(props.rentalRequest.id)
         if (!response.isSuccess) return addErrorNotification(response.errors[0])
         addSuccessNotification('Запрос аренды успешно удалён')
+        props.onDelete(props.rentalRequest.id)
         setOpenDeleteModal(false)
     }
 

@@ -31,37 +31,38 @@ export function RentalRequestsPage() {
         setUsers(allRentalRequests.users);
         setVehicles(allRentalRequests.vehicles);
     }
-    
-    async function saveRentalRequest(blank: RentalRequestBlank){
+
+    async function saveRentalRequest(blank: RentalRequestBlank) {
         const saveResponse = await RentalRequestProvider.save(blank)
-        if(!saveResponse.isSuccess) return addErrorNotification(saveResponse.errorsString)
+        if (!saveResponse.isSuccess) return addErrorNotification(saveResponse.errorsString)
         addSuccessNotification("Запрос на аренду успешно сохранён")
         loadAllRentalRequests()
         handleCloseModal()
     }
 
-    function handleEdit(rentalRequestId: string){
+    function handleEdit(rentalRequestId: string) {
         setSelectedRentalRequest(rentalRequestId)
         handleOpenModal()
     }
 
-    function handleOpenModal(){
+    function handleOpenModal() {
         setIsOpen(true)
     }
 
-    function handleCloseModal(){
+    function handleCloseModal() {
         setIsOpen(false)
         setSelectedRentalRequest(null)
     }
 
+    function handleDeleteRentalRequest(rentalRequestId: string) {
+        setRenalRequests(rentalRequests.filter(r => r.id != rentalRequestId))
+    }
+
     return (
-        <Box
-            mt={2}
-            display="flex" 
-            flexDirection={'column'} 
+        <Box display="flex"
+            flexDirection={'column'}
             alignItems="center"
-            gap={2}
-            height="100vh"
+            mt={2} px={15}
         >
             {isOpen &&
                 <RentalRequestFormModal
@@ -74,11 +75,11 @@ export function RentalRequestsPage() {
             <Button variant="contained" onClick={handleOpenModal}>
                 Добавить запрос на аренду
             </Button>
-            <Box maxWidth="1200px" bgcolor="#eaeaea"
+            <Box mt={2} bgcolor="#eaeaea"
                 width="100%"
                 borderRadius={5}
-                padding={5}>
-                <Grid container spacing={3}>
+                paddingY={2}>
+                <Grid container spacing={1}>
                     {
                         rentalRequests.map(rentalRequest => {
                             const user = users.find(u => u.id == rentalRequest.userId)!;
@@ -89,11 +90,12 @@ export function RentalRequestsPage() {
                                     sx={{ zIndex: 10 }}
                                     display="flex" justifyContent="center"
                                     alignItems="center">
-                                    <RentalRequestCard 
-                                        rentalRequest={rentalRequest} 
-                                        user={user} 
-                                        vehicle={vehicle} 
+                                    <RentalRequestCard
+                                        rentalRequest={rentalRequest}
+                                        user={user}
+                                        vehicle={vehicle}
                                         onEdit={() => handleEdit(rentalRequest.id)}
+                                        onDelete={handleDeleteRentalRequest}
                                     />
                                 </Grid>
                             )

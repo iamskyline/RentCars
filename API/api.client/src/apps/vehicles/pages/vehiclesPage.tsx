@@ -26,7 +26,10 @@ export function VehiclesPage() {
     }
 
     return (
-        <Box display="flex" flexDirection={'column'} alignItems={'center'} mt={2} px={2}>
+        <Box display="flex"
+            flexDirection={'column'}
+            alignItems={'center'}
+            mt={2} px={15}>
             {
                 isAdmin &&
                 <Button
