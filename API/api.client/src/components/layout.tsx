@@ -1,7 +1,7 @@
 import { Avatar, Box, IconButton, Stack, Typography } from '@mui/material'
 import LogoutIcon from '@mui/icons-material/Logout';
 import { PropsWithChildren } from 'react'
-import { Link, Navigate, To, useNavigate } from 'react-router-dom'
+import { Link, To, useNavigate } from 'react-router-dom'
 import { useAuthContext } from '../apps/contexts/authContext'
 import { NavItem } from './navItem'
 import Logo from "../assets/logos/Logotype.png";
@@ -20,7 +20,7 @@ const tabs: NavItemProps[] = [
 ]
 
 export function Layout(props: PropsWithChildren<{}>) {
-    const { isAdmin, userId, logout } = useAuthContext();
+    const { isAdmin, userId, userName, logout } = useAuthContext();
     const navigate = useNavigate()
 
     async function handleLogout() {
@@ -32,7 +32,8 @@ export function Layout(props: PropsWithChildren<{}>) {
         <Box width="100%">
             <Box width="100%" bgcolor="#737272"
                 paddingY={2} paddingX={10} display="flex"
-                minHeight="40px" justifyContent={'space-between'}
+                minHeight="40px"
+                justifyContent={'space-between'}
                 boxSizing={'border-box'}
             >
                 <Stack direction={'row'} gap={4}>
@@ -66,7 +67,7 @@ export function Layout(props: PropsWithChildren<{}>) {
                     sx={{ cursor: "pointer" }}>
                     <Avatar />
                     <Typography>
-                        Имя пользователя
+                        {userName}
                     </Typography>
                     <IconButton aria-label="logout" onClick={handleLogout}>
                         <LogoutIcon />

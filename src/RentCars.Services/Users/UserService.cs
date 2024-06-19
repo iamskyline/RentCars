@@ -65,7 +65,7 @@ public class UserService : IUserService
         if(savedUser is null) return DataResult<AuthResponse>.Fail("Сохранённый пользователь не найден");
 
         String token = FormToken(savedUser);
-        AuthResponse authResponse = new(token, savedUser.IsAdmin, savedUser.Id.ToString());
+        AuthResponse authResponse = new(token, savedUser.IsAdmin, savedUser.Id.ToString(), savedUser.Name);
         return DataResult<AuthResponse>.Success(authResponse);
     }
 
@@ -118,7 +118,7 @@ public class UserService : IUserService
         //формирование токена
         String token = FormToken(existUser);
 
-        AuthResponse authResponse = new(token, existUser.IsAdmin, existUser.Id.ToString());
+        AuthResponse authResponse = new(token, existUser.IsAdmin, existUser.Id.ToString(), existUser.Name);
         return DataResult<AuthResponse>.Success(authResponse);
     }
 

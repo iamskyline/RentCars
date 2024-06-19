@@ -1,22 +1,23 @@
 import { PropsWithChildren, createContext, useContext, useState } from 'react'
-import { useNavigate } from 'react-router-dom'
 
 interface IAuthContext {
     isAdmin: boolean
-    isAuthenticated: boolean
     userId: string | null
-    authorize: (token: string, isAdmin: boolean, userId: string) => void
+    isAuthenticated: boolean
+    userName: string | null
+    authorize: (token: string, isAdmin: boolean, userId: string, userName: string) => void
     checkAuthorize: () => boolean,
     logout: () => Promise<void>,
 }
 
 const defaultValue: IAuthContext = {
     userId: null,
-    isAuthenticated: false,
     isAdmin: false,
+    userName: null,
+    isAuthenticated: false,
     checkAuthorize: () => false,
     authorize: () => { },
-    logout: async() => { }
+    logout: async () => { }
 }
 
 export const AuthContext = createContext<IAuthContext>(defaultValue)
@@ -25,9 +26,11 @@ function AuthProvider(props: PropsWithChildren) {
     function getDefaultValue(): IAuthContext {
         const isAdmin = localStorage.getItem('isAdmin')
         const userId = localStorage.getItem('userId')
+        const userName = localStorage.getItem('userName')
 
         return {
             userId,
+            userName,
             isAdmin: isAdmin === "true",
             isAuthenticated: checkAuthorize(),
             authorize,
@@ -37,16 +40,17 @@ function AuthProvider(props: PropsWithChildren) {
     }
 
     const [authContext, setAuthContext] = useState<IAuthContext>(getDefaultValue())
-    
+
     function changeContext(context: Partial<IAuthContext>) {
         setAuthContext((prevContext) => ({ ...prevContext, ...context }))
     }
 
-    function authorize(token: string, isAdmin: boolean, userId: string) {
+    function authorize(token: string, isAdmin: boolean, userId: string, userName: string) {
         localStorage.setItem('token', token)
         localStorage.setItem('isAdmin', isAdmin ? 'true' : 'false')
         localStorage.setItem('userId', userId)
-        changeContext({ isAuthenticated: true, isAdmin, userId })
+        localStorage.setItem('userName', userName)
+        changeContext({ isAuthenticated: true, isAdmin, userId, userName })
     }
 
     function checkAuthorize(): boolean {

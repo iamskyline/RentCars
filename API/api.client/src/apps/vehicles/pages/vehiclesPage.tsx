@@ -29,7 +29,7 @@ export function VehiclesPage() {
         <Box display="flex"
             flexDirection={'column'}
             alignItems={'center'}
-            mt={2} px={15}>
+            mt={2}>
             {
                 isAdmin &&
                 <Button
@@ -39,13 +39,16 @@ export function VehiclesPage() {
                 </Button>
             }
 
-            <Box mt={2} bgcolor="#eaeaea"
-                width="100%"
-                borderRadius={5}
-                paddingY={2}>
-                <Grid container spacing={1}>
+            <Box sx={{
+                bgcolor: "#eaeaea",
+                margin: 2,
+                borderRadius: 5,
+                paddingX: 2,
+                paddingY: 2
+            }}>
+                <Grid container spacing={2}>
                     {vehicles.map(vehicle =>
-                        <Grid key={vehicle.id} item xs={12} md={4} lg={2}
+                        <Grid key={vehicle.id} item xs={12} md={4} lg={3}
                             display="flex" justifyContent="center"
                             alignItems="center">
                             <VehicleCard

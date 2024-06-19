@@ -21,23 +21,20 @@ export function UsersPage() {
     }
 
     return (
-        <Box display="flex"
-            flexDirection={'column'}
-            alignItems={'center'}
-            mt={2} px={15}>
-            <Box mt={2} bgcolor="#eaeaea"
-                width="100%"
-                borderRadius={5}
-                paddingY={2}>
-                <Grid container spacing={1}>
-                    {users.map(user =>
-                        <Grid key={user.id} item xs={12} md={4} lg={3}
-                            sx={{ zIndex: 10 }}>
-                            <UserCard user={user} onDelete={handleDeleteUser} />
-                        </Grid>
-                    )}
-                </Grid>
-            </Box>
+        <Box sx={{
+            bgcolor: "#eaeaea",
+            margin: 4,
+            borderRadius: 5,
+            paddingX: 2,
+            pb: 2
+        }}>
+            <Grid container spacing={2}>
+                {users.map(user =>
+                    <Grid key={user.id} item xs={12} md={4} lg={3}>
+                        <UserCard user={user} onDelete={handleDeleteUser} />
+                    </Grid>
+                )}
+            </Grid>
         </Box>
     );
 }

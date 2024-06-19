@@ -57,7 +57,13 @@ export function RentalRequestCard(props: IProps) {
                     </Typography>
                 </Grid>
                 <Grid item xs={12} md={6} lg={6}>
-                    <Typography variant="h6" align="center">
+                    <Typography variant="h6" align="center"
+                        sx={{
+                            whiteSpace: 'nowrap',
+                            overflow: 'hidden',
+                            textOverflow: 'ellipsis'
+                        }}
+                    >
                         Автомобиль:
                         <br />
                         {props.vehicle.brand} {props.vehicle.model}

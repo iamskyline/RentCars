@@ -62,7 +62,7 @@ export function RentalRequestsPage() {
         <Box display="flex"
             flexDirection={'column'}
             alignItems="center"
-            mt={2} px={15}
+            mt={2}
         >
             {isOpen &&
                 <RentalRequestFormModal
@@ -75,10 +75,13 @@ export function RentalRequestsPage() {
             <Button variant="contained" onClick={handleOpenModal}>
                 Добавить запрос на аренду
             </Button>
-            <Box mt={2} bgcolor="#eaeaea"
-                width="100%"
-                borderRadius={5}
-                paddingY={2}>
+            <Box sx={{
+                bgcolor: "#eaeaea",
+                margin: 2,
+                borderRadius: 5,
+                paddingX: 2,
+                paddingY: 2
+            }}>
                 <Grid container spacing={1}>
                     {
                         rentalRequests.map(rentalRequest => {
@@ -86,7 +89,7 @@ export function RentalRequestsPage() {
                             const vehicle = vehicles.find(u => u.id == rentalRequest.vehicleId)!;
 
                             return (
-                                <Grid key={rentalRequest.id} item xs={12} md={4} lg={4}
+                                <Grid key={rentalRequest.id} item xs={12} md={5} lg={3}
                                     sx={{ zIndex: 10 }}
                                     display="flex" justifyContent="center"
                                     alignItems="center">

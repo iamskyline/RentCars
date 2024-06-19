@@ -28,7 +28,7 @@ export function UserCard(props: IProps) {
     }
 
     return (
-        <Box maxWidth="220px"
+        <Box
             bgcolor="#d2d2d2"
             borderRadius={2}
             padding={2}

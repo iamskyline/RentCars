@@ -34,7 +34,7 @@ export function VehicleCard(props: IProps) {
     }
 
     return (
-        <Box maxWidth="220px"
+        <Box maxWidth="65%" minWidth="240px"
             bgcolor="#d2d2d2"
             borderRadius={2}
             padding={2}>
@@ -50,7 +50,12 @@ export function VehicleCard(props: IProps) {
                 <Grid item xs={12}>
                     <Link to={VehicleLinks.toCard(props.vehicle.id)}>
                         <Typography variant="h4"
-                            align="center">
+                            align="center"
+                            sx={{
+                                whiteSpace: 'nowrap',
+                                overflow: 'hidden',
+                                textOverflow: 'ellipsis'
+                            }}>
                             {props.vehicle.brand}<br />{props.vehicle.model}
                         </Typography>
                     </Link>

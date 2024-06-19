@@ -8,6 +8,9 @@ import { BodyType } from "../../../domain/vehicles/enums/bodyType";
 import { WheelDrive } from "../../../domain/vehicles/enums/wheelDrive";
 import { TransmissionType } from "../../../domain/vehicles/enums/transmissionType";
 import { RentalRequestClientForm } from "../../rentalRequests/cards/rentalRequestClientForm";
+import { RentalRequestBlank } from "../../../domain/rentalRequests/rentalRequestBlank";
+import { RentalRequestProvider } from "../../../domain/rentalRequests/rentalRequestProvider";
+import { addErrorNotification, addSuccessNotification } from "../../../hooks/useNotifications";
 
 export function VehicleSpecCard() {
     const { vehicleId } = useParams();
@@ -28,6 +31,12 @@ export function VehicleSpecCard() {
         loadVehicle();
     }, [vehicleId])
 
+    async function saveRentalRequest(blank: RentalRequestBlank) {
+        const saveResponse = await RentalRequestProvider.save(blank)
+        if (!saveResponse.isSuccess) return addErrorNotification(saveResponse.errorsString)
+        addSuccessNotification("Запрос на аренду успешно сформирован!")
+        setOpenModal(false)
+    }
 
     return (
         <Box maxWidth="1200px" mx="auto"
@@ -143,6 +152,8 @@ export function VehicleSpecCard() {
                 <RentalRequestClientForm
                     onClose={handleModalClose}
                     isOpen={openModal}
+                    onSave={(blank) => saveRentalRequest(blank)}
+                    vehicleId={vehicleId!}
                 />
             </Box>
         </Box >
