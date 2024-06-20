@@ -1,4 +1,5 @@
 import { RoleType } from "./enums/roleType";
+import { User } from "./user";
 
 export class UserBlank {
     constructor(
@@ -11,5 +12,9 @@ export class UserBlank {
 
     public static empty() {
         return new UserBlank(null, null, null, null, null);
+    }
+
+    public static toBlank(user: User) {
+        return new UserBlank(user.id, user.name, user.tel, user.login, user.password)
     }
 }

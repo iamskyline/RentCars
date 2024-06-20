@@ -1,13 +1,8 @@
 import { Box, Button, Grid } from "@mui/material";
 import { RentalRequestCard } from "../cards/rentalRequestCard";
-import { useNavigate } from "react-router-dom";
 import { RentalRequest } from "../../../domain/rentalRequests/rentalRequest";
 import { useEffect, useState } from "react";
 import { RentalRequestProvider } from "../../../domain/rentalRequests/rentalRequestProvider";
-import { RentalRequestLinks } from "../../../domain/constants/links";
-import { VehicleProvider } from "../../../domain/vehicles/vehicleProvider";
-import { Vehicle } from "../../../domain/vehicles/vehicle";
-import { User } from "../../../domain/users/user";
 import { NameOfUser } from "../../../domain/users/nameOfUser";
 import { NameOfVehicle } from "../../../domain/vehicles/nameOfVehicle";
 import { RentalRequestFormModal } from "../cards/rentalRequestFormModal";

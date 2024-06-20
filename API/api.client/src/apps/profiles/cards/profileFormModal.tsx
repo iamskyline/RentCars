@@ -1,13 +1,34 @@
 import { Avatar, Box, Button, Dialog, Grid, TextField } from "@mui/material";
-import { User } from "../../../domain/users/user";
+import { useEffect, useState } from "react";
+import { UserBlank } from "../../../domain/users/userBlank";
+import { UserProvider } from "../../../domain/users/userProvider";
 
 interface IProps {
-    user: User,
-    isOpen: boolean,
+    isOpen: boolean
+    userId: string | null
     onClose: () => void
+    onSave: (blank: UserBlank) => void
 }
 
 export function ProfileFormModal(props: IProps) {
+    const [userBlank, setUserBlank] = useState<UserBlank>(UserBlank.empty());
+
+    useEffect(() => {
+        async function load() {
+            if (props.userId != null) {
+                const user = await UserProvider.get(props.userId)
+                if (user != null) {
+                    setUserBlank(UserBlank.toBlank(user))
+                }
+            }
+        }
+        load();
+    }, [])
+
+    async function handleSaveRentalRequest() {
+        props.onSave(userBlank)
+    }
+
     return (
         <Dialog
             open={props.isOpen}
@@ -29,14 +50,16 @@ export function ProfileFormModal(props: IProps) {
                         <TextField label="Логин пользователя"
                             variant="filled"
                             fullWidth
-                            value={props.user.login}
+                            value={userBlank.login ?? ''}
+                            onChange={(event) => setUserBlank((userBlank) => ({ ...userBlank, login: (event.target.value) }))}
                         />
                     </Grid>
                     <Grid item xs={12}>
                         <TextField label="Имя пользователя"
                             variant="filled"
                             fullWidth
-                            value={props.user.name}
+                            value={userBlank.name ?? ''}
+                            onChange={(event) => setUserBlank((userBlank) => ({ ...userBlank, name: (event.target.value) }))}
                         />
                     </Grid>
                     <Grid item xs={6} display="flex" justifyContent="flex-start">
@@ -47,7 +70,9 @@ export function ProfileFormModal(props: IProps) {
                         </Button>
                     </Grid>
                     <Grid item xs={6} display="flex" justifyContent="flex-end">
-                        <Button variant="contained">
+                        <Button variant="contained"
+                            onClick={handleSaveRentalRequest}
+                        >
                             Сохранить
                         </Button>
                     </Grid>

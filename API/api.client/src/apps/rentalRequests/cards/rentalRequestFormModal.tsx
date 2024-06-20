@@ -10,7 +10,6 @@ import { VehicleProvider } from "../../../domain/vehicles/vehicleProvider";
 import DatePicker from "react-widgets/DatePicker";
 import { RentalRequestProvider } from "../../../domain/rentalRequests/rentalRequestProvider";
 import "react-widgets/styles.css";
-import zIndex from "@mui/material/styles/zIndex";
 
 interface IProps {
     isOpen: boolean

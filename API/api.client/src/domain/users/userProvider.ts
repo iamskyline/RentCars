@@ -2,8 +2,14 @@ import axios from "axios";
 import { NameOfUser, mapToNameOfUser } from "./nameOfUser";
 import { User, mapToUser } from "./user";
 import { Result, mapToResult } from "../../tools/results/result";
+import { UserBlank } from "./userBlank";
 
 export class UserProvider {
+    public static async save(blank: UserBlank): Promise<Result> {
+        const response = await axios.post("/api/users/edit", blank)
+        return mapToResult(response.data)
+    }
+
     public static async get(userId: string): Promise<User | null> {
         const response = await axios.get("/api/users/get-user-by-id", {
             params: {
