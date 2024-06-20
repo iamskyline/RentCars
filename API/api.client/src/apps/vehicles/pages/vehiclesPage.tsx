@@ -38,7 +38,6 @@ export function VehiclesPage() {
                     Добавить новый автомобиль
                 </Button>
             }
-
             <Box sx={{
                 bgcolor: "#eaeaea",
                 margin: 2,
