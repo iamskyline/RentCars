@@ -45,11 +45,11 @@ public class UserController : Controller
         return _userService.GetAllClients();
     }
 
-    /*[HttpPost("api/users/edit")]
-    public Result EditUser([FromBody] UserBlank blank)
+    [HttpPost("api/users/edit")]
+    public DataResult<Guid> EditUser([FromBody] UserBlank blank)
     {
         return _userService.SaveUser(blank);
-    }*/
+    }
 
     [HttpGet("api/users/remove-account")]
     public Result RemoveAccount(Guid id)

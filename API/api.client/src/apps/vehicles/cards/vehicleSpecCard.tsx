@@ -11,9 +11,31 @@ import { RentalRequestClientForm } from "../../rentalRequests/cards/rentalReques
 import { RentalRequestBlank } from "../../../domain/rentalRequests/rentalRequestBlank";
 import { RentalRequestProvider } from "../../../domain/rentalRequests/rentalRequestProvider";
 import { addErrorNotification, addSuccessNotification } from "../../../hooks/useNotifications";
+import { useAuthContext } from "../../contexts/authContext";
+import Carousel from "react-multi-carousel";
+import 'react-multi-carousel/lib/styles.css';
 
 export function VehicleSpecCard() {
-    const { vehicleId } = useParams();
+    const { vehicleId } = useParams()
+    const { isAdmin } = useAuthContext()
+
+    const responsive = {
+        desktop: {
+            breakpoint: { max: 3000, min: 1024 },
+            items: 1,
+            slidesToSlide: 1
+        },
+        tablet: {
+            breakpoint: { max: 1024, min: 464 },
+            items: 1,
+            slidesToSlide: 1
+        },
+        mobile: {
+            breakpoint: { max: 464, min: 0 },
+            items: 1,
+            slidesToSlide: 1
+        }
+    };
 
     const [vehicle, setVehicle] = useState<Vehicle | null>(null);
     const [openModal, setOpenModal] = useState(false);
@@ -49,9 +71,22 @@ export function VehicleSpecCard() {
                     vehicle != null &&
                     <Grid container spacing={3}>
                         <Grid item xs={12} md={12} lg={8} container>
-                            {/* ФОТА */}
                             <Grid item xs={12}>
-                                <Box sx={{ width: "100%", height: "450px", bgcolor: "#737272" }}></Box>
+                                {/* <Box sx={{ width: "100%", height: "450px", bgcolor: "#737272" }}></Box> */}
+                                <Carousel responsive={responsive}
+                                    infinite={true}
+                                >
+                                    <Box sx={{
+                                        width: "100%",
+                                        height: "450px",
+                                        background: `url(photo1.jpg)`
+                                    }} />
+                                    <Box sx={{
+                                        width: "100%",
+                                        height: "450px",
+                                        backgroundColor: "white"
+                                    }} />
+                                </Carousel>
                             </Grid>
                         </Grid>
                         <Grid item xs={12} md={4} lg={4} container>
@@ -140,13 +175,16 @@ export function VehicleSpecCard() {
                                 </Table>
                             </TableContainer>
                         </Grid>
-                        <Grid item xs={12} display="flex" justifyContent="flex-end">
-                            <Button
-                                variant="contained"
-                                onClick={() => setOpenModal(true)}>
-                                Арендовать
-                            </Button>
-                        </Grid>
+                        {
+                            !isAdmin &&
+                            <Grid item xs={12} display="flex" justifyContent="flex-end">
+                                <Button
+                                    variant="contained"
+                                    onClick={() => setOpenModal(true)}>
+                                    Арендовать
+                                </Button>
+                            </Grid>
+                        }
                     </Grid>
                 }
                 <RentalRequestClientForm

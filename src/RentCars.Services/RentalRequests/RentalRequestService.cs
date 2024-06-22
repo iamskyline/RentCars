@@ -59,6 +59,8 @@ public class RentalRequestService : IRentalRequestService
 
         if (rentalEndDateTimeUtc < rentalStartDateTimeUtc)
             return Result.Fail("Дата окончания аренды не может быть меньше даты начала аренды!");
+        if (rentalStartDateTimeUtc < DateTime.Now)
+            return Result.Fail("Дата начала аренды не может быть меньше текущей!");
 
         if (blank.Status is not { } status)
             return Result.Fail("Не выбран статус заявки!");

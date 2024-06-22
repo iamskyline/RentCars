@@ -42,7 +42,7 @@ export function RegistrationPage() {
                     <Grid container spacing={3}>
                         <Grid item xs={12}>
                             <MuiTelInput fullWidth defaultCountry="RU" disableDropdown
-                                value={userBlank.tel ?? undefined}
+                                value={userBlank.tel ?? ''}
                                 onChange={(tel) => {
                                     setUserBlank(prev => ({ ...prev, tel }));
                                 }}
@@ -55,7 +55,7 @@ export function RegistrationPage() {
                             <TextField label="Укажите свое имя"
                                 variant="standard"
                                 fullWidth
-                                value={userBlank.name ?? undefined}
+                                value={userBlank.name ?? ''}
                                 onChange={(event) => {
                                     setUserBlank(prev => ({ ...prev, name: event.target.value }));
                                 }}
@@ -65,7 +65,7 @@ export function RegistrationPage() {
                             <TextField label="Придумайте логин"
                                 variant="standard"
                                 fullWidth
-                                value={userBlank.login ?? undefined}
+                                value={userBlank.login ?? ''}
                                 onChange={(event) => {
                                     setUserBlank(prev => ({ ...prev, login: event.target.value }));
                                 }}
@@ -76,7 +76,7 @@ export function RegistrationPage() {
                                 variant="standard"
                                 type="password"
                                 fullWidth
-                                value={userBlank.password ?? undefined}
+                                value={userBlank.password ?? ''}
                                 onChange={(event) => {
                                     setUserBlank(prev => ({ ...prev, password: event.target.value }));
                                 }}

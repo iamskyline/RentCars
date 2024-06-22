@@ -11,6 +11,7 @@ import { addErrorNotification, addSuccessNotification } from "../../../hooks/use
 interface IProps {
     user: User
     onDelete: (userId: string) => void
+    onEdit: () => void
 }
 
 export function UserCard(props: IProps) {
@@ -54,7 +55,8 @@ export function UserCard(props: IProps) {
                     <IconButton color="default" sx={{ zIndex: 100 }}
                         onClick={(event) => {
                             event.stopPropagation();
-                            setOpenEditModal(true);
+                            //setOpenEditModal(true);
+                            props.onEdit()
                         }}>
                         <EditIcon />
                     </IconButton>
@@ -67,7 +69,11 @@ export function UserCard(props: IProps) {
                     </IconButton>
                 </Grid>
             </Grid>
-            <ProfileFormModal onClose={handleEditModalClose} isOpen={openEditModal} user={props.user} />
+            {/* <ProfileFormModal onClose={handleEditModalClose}
+                isOpen={openEditModal}
+                onSave={ }
+                userId={props.user.id}
+            /> */}
             <ConfirmationCard
                 onClose={handleDeleteModalClose}
                 isOpen={openDeleteModal}

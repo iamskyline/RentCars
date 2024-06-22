@@ -54,7 +54,7 @@ export function VehicleFormCard() {
     }
 
     function handleChangePhoto(files: FileList | null) {
-        if(files == null) return
+        if (files == null) return
 
         let fileUrls: string[] = []
         const readers: Promise<void>[] = []
@@ -89,18 +89,18 @@ export function VehicleFormCard() {
         left: 0,
         whiteSpace: 'nowrap',
         width: 1,
-      });
+    });
 
-    function handleDeleteUploadedPhoto(indexToRemove: number){
+    function handleDeleteUploadedPhoto(indexToRemove: number) {
         setPhotoUrls(photoUrls.filter((_, index) => index !== indexToRemove))
         setPhotos(photos.filter((_, index) => index !== indexToRemove))
     }
 
-    function handleDeleteExistPhoto(index: number){
+    function handleDeleteExistPhoto(index: number) {
         let photoBlanks = [...vehicleBlank.existPhotos]
         photoBlanks[index].isDeleted = true
 
-        setVehicleBlank((prevState) => ({...prevState, existPhotos: photoBlanks}))
+        setVehicleBlank((prevState) => ({ ...prevState, existPhotos: photoBlanks }))
     }
 
     return (
@@ -121,6 +121,7 @@ export function VehicleFormCard() {
                             fullWidth
                             value={vehicleBlank.brand ?? ''}
                             onChange={(event) => setVehicleBlank((vehicleBlank) => ({ ...vehicleBlank, brand: (event.target.value) }))}
+                            inputProps={{ tabIndex: 1 }}
                         />
                     </Grid>
                     <Grid item xs={12} md={6} lg={4}>
@@ -129,6 +130,7 @@ export function VehicleFormCard() {
                             fullWidth
                             value={vehicleBlank.bodyColor ?? ''}
                             onChange={(event) => setVehicleBlank((vehicleBlank) => ({ ...vehicleBlank, bodyColor: (event.target.value) }))}
+                            inputProps={{ tabIndex: 7 }}
                         />
                     </Grid>
                     <Grid item xs={12} md={6} lg={4}>
@@ -138,6 +140,7 @@ export function VehicleFormCard() {
                             fullWidth
                             value={vehicleBlank.dayCost ?? ''}
                             onChange={(event) => setVehicleBlank((vehicleBlank) => ({ ...vehicleBlank, dayCost: (+(event.target.value)) }))}
+                            inputProps={{ tabIndex: 12 }}
                         />
                     </Grid>
                     <Grid item xs={12} md={6} lg={4}>
@@ -146,6 +149,7 @@ export function VehicleFormCard() {
                             fullWidth
                             value={vehicleBlank.model ?? ''}
                             onChange={(event) => setVehicleBlank((vehicleBlank) => ({ ...vehicleBlank, model: (event.target.value) }))}
+                            inputProps={{ tabIndex: 2 }}
                         />
                     </Grid>
                     <Grid item xs={12} md={6} lg={4}>
@@ -154,14 +158,16 @@ export function VehicleFormCard() {
                             fullWidth
                             value={vehicleBlank.enginePower ?? ''}
                             onChange={(event) => setVehicleBlank((vehicleBlank) => ({ ...vehicleBlank, enginePower: (+(event.target.value)) }))}
+                            inputProps={{ tabIndex: 8 }}
                         />
                     </Grid>
                     <Grid item xs={12} md={6} lg={4}>
-                        <TextField label="Стоимость 2-4 суток аренды"
+                        <TextField label="Стоимость 2-4 суток аренды (цена за сутки)"
                             variant="standard"
                             fullWidth
                             value={vehicleBlank.twoFourDaysCost ?? ''}
                             onChange={(event) => setVehicleBlank((vehicleBlank) => ({ ...vehicleBlank, twoFourDaysCost: (+(event.target.value)) }))}
+                            inputProps={{ tabIndex: 13 }}
                         />
                     </Grid>
                     <Grid item xs={12} md={6} lg={4}>
@@ -170,6 +176,7 @@ export function VehicleFormCard() {
                             fullWidth
                             value={vehicleBlank.yearOfManufacture ?? ''}
                             onChange={(event) => setVehicleBlank((vehicleBlank) => ({ ...vehicleBlank, yearOfManufacture: (+(event.target.value)) }))}
+                            inputProps={{ tabIndex: 3 }}
                         />
                     </Grid>
                     <Grid item xs={12} md={6} lg={4}>
@@ -178,7 +185,7 @@ export function VehicleFormCard() {
                             <InputLabel>
                                 Тип мотора автомобиля
                             </InputLabel>
-                            <Select
+                            <Select inputProps={{ tabIndex: 9 }}
                                 value={vehicleBlank.fuelType}
                                 onChange={(event) => setVehicleBlank((vehicleBlank) => ({ ...vehicleBlank, fuelType: (+(event.target.value)) }))}>
                                 {
@@ -192,11 +199,12 @@ export function VehicleFormCard() {
                         </FormControl>
                     </Grid>
                     <Grid item xs={12} md={6} lg={4}>
-                        <TextField label="Стоимость 4-7 суток аренды"
+                        <TextField label="Стоимость 4-7 суток аренды (цена за сутки)"
                             variant="standard"
                             fullWidth
                             value={vehicleBlank.fourSevenDaysCost ?? ''}
                             onChange={(event) => setVehicleBlank((vehicleBlank) => ({ ...vehicleBlank, fourSevenDaysCost: (+(event.target.value)) }))}
+                            inputProps={{ tabIndex: 14 }}
                         />
                     </Grid>
                     <Grid item xs={12} md={6} lg={4}>
@@ -205,7 +213,7 @@ export function VehicleFormCard() {
                             <InputLabel>
                                 Класс автомобиля
                             </InputLabel>
-                            <Select
+                            <Select inputProps={{ tabIndex: 4 }}
                                 value={vehicleBlank.vehicleClass}
                                 onChange={(event) => setVehicleBlank((vehicleBlank) => ({ ...vehicleBlank, vehicleClass: (+(event.target.value)) }))}>
                                 {
@@ -224,7 +232,7 @@ export function VehicleFormCard() {
                             <InputLabel>
                                 Привод автомобиля
                             </InputLabel>
-                            <Select
+                            <Select inputProps={{ tabIndex: 10 }}
                                 value={vehicleBlank.wheelDrive}
                                 onChange={(event) => setVehicleBlank((vehicleBlank) => ({ ...vehicleBlank, wheelDrive: (+(event.target.value)) }))}>
                                 {
@@ -238,11 +246,12 @@ export function VehicleFormCard() {
                         </FormControl>
                     </Grid>
                     <Grid item xs={12} md={6} lg={4}>
-                        <TextField label="Стоимость 7-14 суток аренды"
+                        <TextField label="Стоимость 7-14 суток аренды (цена за сутки)"
                             variant="standard"
                             fullWidth
                             value={vehicleBlank.sevenFourteenDaysCost ?? ''}
                             onChange={(event) => setVehicleBlank((vehicleBlank) => ({ ...vehicleBlank, sevenFourteenDaysCost: (+(event.target.value)) }))}
+                            inputProps={{ tabIndex: 15 }}
                         />
                     </Grid>
                     <Grid item xs={12} md={6} lg={4}>
@@ -251,7 +260,7 @@ export function VehicleFormCard() {
                             <InputLabel>
                                 Тип КПП автомобиля
                             </InputLabel>
-                            <Select
+                            <Select inputProps={{ tabIndex: 5 }}
                                 value={vehicleBlank.transmissionType}
                                 onChange={(event) => setVehicleBlank((vehicleBlank) => ({ ...vehicleBlank, transmissionType: (+(event.target.value)) }))}>
                                 {
@@ -270,7 +279,7 @@ export function VehicleFormCard() {
                             <InputLabel>
                                 Объем мотора автомобиля
                             </InputLabel>
-                            <Select
+                            <Select inputProps={{ tabIndex: 11 }}
                                 value={vehicleBlank.engineCapacity}
                                 onChange={(event) => setVehicleBlank((vehicleBlank) => ({ ...vehicleBlank, engineCapacity: (+(event.target.value)) }))}
                             >
@@ -285,11 +294,12 @@ export function VehicleFormCard() {
                         </FormControl>
                     </Grid>
                     <Grid item xs={12} md={6} lg={4}>
-                        <TextField label="Стоимость 14+ суток аренды"
+                        <TextField label="Стоимость 14+ суток аренды (цена за сутки)"
                             variant="standard"
                             fullWidth
                             value={vehicleBlank.fourteenAndMoreDaysCost ?? ''}
                             onChange={(event) => setVehicleBlank((vehicleBlank) => ({ ...vehicleBlank, fourteenAndMoreDaysCost: (+(event.target.value)) }))}
+                            inputProps={{ tabIndex: 16 }}
                         />
                     </Grid>
                     <Grid item xs={12} md={6} lg={4}>
@@ -298,7 +308,7 @@ export function VehicleFormCard() {
                             <InputLabel>
                                 Тип кузова автомобиля
                             </InputLabel>
-                            <Select
+                            <Select inputProps={{ tabIndex: 6 }}
                                 value={vehicleBlank.bodyType}
                                 onChange={(event) => setVehicleBlank((vehicleBlank) => ({ ...vehicleBlank, bodyType: (+(event.target.value)) }))}>
                                 {
@@ -318,32 +328,32 @@ export function VehicleFormCard() {
                     component="label"
                     variant="outlined"
                     role="undefined"
-                    startIcon={<CloudUploadIcon/>}
+                    startIcon={<CloudUploadIcon />}
                     tabIndex={-1}
-                    >
+                >
                     Загрузить фото
-                    <VisuallyHiddenInput type="file" multiple onChange={(e) => handleChangePhoto(e.target.files)}/>
+                    <VisuallyHiddenInput type="file" multiple onChange={(e) => handleChangePhoto(e.target.files)} />
                 </Button>
             </Box>
             <Stack direction={'row'} mt={2} spacing={2}>
-            {vehicleBlank.existPhotos.length > 0 &&
-                vehicleBlank.existPhotos.map((ph, index) => 
-                    !ph.isDeleted 
-                        ? <VehiclePhoto
-                            key={index}
-                            path={`https://localhost:7220/uploads/${ph.path}`} 
-                            sx={{width: '200px'}} 
-                            onDelete={() => handleDeleteExistPhoto(index)}
-                        />
-                        : <></>
-                )}
+                {vehicleBlank.existPhotos.length > 0 &&
+                    vehicleBlank.existPhotos.map((ph, index) =>
+                        !ph.isDeleted
+                            ? <VehiclePhoto
+                                key={index}
+                                path={`https://localhost:7220/uploads/${ph.path}`}
+                                sx={{ width: '200px' }}
+                                onDelete={() => handleDeleteExistPhoto(index)}
+                            />
+                            : <></>
+                    )}
 
-                {photoUrls.map((ph, index) => 
+                {photoUrls.map((ph, index) =>
                     <Grid item key={ph} xs={6} md={4} lg={2.4}>
                         <VehiclePhoto
                             key={index}
-                            path={ph} 
-                            sx={{width: '200px'}} 
+                            path={ph}
+                            sx={{ width: '200px' }}
                             onDelete={() => handleDeleteUploadedPhoto(index)}
                         />
                     </Grid>

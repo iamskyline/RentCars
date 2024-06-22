@@ -10,7 +10,6 @@ import { VehicleProvider } from "../../../domain/vehicles/vehicleProvider";
 import DatePicker from "react-widgets/DatePicker";
 import { RentalRequestProvider } from "../../../domain/rentalRequests/rentalRequestProvider";
 import "react-widgets/styles.css";
-import zIndex from "@mui/material/styles/zIndex";
 
 interface IProps {
     isOpen: boolean
@@ -46,7 +45,7 @@ export function RentalRequestFormModal(props: IProps) {
             const allVehicles = await VehicleProvider.getAllNameOfVehicles();
             setVehicles(allVehicles);
 
-            setRentalRequestBlank((prev) => ({ ...prev, vehicleId: allVehicles[0].id, userId: allClients[0].id }))
+            //setRentalRequestBlank((prev) => ({ ...prev, vehicleId: allVehicles[0].id, userId: allClients[0].id }))
         }
         load();
     }, [])

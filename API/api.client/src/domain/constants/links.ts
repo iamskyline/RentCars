@@ -8,7 +8,7 @@ export class VehicleLinks {
     }
 
     static toForm(vehicleId?: string) {
-        return vehicleId != null 
+        return vehicleId != null
             ? `/vehicle-form/${vehicleId}`
             : `/vehicle-form/`
     }
@@ -16,12 +16,6 @@ export class VehicleLinks {
 
 export class RentalRequestLinks {
     static all = "/requests";
-    //static card = "/request/:rentalId";
-    //static form = "/request-form"
-
-    // static toCard(rentalId: string) {
-    //     return `/request/${rentalId}`
-    // }
 }
 
 export class UserLinks {
@@ -33,7 +27,7 @@ export class UserLinks {
         return `/profile/${userId}`
     }
 
-    static toAdminProfile(){
+    static toAdminProfile() {
         return `/adminProfile`
     }
 }

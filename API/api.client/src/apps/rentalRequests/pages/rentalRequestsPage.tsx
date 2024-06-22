@@ -1,13 +1,8 @@
 import { Box, Button, Grid } from "@mui/material";
 import { RentalRequestCard } from "../cards/rentalRequestCard";
-import { useNavigate } from "react-router-dom";
 import { RentalRequest } from "../../../domain/rentalRequests/rentalRequest";
 import { useEffect, useState } from "react";
 import { RentalRequestProvider } from "../../../domain/rentalRequests/rentalRequestProvider";
-import { RentalRequestLinks } from "../../../domain/constants/links";
-import { VehicleProvider } from "../../../domain/vehicles/vehicleProvider";
-import { Vehicle } from "../../../domain/vehicles/vehicle";
-import { User } from "../../../domain/users/user";
 import { NameOfUser } from "../../../domain/users/nameOfUser";
 import { NameOfVehicle } from "../../../domain/vehicles/nameOfVehicle";
 import { RentalRequestFormModal } from "../cards/rentalRequestFormModal";
@@ -59,11 +54,7 @@ export function RentalRequestsPage() {
     }
 
     return (
-        <Box display="flex"
-            flexDirection={'column'}
-            alignItems="center"
-            mt={2}
-        >
+        <Box mt={2}>
             {isOpen &&
                 <RentalRequestFormModal
                     rentalRequestId={selectedRentalRequest}
@@ -72,15 +63,17 @@ export function RentalRequestsPage() {
                     onClose={handleCloseModal}
                 />
             }
-            <Button variant="contained" onClick={handleOpenModal}>
-                Добавить запрос на аренду
-            </Button>
+            <Box display="flex" justifyContent="center" alignItems="center" mb={2}>
+                <Button variant="contained" onClick={handleOpenModal}>
+                    Добавить запрос на аренду
+                </Button>
+            </Box>
             <Box sx={{
                 bgcolor: "#eaeaea",
                 margin: 2,
                 borderRadius: 5,
                 paddingX: 2,
-                paddingY: 2
+                paddingY: 2,
             }}>
                 <Grid container spacing={1}>
                     {
@@ -106,6 +99,6 @@ export function RentalRequestsPage() {
                         )}
                 </Grid>
             </Box>
-        </Box>
+        </Box >
     );
 }

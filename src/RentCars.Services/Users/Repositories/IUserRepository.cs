@@ -9,6 +9,7 @@ public interface IUserRepository
 
     User? GetUser(Guid userId);
     User? GetUserByLogin(String login);
+    User? GetUserByTel(String tel);
     Int32 GetRentedVehiclesQuantityByUserId(Guid userId);
     User[] GetAllUsers();
     User[] GetAllClients();

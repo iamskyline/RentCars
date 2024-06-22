@@ -56,7 +56,10 @@ public class UserService : IUserService
             return DataResult<AuthResponse>.Fail("Поле \"Пароль\" не заполнено!");
 
         User? existUser = _userRepository.GetUserByLogin(userBlank.Login!);
-        if (existUser != null) return DataResult<AuthResponse>.Fail("Такой пользователь уже существует!");
+        if (existUser != null) return DataResult<AuthResponse>.Fail("Пользователь с таким логином уже существует!");
+
+        existUser = _userRepository.GetUserByTel(userBlank.Tel);
+        if (existUser != null) return DataResult<AuthResponse>.Fail("Пользователь с таким телефоном уже существует!");
 
         DataResult<Guid> saveResult = SaveUser(userBlank);
         if(!saveResult.IsSuccess) return DataResult<AuthResponse>.Fail(saveResult.Errors);
@@ -108,14 +111,11 @@ public class UserService : IUserService
 
     public DataResult<AuthResponse> Authorization(String login, String password)
     {
-        //проверка логина
         User? existUser = _userRepository.GetUserByLogin(login);
         if (existUser == null) return DataResult<AuthResponse>.Fail("Пользователя с таким логином не существует!");
 
-        //проверка пароля
-        if(existUser.Password != password.GetHash()) return DataResult<AuthResponse>.Fail("Пароль неверен!");
+        if (existUser.Password != password.GetHash()) return DataResult<AuthResponse>.Fail("Пароль неверен!");
 
-        //формирование токена
         String token = FormToken(existUser);
 
         AuthResponse authResponse = new(token, existUser.IsAdmin, existUser.Id.ToString(), existUser.Name);
