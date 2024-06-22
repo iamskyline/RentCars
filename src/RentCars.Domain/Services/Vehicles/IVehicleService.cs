@@ -1,11 +1,12 @@
-﻿using RentCars.Domain.Vehicles;
+﻿using Microsoft.AspNetCore.Http;
+using RentCars.Domain.Vehicles;
 using RentCars.Tools.Results;
 
 namespace RentCars.Domain.Services.Vehicles;
 
 public interface IVehicleService
 {
-    Result SaveVehicle(VehicleBlank blank);
+    Result SaveVehicle(VehicleBlank blank, List<IFormFile> photos);
 
     Vehicle? GetVehicle(Guid vehicleId);
     Vehicle[] GetAllVehicles();

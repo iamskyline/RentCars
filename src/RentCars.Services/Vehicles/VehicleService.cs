@@ -1,5 +1,6 @@
-﻿using RentCars.Domain.Services.Vehicles;
-using RentCars.Domain.Users;
+﻿using Microsoft.AspNetCore.Http;
+using Microsoft.Extensions.Hosting;
+using RentCars.Domain.Services.Vehicles;
 using RentCars.Domain.Vehicles;
 using RentCars.Services.Vehicles.Repositories;
 using RentCars.Tools.Extensions;
@@ -10,35 +11,75 @@ namespace RentCars.Services.Vehicles;
 public class VehicleService : IVehicleService
 {
     private readonly IVehicleRepository _vehicleRepository;
+    private readonly IHostEnvironment _hostEnvironment;
 
-    public VehicleService(IVehicleRepository vehicleRepository)
+    public VehicleService(IVehicleRepository vehicleRepository, IHostEnvironment hostEnvironment)
     {
         _vehicleRepository = vehicleRepository;
+        _hostEnvironment = hostEnvironment;
     }
 
-    public Result SaveVehicle(VehicleBlank blank)
+    public Result SaveVehicle(VehicleBlank blank, List<IFormFile> photos)
     {
         PreprocessVehicleBlank(blank);
 
-        Result validatedVehicleBlankResult = ValidateVehicleBlank(blank, out VehicleBlank.Valid validVehicleBlank);
+        Result validatedVehicleBlankResult = ValidateVehicleBlank(blank);
         if(!validatedVehicleBlankResult.IsSuccess) return Result.Fail(validatedVehicleBlankResult.Errors);
 
-        Vehicle newVehicle = new(
-            validVehicleBlank.Id, validVehicleBlank.Brand, validVehicleBlank.Model,
-            validVehicleBlank.YearOfManufacture, validVehicleBlank.VehicleClass,
-            validVehicleBlank.BodyColor, validVehicleBlank.BodyType,
-            validVehicleBlank.EnginePower, validVehicleBlank.EngineCapacity,
-            validVehicleBlank.FuelType, validVehicleBlank.WheelDrive,
-            validVehicleBlank.TransmissionType,
-            validVehicleBlank.DayCost, validVehicleBlank.TwoFourDaysCost,
-            validVehicleBlank.FourSevenDaysCost, validVehicleBlank.SevenFourteenDaysCost,
-            validVehicleBlank.FourteenAndMoreDaysCost, validVehicleBlank.MainPhotoPath,
-            validVehicleBlank.PhotoPaths
-        );
+        DataResult<Guid> saveVehicleResult = _vehicleRepository.SaveVehicle(blank);
+        if (!saveVehicleResult.IsSuccess) return Result.Fail(saveVehicleResult.Errors[0]);
 
-        _vehicleRepository.SaveVehicle(newVehicle);
+        DeletePhotos(blank.ExistPhotos);
+
+        foreach (var photo in photos)
+        {
+            if (photo.Length > 0)
+            {
+                Guid photoId = Guid.NewGuid();
+                var fileName = photoId.ToString() + Path.GetExtension(photo.FileName);
+
+                var uploadsFolder = Path.Combine(_hostEnvironment.ContentRootPath, "wwwroot", "uploads");
+
+                if (!Directory.Exists(uploadsFolder))
+                {
+                    Directory.CreateDirectory(uploadsFolder);
+                }
+
+                var filePath = Path.Combine(uploadsFolder, fileName);
+
+                using (var stream = new FileStream(filePath, FileMode.Create))
+                {
+                    photo.CopyTo(stream);
+                    VehiclePhotoBlank photoBlank = new VehiclePhotoBlank
+                    {
+                        Id = photoId,
+                        VehicleId = blank.Id ?? saveVehicleResult.Data,
+                        Path = fileName,
+                    };
+
+                    _vehicleRepository.SaveVehiclePhoto(photoBlank);
+                }
+            }
+        }
 
         return Result.Success();
+    }
+
+    private void DeletePhotos(VehiclePhotoBlank[] photoBlanks)
+    {
+        VehiclePhotoBlank[] photosToDelete = photoBlanks.Where(ph => ph.IsDeleted).ToArray();
+
+        foreach(VehiclePhotoBlank photo in photosToDelete) 
+        {
+            string filePath = Path.Combine(_hostEnvironment.ContentRootPath, "wwwroot", "uploads", photo.Path);
+            
+            if(File.Exists(filePath)) 
+            {
+                File.Delete(filePath);
+            }
+        }
+
+        _vehicleRepository.DeletePhotos(photosToDelete.Select(ph => ph.Id).ToArray());
     }
 
     private void PreprocessVehicleBlank(VehicleBlank blank)
@@ -47,13 +88,10 @@ public class VehicleService : IVehicleService
         blank.Brand = blank.Brand?.Trim();
         blank.Model = blank.Model?.Trim();
         blank.BodyColor = blank.BodyColor?.Trim();
-        blank.MainPhotoPath = blank.MainPhotoPath?.Trim();
     }
 
-    private Result ValidateVehicleBlank(VehicleBlank blank, out VehicleBlank.Valid validVehicleBlank)
+    private Result ValidateVehicleBlank(VehicleBlank blank)
     {
-        validVehicleBlank = null!;
-
         Int32 minProductionYear = 1930;
 
         Int32 minHorsePowerQuantity = 30;
@@ -139,19 +177,6 @@ public class VehicleService : IVehicleService
             return Result.Fail($"Стоимость суток аренды не должно быть меньше {minRentalCost} руб.!");
         if (blank.FourteenAndMoreDaysCost > maxRentalCost)
             return Result.Fail($"Стоимость суток аренды не должно быть больше {maxRentalCost} руб.!");
-
-        /*if (blank.PhotoPaths is not { } photoPaths)
-            throw new Exception("Массив путей к фотографиям автомобиля пуст (null)!");*/
-
-        validVehicleBlank = new VehicleBlank.Valid(
-            id, blank.Brand!, blank.Model!, yearOfManufacture,
-            vehicleClass, blank.BodyColor!, bodyType,
-            enginePower, engineCapacity, fuelType, transmissionType,
-            wheelDrive, dayCost, twoFourDaysCost,
-            fourSevenDaysCost, sevenFourteenDaysCost,
-            fourteenAndMoreDaysCost, blank.MainPhotoPath,
-            blank.PhotoPaths
-        );
 
         return Result.Success();
     }

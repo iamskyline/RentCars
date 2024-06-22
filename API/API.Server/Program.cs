@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
 using RentCars.Domain.Services.RentalRequests;
@@ -12,6 +13,7 @@ using RentCars.Services.Vehicles;
 using RentCars.Services.Vehicles.Repositories;
 using RentCars.Tools.DataBase;
 using RentCars.Tools.JWT;
+using Microsoft.AspNetCore.Hosting;
 
 namespace API.Server
 {

@@ -10,6 +10,7 @@ import { VehicleLinks } from "../../../domain/constants/links";
 import { ConfirmationCard } from "../../confirmations/confirmationModal";
 import { VehicleProvider } from "../../../domain/vehicles/vehicleProvider";
 import { addErrorNotification, addSuccessNotification } from "../../../hooks/useNotifications";
+import VehiclePhoto from "./vehiclePhoto";
 
 interface IProps {
     vehicle: Vehicle,
@@ -33,6 +34,8 @@ export function VehicleCard(props: IProps) {
         props.onDelete()
     }
 
+    const photoPath: string | null = `https://localhost:7220/uploads/${props.vehicle.photos[0]?.path}`
+
     return (
         <Box maxWidth="65%" minWidth="240px"
             bgcolor="#d2d2d2"
@@ -40,12 +43,7 @@ export function VehicleCard(props: IProps) {
             padding={2}>
             <Grid container spacing={2}>
                 <Grid item xs={12}>
-                    {/* ФОТА ТУТ */}
-                    <Box
-                        sx={{ width: "100%", height: "140px", bgcolor: "#737272", cursor: 'pointer' }}
-                        onClick={handleOpenCard}
-                    >
-                    </Box>
+                    <VehiclePhoto path={photoPath} onClick={handleOpenCard}/>
                 </Grid>
                 <Grid item xs={12}>
                     <Link to={VehicleLinks.toCard(props.vehicle.id)}>

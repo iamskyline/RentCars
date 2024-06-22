@@ -3,6 +3,7 @@ import { FuelType } from "./enums/fuelType";
 import { TransmissionType } from "./enums/transmissionType";
 import { VehicleClass } from "./enums/vehicleClass";
 import { WheelDrive } from "./enums/wheelDrive";
+import { VehiclePhoto, mapToVehiclePhotos } from "./vehiclePhoto";
 
 export class Vehicle {
     constructor(
@@ -23,12 +24,14 @@ export class Vehicle {
         public fourSevenDaysCost: number,
         public sevenFourteenDaysCost: number,
         public fourteenAndMoreDaysCost: number,
-        public mainPhoto: string,
-        public photos: string[]
+        public photos: VehiclePhoto[]
     ) { }
 }
 
 export function mapToVehicle(data: any) {
+
+    const photos = mapToVehiclePhotos(data.photos)
+
     return new Vehicle(
         data.id,
         data.brand,
@@ -47,7 +50,6 @@ export function mapToVehicle(data: any) {
         data.fourSevenDaysCost,
         data.sevenFourteenDaysCost,
         data.fourteenAndMoreDaysCost,
-        data.mainPhoto,
-        data.photos,
+        photos,
     );
 }

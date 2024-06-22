@@ -4,6 +4,7 @@ import { TransmissionType } from "./enums/transmissionType";
 import { VehicleClass } from "./enums/vehicleClass";
 import { WheelDrive } from "./enums/wheelDrive";
 import { Vehicle } from "./vehicle";
+import { VehiclePhotoBlank } from "./vehiclePhotoBlank";
 
 export class VehicleBlank {
     constructor(
@@ -24,15 +25,14 @@ export class VehicleBlank {
         public fourSevenDaysCost: number | null,
         public sevenFourteenDaysCost: number | null,
         public fourteenAndMoreDaysCost: number | null,
-        public mainPhoto: string | null,
-        public photos: string[] | null
+        public existPhotos: VehiclePhotoBlank[]
     ) { }
 
     public static empty() {
         return new VehicleBlank(null, null, null, null, VehicleClass.Comfort, null,
             BodyType.Sedan, null, 2.5, FuelType.Gasoline,
             WheelDrive.AllWheelDrive, TransmissionType.Automatic,
-            null, null, null, null, null, null, null);
+            null, null, null, null, null, []);
     }
 
     public static fromDomain(vehicle: Vehicle): VehicleBlank {
@@ -40,7 +40,7 @@ export class VehicleBlank {
             vehicle.vehicleClass, vehicle.bodyColor, vehicle.bodyType, vehicle.enginePower,
             vehicle.engineCapacity, vehicle.fuelType, vehicle.wheelDrive, vehicle.transmissionType, 
             vehicle.dayCost, vehicle.twoFourDaysCost, vehicle.fourSevenDaysCost, vehicle.sevenFourteenDaysCost, 
-            vehicle.fourteenAndMoreDaysCost, vehicle.mainPhoto, vehicle.photos
+            vehicle.fourteenAndMoreDaysCost, VehiclePhotoBlank.fromDomain(vehicle.photos)
         )
     }
 }

@@ -21,6 +21,4 @@ public class VehicleDb
     public Double FourSevenDaysCost { get; set; }
     public Double SevenFourteenDaysCost { get; set; }
     public Double FourteenAndMoreDaysCost { get; set; }
-    public String? MainPhotoPath { get; set; }
-    public String[] PhotoPaths { get; set; }
 }

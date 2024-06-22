@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
 using RentCars.Domain.Services.Vehicles;
 using RentCars.Domain.Vehicles;
 using RentCars.Tools.Results;
@@ -15,9 +16,10 @@ public class VehicleController : Controller
     }
 
     [HttpPost("api/vehicles/save")]
-    public Result SaveVehicle([FromBody] VehicleBlank blank)
+    public Result SaveVehicle([FromForm] string blank, [FromForm] List<IFormFile> photos)
     {
-        return _vehicleService.SaveVehicle(blank);
+        var vehicleBlank = JsonConvert.DeserializeObject<VehicleBlank>(blank);
+        return _vehicleService.SaveVehicle(vehicleBlank, photos);
     }
 
     [HttpGet("api/vehicles/get-by-id")]

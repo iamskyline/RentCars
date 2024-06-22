@@ -26,8 +26,22 @@ export class VehicleProvider {
         return response.data.map(mapToNameOfVehicle);
     }
 
-    public static async save(vehicleBlank: VehicleBlank): Promise<Result> {
-        const response = await axios.post("/api/vehicles/save", vehicleBlank)
+    public static async save(blank: VehicleBlank, photos: File[]): Promise<Result> {
+        const vehicleBlank = new FormData()
+
+        vehicleBlank.append('blank', JSON.stringify(blank))
+    
+        if(photos != null) {
+            photos.forEach((photo) => {
+                vehicleBlank.append('photos', photo);
+            });
+        }
+
+        const response = await axios.post("/api/vehicles/save", vehicleBlank, {
+            headers: {
+                'Content-Type': 'multipart/form-data'
+            }
+        })
         return mapToResult(response.data);
     }
 

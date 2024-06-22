@@ -1,6 +1,4 @@
-﻿using RentCars.Domain.Users;
-using RentCars.Domain.Vehicles.Enums;
-using System.Xml.Linq;
+﻿using RentCars.Domain.Vehicles.Enums;
 
 namespace RentCars.Domain.Vehicles;
 
@@ -23,8 +21,7 @@ public class Vehicle
     public Double FourSevenDaysCost { get; }
     public Double SevenFourteenDaysCost { get; }
     public Double FourteenAndMoreDaysCost { get; }
-    public String? MainPhoto { get; }
-    public String?[] Photos { get; }
+    public VehiclePhoto[] Photos { get; }
 
     public Vehicle(Guid id, String brand, String model,
         Int32 yearOfManufacture, VehicleClass vehicleClass,
@@ -33,7 +30,7 @@ public class Vehicle
         TransmissionType transmissionType, Double dayCost, Double twoFourDaysCost,
         Double fourSevenDaysCost, Double sevenFourteenDaysCost,
         Double fourteenAndMoreDaysCost,
-        String? mainPhoto, String[] photos
+        VehiclePhoto[] photos
     )
     {
         Id = id;
@@ -53,7 +50,6 @@ public class Vehicle
         FourSevenDaysCost = fourSevenDaysCost;
         SevenFourteenDaysCost = sevenFourteenDaysCost;
         FourteenAndMoreDaysCost = fourteenAndMoreDaysCost;
-        MainPhoto = mainPhoto;
         Photos = photos;
     }
 
