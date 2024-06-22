@@ -53,7 +53,7 @@ export function RentalRequestCard(props: IProps) {
                     <Typography variant="h6" align="center">
                         Клиент:
                         <br />
-                        {props.user.login}
+                        {props.user.login ?? "Удаленный профиль"}
                     </Typography>
                 </Grid>
                 <Grid item xs={12} md={6} lg={6}>
@@ -66,7 +66,7 @@ export function RentalRequestCard(props: IProps) {
                     >
                         Автомобиль:
                         <br />
-                        {props.vehicle.brand} {props.vehicle.model}
+                        {props.vehicle.brand ?? "Удаленны авто"} {props.vehicle.model ?? "Удаленный авто"}
                     </Typography>
                 </Grid>
                 <Grid item xs={12}>

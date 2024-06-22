@@ -79,6 +79,16 @@ public class UserRepository : IUserRepository
         return _mainConnector.Get<UserDb?>("SELECT * FROM users WHERE login = @p_login", parameters)?.ToUser();
     }
 
+    public User? GetUserByTel(String tel)
+    {
+        NpgsqlParameter[] parameters =
+        {
+            new("p_tel", tel)
+        };
+
+        return _mainConnector.Get<UserDb?>("SELECT * FROM users WHERE tel = @p_tel", parameters)?.ToUser();
+    }
+
     public Int32 GetRentedVehiclesQuantityByUserId(Guid userId)
     {
         NpgsqlParameter[] parameters =

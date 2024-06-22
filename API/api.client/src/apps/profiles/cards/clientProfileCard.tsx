@@ -56,7 +56,7 @@ export function ClientProfileCard() {
                             </Typography>
                             <Typography variant="body1"
                                 mb={1}>
-                                Количество арендованных автомобилей: {vehiclesQuantity}
+                                Количество запросов на аренду: {vehiclesQuantity}
                             </Typography>
                         </Grid>
                         <Grid item xs={1} md={1} lg={1}

@@ -103,7 +103,7 @@ export function VehicleFormCard() {
                             />
                         </Grid>
                         <Grid item xs={12} md={6} lg={4}>
-                            <TextField label="Стоимость 2-4 суток аренды"
+                            <TextField label="Стоимость 2-4 суток аренды (цена за сутки)"
                                 variant="standard"
                                 fullWidth
                                 value={vehicleBlank.twoFourDaysCost ?? ''}
@@ -138,7 +138,7 @@ export function VehicleFormCard() {
                             </FormControl>
                         </Grid>
                         <Grid item xs={12} md={6} lg={4}>
-                            <TextField label="Стоимость 4-7 суток аренды"
+                            <TextField label="Стоимость 4-7 суток аренды (цена за сутки)"
                                 variant="standard"
                                 fullWidth
                                 value={vehicleBlank.fourSevenDaysCost ?? ''}
@@ -184,7 +184,7 @@ export function VehicleFormCard() {
                             </FormControl>
                         </Grid>
                         <Grid item xs={12} md={6} lg={4}>
-                            <TextField label="Стоимость 7-14 суток аренды"
+                            <TextField label="Стоимость 7-14 суток аренды (цена за сутки)"
                                 variant="standard"
                                 fullWidth
                                 value={vehicleBlank.sevenFourteenDaysCost ?? ''}
@@ -231,7 +231,7 @@ export function VehicleFormCard() {
                             </FormControl>
                         </Grid>
                         <Grid item xs={12} md={6} lg={4}>
-                            <TextField label="Стоимость 14+ суток аренды"
+                            <TextField label="Стоимость 14+ суток аренды (цена за сутки)"
                                 variant="standard"
                                 fullWidth
                                 value={vehicleBlank.fourteenAndMoreDaysCost ?? ''}

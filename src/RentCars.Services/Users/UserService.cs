@@ -56,7 +56,10 @@ public class UserService : IUserService
             return DataResult<AuthResponse>.Fail("Поле \"Пароль\" не заполнено!");
 
         User? existUser = _userRepository.GetUserByLogin(userBlank.Login!);
-        if (existUser != null) return DataResult<AuthResponse>.Fail("Такой пользователь уже существует!");
+        if (existUser != null) return DataResult<AuthResponse>.Fail("Пользователь с таким логином уже существует!");
+
+        existUser = _userRepository.GetUserByTel(userBlank.Tel);
+        if (existUser != null) return DataResult<AuthResponse>.Fail("Пользователь с таким телефоном уже существует!");
 
         DataResult<Guid> saveResult = SaveUser(userBlank);
         if(!saveResult.IsSuccess) return DataResult<AuthResponse>.Fail(saveResult.Errors);
