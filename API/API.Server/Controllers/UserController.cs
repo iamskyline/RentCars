@@ -1,7 +1,9 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
 using RentCars.Domain.Infrastructure;
 using RentCars.Domain.Services.Users;
 using RentCars.Domain.Users;
+using RentCars.Domain.Vehicles;
 using RentCars.Tools.Results;
 
 namespace RentCars.WebAPI.Controllers;
@@ -46,9 +48,10 @@ public class UserController : Controller
     }
 
     [HttpPost("api/users/edit")]
-    public DataResult<Guid> EditUser([FromBody] UserBlank blank)
+    public DataResult<Guid> EditUser([FromForm] string blank, [FromForm] IFormFile? photo)
     {
-        return _userService.SaveUser(blank);
+        var userBlank = JsonConvert.DeserializeObject<UserBlank>(blank);
+        return _userService.SaveUser(userBlank, photo);
     }
 
     [HttpGet("api/users/remove-account")]

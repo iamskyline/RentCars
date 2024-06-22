@@ -30,6 +30,7 @@
 
   <ItemGroup>
     <Folder Include="webroot\" />
+    <Folder Include="wwwroot\avatars\" />
     <Folder Include="wwwroot\uploads\" />
   </ItemGroup>
 

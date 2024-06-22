@@ -11,6 +11,9 @@ using System.Security.Claims;
 using System.Numerics;
 using RentCars.Domain.Infrastructure;
 using RentCars.Domain.Users.Enums;
+using Microsoft.AspNetCore.Http;
+using Microsoft.Extensions.Hosting;
+using RentCars.Domain.Vehicles;
 
 namespace RentCars.Services.Users;
 
@@ -18,14 +21,16 @@ public class UserService : IUserService
 {
     private readonly IUserRepository _userRepository;
     private readonly IConfiguration _configuration;
+    private readonly IHostEnvironment _hostEnvironment;
 
-    public UserService(IUserRepository userRepository, IConfiguration configuration)
+    public UserService(IUserRepository userRepository, IConfiguration configuration, IHostEnvironment hostEnvironment)
     {
         _userRepository = userRepository;
         _configuration = configuration;
+        _hostEnvironment = hostEnvironment;
     }
 
-    public DataResult<Guid> SaveUser(UserBlank blank)
+    public DataResult<Guid> SaveUser(UserBlank blank, IFormFile? photo)
     {
         PreprocessUserBlank(blank);
 
@@ -34,10 +39,45 @@ public class UserService : IUserService
 
         String hashedPassword = validUserBlank.Password.GetHash();
 
+        String? fileName = null;
+
+
+        if (photo is not null)
+        {
+            fileName = Guid.NewGuid() + Path.GetExtension(photo.FileName);
+
+            String avatarsFolder = Path.Combine(_hostEnvironment.ContentRootPath, "wwwroot", "avatars");
+
+            if (!Directory.Exists(avatarsFolder))
+            {
+                Directory.CreateDirectory(avatarsFolder);
+            }
+
+            String filePath = Path.Combine(avatarsFolder, fileName);
+
+            if (blank.Id != null)
+            {
+                User? user = _userRepository.GetUser((Guid)blank.Id);
+                if(user != null && user.AvatarPath != null)
+                {
+                    String existPhotoPath = Path.Combine(avatarsFolder, user.AvatarPath);
+                    if (File.Exists(existPhotoPath))
+                    {
+                        File.Delete(existPhotoPath);
+                    }
+                }
+            }
+
+            using (var stream = new FileStream(filePath, FileMode.Create))
+            {
+                photo.CopyTo(stream);
+            }
+        }
+
         User newUser = User.CreateSimpleUser(
             validUserBlank.Id, validUserBlank.Name,
             validUserBlank.Tel, validUserBlank.Login,
-            hashedPassword, validUserBlank.Photo,
+            hashedPassword, fileName,
             validUserBlank.RegistrationDate
         );
 
@@ -61,7 +101,7 @@ public class UserService : IUserService
         existUser = _userRepository.GetUserByTel(userBlank.Tel);
         if (existUser != null) return DataResult<AuthResponse>.Fail("Пользователь с таким телефоном уже существует!");
 
-        DataResult<Guid> saveResult = SaveUser(userBlank);
+        DataResult<Guid> saveResult = SaveUser(userBlank, null);
         if(!saveResult.IsSuccess) return DataResult<AuthResponse>.Fail(saveResult.Errors);
 
         User? savedUser = _userRepository.GetUser(saveResult.Data);

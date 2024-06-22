@@ -5,8 +5,15 @@ import { Result, mapToResult } from "../../tools/results/result";
 import { UserBlank } from "./userBlank";
 
 export class UserProvider {
-    public static async save(blank: UserBlank): Promise<Result> {
-        const response = await axios.post("/api/users/edit", blank)
+    public static async save(user: UserBlank, photo: File | null): Promise<Result> {
+        const blank = new FormData()
+        blank.append("blank", JSON.stringify(user))
+        if (photo != null) blank.append("photo", photo)
+        const response = await axios.post("/api/users/edit", blank, {
+            headers: {
+                'Content-Type': 'multipart/form-data'
+            }
+        })
         return mapToResult(response.data)
     }
 

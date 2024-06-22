@@ -18,13 +18,14 @@ export function UsersPage() {
 
     async function loadAllUsers() {
         const allUsers = await UserProvider.getAll();
+        setUsers([])
         setUsers(allUsers);
     }
 
-    async function saveUser(blank: UserBlank) {
-        const saveResponse = await UserProvider.save(blank)
+    async function saveUser(blank: UserBlank, photo: File | null) {
+        const saveResponse = await UserProvider.save(blank, photo)
         if (!saveResponse.isSuccess) return addErrorNotification(saveResponse.errorsString)
-        addSuccessNotification("Запрос на аренду успешно сохранён")
+        addSuccessNotification("Пользователь успешно сохранён")
         loadAllUsers()
         handleCloseModal()
     }
@@ -60,7 +61,7 @@ export function UsersPage() {
                 <ProfileFormModal
                     isOpen={isOpen}
                     userId={selectedUser}
-                    onSave={(blank) => saveUser(blank)}
+                    onSave={(blank, photo) => saveUser(blank, photo)}
                     onClose={handleCloseModal}
                 />
             }

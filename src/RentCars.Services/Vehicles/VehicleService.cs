@@ -45,7 +45,7 @@ public class VehicleService : IVehicleService
                     Directory.CreateDirectory(uploadsFolder);
                 }
 
-                var filePath = Path.Combine(uploadsFolder, fileName);
+                String filePath = Path.Combine(uploadsFolder, fileName);
 
                 using (var stream = new FileStream(filePath, FileMode.Create))
                 {

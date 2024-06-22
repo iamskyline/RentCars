@@ -9,7 +9,7 @@ public class UserDb
     public String Tel { get; set; }
     public String Login { get; set; }
     public String Password { get; set; }
-    public String? Photo { get; set; }
+    public String? AvatarPath { get; set; }
     public DateTime RegistrationDate { get; set; }
     public Role UserRole { get; set; }
 }

@@ -14,6 +14,7 @@ import { addErrorNotification, addSuccessNotification } from "../../../hooks/use
 import { useAuthContext } from "../../contexts/authContext";
 import Carousel from "react-multi-carousel";
 import 'react-multi-carousel/lib/styles.css';
+import VehiclePhoto from "./vehiclePhoto";
 
 export function VehicleSpecCard() {
     const { vehicleId } = useParams()
@@ -72,20 +73,18 @@ export function VehicleSpecCard() {
                     <Grid container spacing={3}>
                         <Grid item xs={12} md={12} lg={8} container>
                             <Grid item xs={12}>
-                                {/* <Box sx={{ width: "100%", height: "450px", bgcolor: "#737272" }}></Box> */}
                                 <Carousel responsive={responsive}
                                     infinite={true}
                                 >
-                                    <Box sx={{
-                                        width: "100%",
-                                        height: "450px",
-                                        background: `url(photo1.jpg)`
-                                    }} />
-                                    <Box sx={{
-                                        width: "100%",
-                                        height: "450px",
-                                        backgroundColor: "white"
-                                    }} />
+                                    {
+                                        vehicle.photos.map(photo =>
+                                            <VehiclePhoto
+                                                key={photo.id}
+                                                sx={{ height: "450px" }}
+                                                path={`https://localhost:7220/uploads/${photo.path}`}
+                                            />
+                                        )
+                                    }
                                 </Carousel>
                             </Grid>
                         </Grid>

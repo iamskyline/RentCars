@@ -13,6 +13,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import { VehicleLinks } from "../../../domain/constants/links";
 import CloudUploadIcon from '@mui/icons-material/CloudUpload';
 import VehiclePhoto from "./vehiclePhoto";
+import VisuallyHiddenInput from "../../../components/visuallyHiddenInput";
 
 export function VehicleFormCard() {
     const [vehicleBlank, setVehicleBlank] = useState<VehicleBlank>(VehicleBlank.empty());
@@ -78,18 +79,6 @@ export function VehicleFormCard() {
             setPhotos(Array.from(files))
         })
     }
-
-    const VisuallyHiddenInput = styled('input')({
-        clip: 'rect(0 0 0 0)',
-        clipPath: 'inset(50%)',
-        height: 1,
-        overflow: 'hidden',
-        position: 'absolute',
-        bottom: 0,
-        left: 0,
-        whiteSpace: 'nowrap',
-        width: 1,
-    });
 
     function handleDeleteUploadedPhoto(indexToRemove: number) {
         setPhotoUrls(photoUrls.filter((_, index) => index !== indexToRemove))
@@ -332,7 +321,7 @@ export function VehicleFormCard() {
                     tabIndex={-1}
                 >
                     Загрузить фото
-                    <VisuallyHiddenInput type="file" multiple onChange={(e) => handleChangePhoto(e.target.files)} />
+                    <VisuallyHiddenInput isMultiple onSelectPhoto={(files) => handleChangePhoto(files)} />
                 </Button>
             </Box>
             <Stack direction={'row'} mt={2} spacing={2}>

@@ -29,7 +29,7 @@ public class UserRepository : IUserRepository
             new("p_tel", user.Tel),
             new("p_login", user.Login),
             new("p_password", user.Password),
-            new("p_avatarpath", user.Photo),
+            new("p_avatarpath", user.AvatarPath),
             new("p_registrationdate", user.RegistrationDate),
             new("p_userrole", (Int32)user.UserRole),
             new("p_isremoved", defaultIsRemovedValue),
@@ -43,7 +43,7 @@ public class UserRepository : IUserRepository
                        "@p_registrationdate, @p_userrole, @p_isremoved, @p_createddatetimeutc)" +
                        "ON CONFLICT (id) DO UPDATE SET " +
                        "id = @p_id, name = @p_name, tel = @p_tel, login = @p_login, password = @p_password," +
-                       "avatarpath = @p_avatarpath, registrationdate = @p_registrationdate, " +
+                       "avatarpath = @p_avatarpath, " +
                        "userrole = @p_userrole, isremoved = @p_isremoved, " +
                        "modifieddatetimeutc = @p_modifieddatetimeutc";
         
@@ -101,7 +101,7 @@ public class UserRepository : IUserRepository
 
     public User[] GetAllUsers()
     {
-        return _mainConnector.GetList<UserDb>("SELECT * FROM users u WHERE NOT u.isRemoved").ToUsers();
+        return _mainConnector.GetList<UserDb>("SELECT * FROM users u WHERE NOT u.isRemoved ORDER BY u.registrationdate").ToUsers();
     }
 
     public User[] GetAllClients()

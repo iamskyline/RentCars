@@ -7,6 +7,7 @@ import { ProfileFormModal } from "./profileFormModal";
 import { ConfirmationCard } from "../../confirmations/confirmationModal";
 import { UserProvider } from "../../../domain/users/userProvider";
 import { addErrorNotification, addSuccessNotification } from "../../../hooks/useNotifications";
+import VisuallyHiddenInput from "../../../components/visuallyHiddenInput";
 
 interface IProps {
     user: User
@@ -36,7 +37,22 @@ export function UserCard(props: IProps) {
         >
             <Grid container spacing={3}>
                 <Grid item xs={12} display="flex" justifyContent="center">
-                    <Avatar sx={{ width: 125, height: 125 }} />
+                    {
+                        props.user.avatarPath == null
+                            ?
+                            <Avatar sx={{ width: 125, height: 125 }} />
+                            :
+                            <Box sx={{
+                                width: 125,
+                                height: 125,
+                                borderRadius: '50%',
+                                backgroundImage: `url(https://localhost:7220/avatars/${props.user.avatarPath})`,
+                                cursor: 'pointer',
+                                backgroundSize: 'cover',
+                                backgroundPosition: 'center'
+                            }}
+                            />
+                    }
                 </Grid>
                 <Grid item xs={12}>
                     <Typography variant="h5" align="center">

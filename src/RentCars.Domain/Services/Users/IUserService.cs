@@ -1,4 +1,5 @@
-﻿using RentCars.Domain.Infrastructure;
+﻿using Microsoft.AspNetCore.Http;
+using RentCars.Domain.Infrastructure;
 using RentCars.Domain.Users;
 using RentCars.Tools.Results;
 
@@ -6,7 +7,7 @@ namespace RentCars.Domain.Services.Users;
 
 public interface IUserService
 {
-    DataResult<Guid> SaveUser(UserBlank blank);
+    DataResult<Guid> SaveUser(UserBlank blank, IFormFile? photo);
     User? GetUser(Guid userId);
     Int32 GetRentedVehiclesQuantityByUserId(Guid userId);
     User[] GetAllUsers();

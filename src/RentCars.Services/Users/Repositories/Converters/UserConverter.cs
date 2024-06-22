@@ -10,7 +10,7 @@ public static class UserConverter
         return new User(
             userDb.Id, userDb.Name,
             userDb.Tel, userDb.Login,
-            userDb.Password, userDb.Photo,
+            userDb.Password, userDb.AvatarPath,
             userDb.RegistrationDate, userDb.UserRole
         );
     }

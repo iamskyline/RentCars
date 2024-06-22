@@ -7,7 +7,7 @@ export class User {
         public tel: string,
         public login: string,
         public password: string,
-        public photo: string | null,
+        public avatarPath: string | null,
         public registrationDate: Date,
         public role: string
     ) { }
@@ -20,7 +20,7 @@ export function mapToUser(data: any) {
         data.tel,
         data.login,
         data.password,
-        data.photo,
+        data.avatarPath,
         new Date(data.registrationDate),
         data.role
     );

@@ -140,7 +140,7 @@ public class VehicleRepository : IVehicleRepository
         VehiclePhotoDb[] photoDbs = GetAllVehiclesPhotos();
 
         return _mainConnector.GetList<VehicleDb>("SELECT * FROM vehicles v " +
-            "WHERE NOT v.isRemoved").ToVehicles(photoDbs);
+            "WHERE NOT v.isRemoved ORDER BY v.createddatetimeutc").ToVehicles(photoDbs);
     }
 
     public Vehicle[] GetVehicles(Guid[] ids)
