@@ -50,7 +50,8 @@ export function UsersPage() {
     return (
         <Box sx={{
             bgcolor: "#eaeaea",
-            margin: 4,
+            marginX: 2,
+            marginY: 4,
             borderRadius: 5,
             paddingX: 2,
             pb: 2

@@ -45,7 +45,7 @@ export function RentalRequestFormModal(props: IProps) {
             const allVehicles = await VehicleProvider.getAllNameOfVehicles();
             setVehicles(allVehicles);
 
-            setRentalRequestBlank((prev) => ({ ...prev, vehicleId: allVehicles[0].id, userId: allClients[0].id }))
+            //setRentalRequestBlank((prev) => ({ ...prev, vehicleId: allVehicles[0].id, userId: allClients[0].id }))
         }
         load();
     }, [])

@@ -67,6 +67,7 @@ export function VehicleFormCard() {
                                 fullWidth
                                 value={vehicleBlank.brand ?? ''}
                                 onChange={(event) => setVehicleBlank((vehicleBlank) => ({ ...vehicleBlank, brand: (event.target.value) }))}
+                                inputProps={{ tabIndex: 1 }}
                             />
                         </Grid>
                         <Grid item xs={12} md={6} lg={4}>
@@ -75,6 +76,7 @@ export function VehicleFormCard() {
                                 fullWidth
                                 value={vehicleBlank.bodyColor ?? ''}
                                 onChange={(event) => setVehicleBlank((vehicleBlank) => ({ ...vehicleBlank, bodyColor: (event.target.value) }))}
+                                inputProps={{ tabIndex: 7 }}
                             />
                         </Grid>
                         <Grid item xs={12} md={6} lg={4}>
@@ -84,6 +86,7 @@ export function VehicleFormCard() {
                                 fullWidth
                                 value={vehicleBlank.dayCost ?? ''}
                                 onChange={(event) => setVehicleBlank((vehicleBlank) => ({ ...vehicleBlank, dayCost: (+(event.target.value)) }))}
+                                inputProps={{ tabIndex: 12 }}
                             />
                         </Grid>
                         <Grid item xs={12} md={6} lg={4}>
@@ -92,6 +95,7 @@ export function VehicleFormCard() {
                                 fullWidth
                                 value={vehicleBlank.model ?? ''}
                                 onChange={(event) => setVehicleBlank((vehicleBlank) => ({ ...vehicleBlank, model: (event.target.value) }))}
+                                inputProps={{ tabIndex: 2 }}
                             />
                         </Grid>
                         <Grid item xs={12} md={6} lg={4}>
@@ -100,6 +104,7 @@ export function VehicleFormCard() {
                                 fullWidth
                                 value={vehicleBlank.enginePower ?? ''}
                                 onChange={(event) => setVehicleBlank((vehicleBlank) => ({ ...vehicleBlank, enginePower: (+(event.target.value)) }))}
+                                inputProps={{ tabIndex: 8 }}
                             />
                         </Grid>
                         <Grid item xs={12} md={6} lg={4}>
@@ -108,6 +113,7 @@ export function VehicleFormCard() {
                                 fullWidth
                                 value={vehicleBlank.twoFourDaysCost ?? ''}
                                 onChange={(event) => setVehicleBlank((vehicleBlank) => ({ ...vehicleBlank, twoFourDaysCost: (+(event.target.value)) }))}
+                                inputProps={{ tabIndex: 13 }}
                             />
                         </Grid>
                         <Grid item xs={12} md={6} lg={4}>
@@ -116,6 +122,7 @@ export function VehicleFormCard() {
                                 fullWidth
                                 value={vehicleBlank.yearOfManufacture ?? ''}
                                 onChange={(event) => setVehicleBlank((vehicleBlank) => ({ ...vehicleBlank, yearOfManufacture: (+(event.target.value)) }))}
+                                inputProps={{ tabIndex: 3 }}
                             />
                         </Grid>
                         <Grid item xs={12} md={6} lg={4}>
@@ -124,7 +131,7 @@ export function VehicleFormCard() {
                                 <InputLabel>
                                     Тип мотора автомобиля
                                 </InputLabel>
-                                <Select
+                                <Select inputProps={{ tabIndex: 9 }}
                                     value={vehicleBlank.fuelType}
                                     onChange={(event) => setVehicleBlank((vehicleBlank) => ({ ...vehicleBlank, fuelType: (+(event.target.value)) }))}>
                                     {
@@ -143,6 +150,7 @@ export function VehicleFormCard() {
                                 fullWidth
                                 value={vehicleBlank.fourSevenDaysCost ?? ''}
                                 onChange={(event) => setVehicleBlank((vehicleBlank) => ({ ...vehicleBlank, fourSevenDaysCost: (+(event.target.value)) }))}
+                                inputProps={{ tabIndex: 14 }}
                             />
                         </Grid>
                         <Grid item xs={12} md={6} lg={4}>
@@ -151,7 +159,7 @@ export function VehicleFormCard() {
                                 <InputLabel>
                                     Класс автомобиля
                                 </InputLabel>
-                                <Select
+                                <Select inputProps={{ tabIndex: 4 }}
                                     value={vehicleBlank.vehicleClass}
                                     onChange={(event) => setVehicleBlank((vehicleBlank) => ({ ...vehicleBlank, vehicleClass: (+(event.target.value)) }))}>
                                     {
@@ -170,7 +178,7 @@ export function VehicleFormCard() {
                                 <InputLabel>
                                     Привод автомобиля
                                 </InputLabel>
-                                <Select
+                                <Select inputProps={{ tabIndex: 10 }}
                                     value={vehicleBlank.wheelDrive}
                                     onChange={(event) => setVehicleBlank((vehicleBlank) => ({ ...vehicleBlank, wheelDrive: (+(event.target.value)) }))}>
                                     {
@@ -189,6 +197,7 @@ export function VehicleFormCard() {
                                 fullWidth
                                 value={vehicleBlank.sevenFourteenDaysCost ?? ''}
                                 onChange={(event) => setVehicleBlank((vehicleBlank) => ({ ...vehicleBlank, sevenFourteenDaysCost: (+(event.target.value)) }))}
+                                inputProps={{ tabIndex: 15 }}
                             />
                         </Grid>
                         <Grid item xs={12} md={6} lg={4}>
@@ -197,7 +206,7 @@ export function VehicleFormCard() {
                                 <InputLabel>
                                     Тип КПП автомобиля
                                 </InputLabel>
-                                <Select
+                                <Select inputProps={{ tabIndex: 5 }}
                                     value={vehicleBlank.transmissionType}
                                     onChange={(event) => setVehicleBlank((vehicleBlank) => ({ ...vehicleBlank, transmissionType: (+(event.target.value)) }))}>
                                     {
@@ -216,7 +225,7 @@ export function VehicleFormCard() {
                                 <InputLabel>
                                     Объем мотора автомобиля
                                 </InputLabel>
-                                <Select
+                                <Select inputProps={{ tabIndex: 11 }}
                                     value={vehicleBlank.engineCapacity}
                                     onChange={(event) => setVehicleBlank((vehicleBlank) => ({ ...vehicleBlank, engineCapacity: (+(event.target.value)) }))}
                                 >
@@ -236,6 +245,7 @@ export function VehicleFormCard() {
                                 fullWidth
                                 value={vehicleBlank.fourteenAndMoreDaysCost ?? ''}
                                 onChange={(event) => setVehicleBlank((vehicleBlank) => ({ ...vehicleBlank, fourteenAndMoreDaysCost: (+(event.target.value)) }))}
+                                inputProps={{ tabIndex: 16 }}
                             />
                         </Grid>
                         <Grid item xs={12} md={6} lg={4}>
@@ -244,7 +254,7 @@ export function VehicleFormCard() {
                                 <InputLabel>
                                     Тип кузова автомобиля
                                 </InputLabel>
-                                <Select
+                                <Select inputProps={{ tabIndex: 6 }}
                                     value={vehicleBlank.bodyType}
                                     onChange={(event) => setVehicleBlank((vehicleBlank) => ({ ...vehicleBlank, bodyType: (+(event.target.value)) }))}>
                                     {

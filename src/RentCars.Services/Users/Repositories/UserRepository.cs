@@ -76,7 +76,7 @@ public class UserRepository : IUserRepository
             new("p_login", login)
         };
 
-        return _mainConnector.Get<UserDb?>("SELECT * FROM users WHERE login = @p_login", parameters)?.ToUser();
+        return _mainConnector.Get<UserDb?>("SELECT * FROM users WHERE login = @p_login AND NOT isRemoved", parameters)?.ToUser();
     }
 
     public User? GetUserByTel(String tel)

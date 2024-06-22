@@ -54,11 +54,7 @@ export function RentalRequestsPage() {
     }
 
     return (
-        <Box display="flex"
-            flexDirection={'column'}
-            alignItems="center"
-            mt={2}
-        >
+        <Box mt={2}>
             {isOpen &&
                 <RentalRequestFormModal
                     rentalRequestId={selectedRentalRequest}
@@ -67,15 +63,17 @@ export function RentalRequestsPage() {
                     onClose={handleCloseModal}
                 />
             }
-            <Button variant="contained" onClick={handleOpenModal}>
-                Добавить запрос на аренду
-            </Button>
+            <Box display="flex" justifyContent="center" alignItems="center" mb={2}>
+                <Button variant="contained" onClick={handleOpenModal}>
+                    Добавить запрос на аренду
+                </Button>
+            </Box>
             <Box sx={{
                 bgcolor: "#eaeaea",
                 margin: 2,
                 borderRadius: 5,
                 paddingX: 2,
-                paddingY: 2
+                paddingY: 2,
             }}>
                 <Grid container spacing={1}>
                     {
@@ -101,6 +99,6 @@ export function RentalRequestsPage() {
                         )}
                 </Grid>
             </Box>
-        </Box>
+        </Box >
     );
 }

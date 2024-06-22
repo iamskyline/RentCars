@@ -26,17 +26,15 @@ export function VehiclesPage() {
     }
 
     return (
-        <Box display="flex"
-            flexDirection={'column'}
-            alignItems={'center'}
-            mt={2}>
+        <Box mt={2}>
             {
                 isAdmin &&
-                <Button
-                    variant="contained"
-                    onClick={() => navigate(VehicleLinks.toForm())}>
-                    Добавить новый автомобиль
-                </Button>
+                <Box display="flex" justifyContent="center" alignItems="center" mb={2}>
+                    <Button variant="contained"
+                        onClick={() => navigate(VehicleLinks.toForm())}>
+                        Добавить новый автомобиль
+                    </Button>
+                </Box>
             }
             <Box sx={{
                 bgcolor: "#eaeaea",

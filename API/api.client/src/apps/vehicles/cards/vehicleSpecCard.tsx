@@ -11,9 +11,11 @@ import { RentalRequestClientForm } from "../../rentalRequests/cards/rentalReques
 import { RentalRequestBlank } from "../../../domain/rentalRequests/rentalRequestBlank";
 import { RentalRequestProvider } from "../../../domain/rentalRequests/rentalRequestProvider";
 import { addErrorNotification, addSuccessNotification } from "../../../hooks/useNotifications";
+import { useAuthContext } from "../../contexts/authContext";
 
 export function VehicleSpecCard() {
     const { vehicleId } = useParams();
+    const { isAdmin } = useAuthContext()
 
     const [vehicle, setVehicle] = useState<Vehicle | null>(null);
     const [openModal, setOpenModal] = useState(false);
@@ -140,13 +142,16 @@ export function VehicleSpecCard() {
                                 </Table>
                             </TableContainer>
                         </Grid>
-                        <Grid item xs={12} display="flex" justifyContent="flex-end">
-                            <Button
-                                variant="contained"
-                                onClick={() => setOpenModal(true)}>
-                                Арендовать
-                            </Button>
-                        </Grid>
+                        {
+                            !isAdmin &&
+                            <Grid item xs={12} display="flex" justifyContent="flex-end">
+                                <Button
+                                    variant="contained"
+                                    onClick={() => setOpenModal(true)}>
+                                    Арендовать
+                                </Button>
+                            </Grid>
+                        }
                     </Grid>
                 }
                 <RentalRequestClientForm
