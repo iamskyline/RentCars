@@ -6,9 +6,11 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import { NameOfUser } from "../../../domain/users/nameOfUser";
 import { NameOfVehicle } from "../../../domain/vehicles/nameOfVehicle";
 import { ConfirmationCard } from "../../confirmations/confirmationModal";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { RentalRequestProvider } from "../../../domain/rentalRequests/rentalRequestProvider";
 import { addErrorNotification, addSuccessNotification } from "../../../hooks/useNotifications";
+import { User } from "../../../domain/users/user";
+import { UserProvider } from "../../../domain/users/userProvider";
 
 interface IProps {
     rentalRequest: RentalRequest
@@ -19,6 +21,7 @@ interface IProps {
 }
 
 export function RentalRequestCard(props: IProps) {
+    const [user, setUser] = useState<User>()
     const [openDeleteModal, setOpenDeleteModal] = useState(false);
     const handleDeleteModalClose = () => setOpenDeleteModal(false);
 
@@ -28,6 +31,15 @@ export function RentalRequestCard(props: IProps) {
         addSuccessNotification('Запрос аренды успешно удалён')
         props.onDelete(props.rentalRequest.id)
         setOpenDeleteModal(false)
+    }
+
+    useEffect(() => {
+        loadUser()
+    }, [])
+
+    async function loadUser() {
+        const user = await UserProvider.get(props.user.id)
+        setUser(user!)
     }
 
     return (
@@ -40,7 +52,22 @@ export function RentalRequestCard(props: IProps) {
                 <Grid item xs={12} md={6} lg={6}
                     display="flex"
                     justifyContent="center" alignItems="center">
-                    <Avatar sx={{ width: 100, height: 100 }} />
+                    {
+                        user?.avatarPath == null
+                            ?
+                            <Avatar sx={{ width: 100, height: 100 }} />
+                            :
+                            <Box sx={{
+                                width: 100,
+                                height: 100,
+                                borderRadius: '50%',
+                                backgroundImage: `url(https://localhost:7220/avatars/${user!.avatarPath})`,
+                                cursor: 'pointer',
+                                backgroundSize: 'cover',
+                                backgroundPosition: 'center'
+                            }}
+                            />
+                    }
                 </Grid>
                 <Grid item xs={12} md={6} lg={6}
                     display="flex"
