@@ -1,11 +1,13 @@
 import { Avatar, Box, IconButton, Stack, Typography } from '@mui/material'
 import LogoutIcon from '@mui/icons-material/Logout';
-import { PropsWithChildren } from 'react'
+import { PropsWithChildren, useEffect, useState } from 'react'
 import { Link, To, useNavigate } from 'react-router-dom'
 import { useAuthContext } from '../apps/contexts/authContext'
 import { NavItem } from './navItem'
 import Logo from "../assets/logos/Logotype.png";
 import { UserLinks, VehicleLinks } from '../domain/constants/links'
+import { User } from '../domain/users/user';
+import { UserProvider } from '../domain/users/userProvider';
 
 interface NavItemProps {
     title: string
@@ -20,12 +22,23 @@ const tabs: NavItemProps[] = [
 ]
 
 export function Layout(props: PropsWithChildren<{}>) {
+    const [user, setAuthUser] = useState<User>()
+
     const { isAdmin, userId, userName, logout } = useAuthContext();
     const navigate = useNavigate()
 
     async function handleLogout() {
         await logout()
         navigate('/')
+    }
+
+    useEffect(() => {
+        loadUser()
+    }, [])
+
+    async function loadUser() {
+        const user = await UserProvider.get(userId!)
+        setAuthUser(user!)
     }
 
     return (
@@ -65,7 +78,22 @@ export function Layout(props: PropsWithChildren<{}>) {
 
                     }}
                     sx={{ cursor: "pointer" }}>
-                    <Avatar />
+                    {
+                        user?.avatarPath == null
+                            ?
+                            <Avatar sx={{ width: 45, height: 45 }} />
+                            :
+                            <Box sx={{
+                                width: 45,
+                                height: 45,
+                                borderRadius: '50%',
+                                backgroundImage: `url(https://localhost:7220/avatars/${user!.avatarPath})`,
+                                cursor: 'pointer',
+                                backgroundSize: 'cover',
+                                backgroundPosition: 'center'
+                            }}
+                            />
+                    }
                     <Typography>
                         {userName}
                     </Typography>

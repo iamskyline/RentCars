@@ -42,9 +42,9 @@ public class UserRepository : IUserRepository
                        "VALUES (@p_id, @p_name, @p_tel, @p_login, @p_password, @p_avatarpath, " +
                        "@p_registrationdate, @p_userrole, @p_isremoved, @p_createddatetimeutc)" +
                        "ON CONFLICT (id) DO UPDATE SET " +
-                       "id = @p_id, name = @p_name, tel = @p_tel, login = @p_login, password = @p_password," +
+                       "id = @p_id, name = @p_name, tel = @p_tel, login = @p_login," +
                        "avatarpath = @p_avatarpath, " +
-                       "userrole = @p_userrole, isremoved = @p_isremoved, " +
+                       "isremoved = @p_isremoved, " +
                        "modifieddatetimeutc = @p_modifieddatetimeutc";
         
         try

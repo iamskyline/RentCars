@@ -12,8 +12,6 @@ import { addErrorNotification, addSuccessNotification } from "../../../hooks/use
 export function AdminProfileCard() {
     const { userId, logout } = useAuthContext();
 
-    // const [photoUrl, setPhotoUrl] = useState<string>('')
-    // const [photo, setPhoto] = useState<File | null>(null)
     const [user, setUser] = useState<User | null>(null)
     const navigate = useNavigate()
 
@@ -31,26 +29,6 @@ export function AdminProfileCard() {
         }
         loadUser();
     }, [userId])
-
-    // function handleChangePhoto(files: FileList | null) {
-    //     if (files == null) return
-
-    //     let fileUrl: string
-    //     const reader = new FileReader()
-    //     const file = files[0]
-
-    //     reader.onload = (e) => {
-    //         const src = e.target?.result
-    //         fileUrl = src?.toString() ?? ''
-    //     }
-
-    //     reader.readAsDataURL(file);
-
-    //     Promise.resolve(reader).then(() => {
-    //         setPhotoUrl(fileUrl)
-    //         setPhoto(files[0])
-    //     })
-    // }
 
     return (
         <Box display="flex"
@@ -73,14 +51,14 @@ export function AdminProfileCard() {
                                         <Box sx={{
                                             width: 150,
                                             height: 150,
-                                            backgroundImage: `url(https://localhost:7220/avatars/${user.avatarPath})`,
+                                            borderRadius: '50%',
+                                            backgroundImage: `url(https://localhost:7220/avatars/${user!.avatarPath})`,
                                             cursor: 'pointer',
                                             backgroundSize: 'cover',
                                             backgroundPosition: 'center'
                                         }}
                                         />
                                 }
-                                {/* <Avatar sx={{ width: 150, height: 150 }} /> */}
                             </Grid>
                             <Grid item xs={10} md={5} lg={6}>
                                 <Box>

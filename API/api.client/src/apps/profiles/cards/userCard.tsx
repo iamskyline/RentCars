@@ -3,11 +3,9 @@ import { User } from "../../../domain/users/user";
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
 import { useState } from "react";
-import { ProfileFormModal } from "./profileFormModal";
 import { ConfirmationCard } from "../../confirmations/confirmationModal";
 import { UserProvider } from "../../../domain/users/userProvider";
 import { addErrorNotification, addSuccessNotification } from "../../../hooks/useNotifications";
-import VisuallyHiddenInput from "../../../components/visuallyHiddenInput";
 
 interface IProps {
     user: User

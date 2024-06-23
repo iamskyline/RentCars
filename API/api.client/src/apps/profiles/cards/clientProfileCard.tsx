@@ -43,7 +43,22 @@ export function ClientProfileCard() {
                     user != null &&
                     <Grid container spacing={3}>
                         <Grid item xs={12} md={3} lg={2}>
-                            <Avatar sx={{ width: 150, height: 150 }} />
+                            {
+                                user.avatarPath == null
+                                    ?
+                                    <Avatar sx={{ width: 150, height: 150 }} />
+                                    :
+                                    <Box sx={{
+                                        width: 150,
+                                        height: 150,
+                                        borderRadius: '50%',
+                                        backgroundImage: `url(https://localhost:7220/avatars/${user!.avatarPath})`,
+                                        cursor: 'pointer',
+                                        backgroundSize: 'cover',
+                                        backgroundPosition: 'center'
+                                    }}
+                                    />
+                            }
                         </Grid>
                         <Grid item xs={11} md={8} lg={9}>
                             <Typography variant="h5"
